@@ -10,9 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_191734) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_154525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.bigint "workout_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["recipe_id"], name: "index_comments_on_recipe_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["workout_id"], name: "index_comments_on_workout_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "title"
+    t.string "ingredients"
+    t.integer "prep_time"
+    t.text "instructions"
+    t.string "difficulty"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +56,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_191734) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.text "bio"
+    t.string "interests"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workouts", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "url"
+    t.string "difficulty"
+    t.string "muscle_group"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_workouts_on_user_id"
+  end
+
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "recipes"
+  add_foreign_key "comments", "users"
+  add_foreign_key "comments", "workouts"
+  add_foreign_key "posts", "users"
+  add_foreign_key "recipes", "users"
+  add_foreign_key "workouts", "users"
 end
