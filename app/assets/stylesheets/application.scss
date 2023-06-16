@@ -10,3 +10,22 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+body {
+  background-color: white;
+  font-family: 'Noto Serif', serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f9e0bb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #be8966;
+  border-radius: 8px;
+}

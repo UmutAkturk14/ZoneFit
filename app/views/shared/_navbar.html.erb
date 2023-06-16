@@ -1,7 +1,8 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+<div class="navbar navbar-expand-sm navbar-lewagon" style="background-color: #22A699;">
+  <div class="container-fluid text-muted d-flex align-items-center text-decoration-none w-100">
+    <%= link_to "/", class: "navbar-brand d-flex align-items-center" do %>
+      <i class="fa-solid fa-dumbbell fs-2 text-light"></i>
+      <h1 class="fs-3 mx-3 zonefit fw-bold mb-0">Zone Fit</h1>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,14 +13,17 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", "/", class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+            <%= link_to "Workouts", workouts_path, class: "nav-link" %>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item">
+            <%= link_to "Recipes", recipes_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item dropdown d-flex align-items-center text-decoration-none">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+            <i class="fa-solid fa-bars text-dark"></i>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>
