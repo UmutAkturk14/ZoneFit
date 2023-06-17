@@ -22,7 +22,7 @@
           <p><%= link_to result.searchable.title, recipe_path(result.searchable)  %></p>
         <% end %>
     <% end %>
-  <% else %>
+  <% elsif params[:query].present? && results.size == 0 %>
     <p>Sorry, no results match your search. Try again!</p>
   <% end %>
 </div>
