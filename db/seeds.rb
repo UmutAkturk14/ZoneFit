@@ -13,11 +13,11 @@ Recipe.destroy_all
 
 puts "Creating new recipes.."
 
-url = 
+url =
 
 20.times do
   Recipe.create!(
-    title: ,
+    title: Faker::,
     ingredients: ,
     prep_time: ,
     instructions: ,
