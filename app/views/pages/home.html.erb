@@ -14,7 +14,15 @@
     </div>
   </div>
   <% results = PgSearch.multisearch(params[:query]) %>
-  <% results.map do |result| %>
-    <p><%= result.searchable.title %></p>
+  <% if results.size > 0 %>
+    <% results.map do |result| %>
+        <% if result.searchable_type == "Workout" %>
+          <p><%= link_to result.searchable.title, workout_path(result.searchable) %></p>
+        <% elsif result.searchable_type == "Recipe"  %>
+          <p><%= link_to result.searchable.title, recipe_path(result.searchable)  %></p>
+        <% end %>
+    <% end %>
+  <% else %>
+    <p>Sorry, no results match your search. Try again!</p>
   <% end %>
 </div>
