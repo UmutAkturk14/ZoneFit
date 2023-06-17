@@ -1,13 +1,9 @@
-class WorkoutPolicy < ApplicationPolicy
+class PostPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    def resolve
-      scope.all
-    end
-  end
-
-  def show?
-    true
+    # def resolve
+    #   scope.all
+    # end
   end
 
   def new?
@@ -16,9 +12,5 @@ class WorkoutPolicy < ApplicationPolicy
 
   def create?
     true
-  end
-
-  def destroy?
-    record.user == user
   end
 end
