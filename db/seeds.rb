@@ -9,11 +9,15 @@ def create_workouts(arr)
     youtube.key = ENV["YouTubeAPIKey"]
     response = youtube.list_searches("snippet", q: "#{element}", max_results: 50, type: "video")
     response.items.each do |r|
+      video_details = youtube.list_videos("snippet", id: r.id.video_id)
+
       Workout.create!(
         title: r.snippet.title,
-        description: r.snippet.description,
+        description: video_details.items.first.snippet.description,
         url: r.id.video_id,
-        user: User.all.sample
+        # ! We might need to remove users...
+        user: User.all.sample,
+        tag: video_details.items.first.snippet.tags
       )
     end
     puts "Workout added successfully"
