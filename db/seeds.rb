@@ -1,4 +1,27 @@
 require "faker"
+require "google/apis/youtube_v3"
+youtube = Google::Apis::YoutubeV3::YouTubeService.new
+youtube.key = ENV["YouTubeAPIKey"]
+
+def create_workouts(arr)
+  arr.each do |element|
+    youtube = Google::Apis::YoutubeV3::YouTubeService.new
+    youtube.key = ENV["YouTubeAPIKey"]
+    response = youtube.list_searches("snippet", q: "#{element}", max_results: 50, type: "video")
+    response.items.each do |r|
+      Workout.create!(
+        title: r.snippet.title,
+        description: r.snippet.description,
+        url: r.id.video_id,
+        user: User.all.sample
+      )
+    end
+    puts "Workout added successfully"
+  end
+end
+
+workouts = ["workout", "dumbbell workout", "kettlebell workout", "jump rope workout",
+            "no equipment workout", "chest workout", "legs workout", "shoulder workout", "back workout", "cardio workout", "strength workout"]
 
 # TODO: Delete everything
 puts "Deleting Comments..."
@@ -27,17 +50,11 @@ end
 
 puts "Users created successfully"
 # TODO: Workouts
-20.times do |x|
-  puts "Creating Workout #{x + 1}"
-  Workout.create!(
-    title: Faker::Lorem.sentence,
-    description: Faker::Lorem.paragraph,
-    url: Faker::Internet.url,
-    difficulty: ["easy", "intermediate", "advanced"].sample,
-    user: User.all.sample
-  )
-end
+
+create_workouts(workouts)
 puts "Workouts created successfully"
+
+
 # TODO: Recipes
 20.times do |x|
   puts "Creating Recipe #{x + 1}"
@@ -60,3 +77,7 @@ puts "Recipes created successfully"
 end
 puts "Recipes created successfully"
 # TODO: Comments
+
+
+
+# TODO: Workout instances
