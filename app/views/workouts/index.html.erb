@@ -1,2 +1,25 @@
 <h2>Here are all the worksouts foer you to browse</h2>
 <p><%= @workouts.all %></p>
+
+
+<div class="container d-flex">
+  <%= simple_form_for @workout do |f| %>
+    <%= f.input :muscle_group, collection: ["Chest", "Back", "Shoulder", "Legs", "Abs"] %>
+    <%= f.input :style, collection: ["Cardio", "HIIT", "Muscle"] %>
+    <%= f.input :equipment, collection: ["No equipment", "Dumbbell", "Kettlebell", "Barbell", "Jump rope"] %>
+    <%= f.submit 'Search' %>
+  <% end %>
+</div>
+
+
+<div class="container w-100 border border-3">
+  <div class="row">
+    <% @workouts.first(20).each do |workout| %>
+    <a href="/workouts/<%= workout.id %>">
+      <div class="col border border-3">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= workout.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5"></iframe>
+    </div>
+    </a>
+  <% end %>
+  </div>
+</div>
