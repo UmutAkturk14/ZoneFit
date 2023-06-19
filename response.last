@@ -1,0 +1,92 @@
+=> [32m#<Google::Apis::YoutubeV3::SearchListsResponse:0x00007f0a9c1183b8[0m
+ @etag[32m=[0m[31m[1;31m"[0m[31mO3qonvYWhMEI2lxmyBoKxtXHrBI[1;31m"[0m[31m[0m,
+ @items[32m=[0m
+  [[32m#<Google::Apis::YoutubeV3::SearchResult:0x00007f0a9c115a78[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mzMoZpY-n5sLMXcttt0ubSVVjAKw[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007f0a9c114d08[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31m3zDprehpv3Q[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007f0a9c112aa8[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUCsLF0qPTpkYKq81HsjgzhwQ[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mgrowingannanas[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31mA 25 min GLUTES & CORE Workout that will help you feel your muscles work! The perfect workout to help grow your glutes and ...[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2023-06-19T01:00:11+00:00 ((2460115j,3611s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007f0a9c110460[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c10fc18[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/3zDprehpv3Q/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c10e480[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/3zDprehpv3Q/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c10c798[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/3zDprehpv3Q/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31m25 MIN GLUTES + TOTAL CORE - With Weights - Home Workout to Grow Your Booty and tone your ABS[1;31m"[0m[31m[0m[32m>[0m[32m>[0m,
+   [32m#<Google::Apis::YoutubeV3::SearchResult:0x00007f0a9c10a9c0[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mzjt510V8cqB5ubZoVqJCA9uxizM[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007f0a9c109c78[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31mYjLni7LsycM[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007f0a9c107a18[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUC8Av1tO-ha143nNYzxmf1Fg[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mDalati[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31m[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2023-06-15T19:34:37+00:00 ((2460111j,70477s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007f0a9c1053f8[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c104bd8[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/YjLni7LsycM/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c103418[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/YjLni7LsycM/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c101730[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/YjLni7LsycM/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31mFull Body Workout Without Equipment[1;31m"[0m[31m[0m[32m>[0m[32m>[0m,
+   [32m#<Google::Apis::YoutubeV3::SearchResult:0x00007f0a9c0ff980[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mkszH_BAfy0JvdlwapFvcZ9izBxc[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007f0a9c0fec38[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31m2pLT-olgUJs[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007f0a9c0fca00[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUCCgLoMYIyP0U56dEhEL1wXQ[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mChloe Ting[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31mAbs Abs Abs! Everyone seems to be asking for a QUICK and short schedule, so I put together a 2 weeks schedule to help you get ...[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2019-08-12T11:45:00+00:00 ((2458708j,42300s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007f0a9c0fa3b8[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0f9b98[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/2pLT-olgUJs/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0f8400[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/2pLT-olgUJs/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0f66f0[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/2pLT-olgUJs/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31mGet Abs in 2 WEEKS | Abs Workout Challenge[1;31m"[0m[31m[0m[32m>[0m[32m>[0m,
+   [32m#<Google::Apis::YoutubeV3::SearchResult:0x00007f0a9c0f4968[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mWlUmM_ok_x-js94hwKbkIBuiAcM[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007f0a9c0f3bf8[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31mUItWltVZZmE[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007f0a9c0f19c0[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUChVRfsT_ASBZk10o0An7Ucg[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mPamela Reif[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31mFinally: a workout suitable for BEGINNERS. // Werbung What makes this [1;35m\"[0m[31mbeginner friendly[1;35m\"[0m[31m? 1. I used BASIC movements, that are ...[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2019-09-01T10:12:36+00:00 ((2458728j,36756s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007f0a9c0ef378[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0eeb58[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/UItWltVZZmE/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0ed3c0[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/UItWltVZZmE/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0eb6b0[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/UItWltVZZmE/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31m20 MIN FULL BODY WORKOUT - Beginner Version // No Equipment I Pamela Reif[1;31m"[0m[31m[0m[32m>[0m[32m>[0m,
+   [32m#<Google::Apis::YoutubeV3::SearchResult:0x00007f0a9c0e9928[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mEpuedpP-zKDh66Rp4v_d1SDDreI[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007f0a9c0e8be0[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31mGj-z-hW5Wz4[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007f0a9c0e6980[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUCZUUZFex6AaIU4QTopFudYA[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mgrowwithjo[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31mGet ready to strengthen and tone your core with this highly effective and beginner-friendly 12-minute workout. Say hello to ...[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mupcoming[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2023-06-17T16:54:16+00:00 ((2460113j,60856s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007f0a9c0e4360[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0e3b18[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/Gj-z-hW5Wz4/default_live.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0e2380[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/Gj-z-hW5Wz4/hqdefault_live.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007f0a9c0e0698[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/Gj-z-hW5Wz4/mqdefault_live.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31m12 MIN DAILY ABS WORKOUT | 12 MIN FAT BURN[1;31m"[0m[31m[0m[32m>[0m[32m>[0m],
+ @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchListResponse[1;31m"[0m[31m[0m,
+ @next_page_token[32m=[0m[31m[1;31m"[0m[31mCAUQAA[1;31m"[0m[31m[0m,
+ @page_info[32m=[0m[32m#<Google::Apis::YoutubeV3::PageInfo:0x00007f0a9c0dda10[0m @results_per_page[32m=[0m[1;34m5[0m, @total_results[32m=[0m[1;34m1000000[0m[32m>[0m,
+ @region_code[32m=[0m[31m[1;31m"[0m[31mTR[1;31m"[0m[31m[0m[32m>[0m

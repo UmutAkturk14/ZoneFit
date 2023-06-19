@@ -18,10 +18,6 @@ class WorkoutPolicy < ApplicationPolicy
     true
   end
 
-  def filter?
-    true
-  end
-
   def destroy?
     record.user == user
   end

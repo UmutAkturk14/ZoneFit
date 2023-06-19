@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  def index(search_params = nil)
+  def index
     @workouts = policy_scope(Workout)
     @workout = Workout.new
   end
