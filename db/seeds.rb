@@ -1,4 +1,6 @@
 require "faker"
+require "json"
+require "open-uri"
 require "google/apis/youtube_v3"
 youtube = Google::Apis::YoutubeV3::YouTubeService.new
 youtube.key = ENV["YouTubeAPIKey"]
@@ -45,32 +47,50 @@ User.delete_all
   puts "Creating User #{x + 1}"
   User.create!(
     first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name ,
+    last_name: Faker::Name.last_name,
     bio: Faker::Lorem.paragraph,
     email: Faker::Internet.email,
-    password: Faker::Internet.password,
+    password: Faker::Internet.password
   )
 end
 
 puts "Users created successfully"
-# TODO: Workouts
+# TODO: Workouts UNCOMMENT THE FOLLOWING CODE:
 
-create_workouts(workouts)
-puts "Workouts created successfully"
+# create_workouts(workouts)
+# puts "Workouts created successfully"
 
+# TODO: Recipes API data
+url = "https://www.themealdb.com/api/json/v1/1/random.php"
 
-# TODO: Recipes
-20.times do |x|
-  puts "Creating Recipe #{x + 1}"
+20.times do
+  var = URI.open(url).read
+  info = JSON.parse(var)
+  n = 1
+  # puts info["meals"][0]["strIngredient"+"#{n}"]
+  ingredient = ""
+  while info["meals"][0]["strIngredient"+"#{n}"].present? && info["meals"][0]["strIngredient"+"#{n}"] != ""
+    ingredient += info["meals"][0]["strIngredient"+"#{n}"]+" "
+    n += 1
+  end
+  image = ""
+  if info["meals"][0]["strMealThumb"] != nil
+    image = info["meals"][0]["strMealThumb"]
+  else
+    image = ""
+  end
   Recipe.create!(
-    title: Faker::Food.dish,
-    instructions: Faker::Lorem.paragraph(sentence_count: 4),
-    prep_time: "#{(1..150).to_a.sample}m",
-    difficulty: ["easy", "intermediate", "advanced"].sample,
-    user: User.all.sample
+    title: info["meals"][0]["strMeal"],
+    instructions: info["meals"][0]["strInstructions"],
+    url: image,
+    prep_time: (1..150).to_a.sample,
+    difficulty: ["Easy", "Intermediate", "Advanced"].sample,
+    user: User.all.sample,
+    ingredients: ingredient
   )
 end
 puts "Recipes created successfully"
+
 # TODO: Posts
 20.times do |x|
   puts "Creating Post #{x + 1}"
@@ -79,7 +99,7 @@ puts "Recipes created successfully"
     user: User.all.sample
   )
 end
-puts "Recipes created successfully"
+puts "Posts created successfully"
 # TODO: Comments
 
 
