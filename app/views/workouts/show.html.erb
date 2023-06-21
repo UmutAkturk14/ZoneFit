@@ -13,6 +13,19 @@
           <button class="zf-button">Watch list</button>
         </div>
         <h1>Comment section goes here! ^^</h1>
+        <%= simple_form_for [@workout, @comment] do |f| %>
+          <div class="d-flex">
+            <%= f.hidden_field :commentable_id, value: params[:id] %>
+            <%= f.hidden_field :commentable_type, value: params["controller"].singularize.capitalize %>
+            <%= f.input :content, placeholder: "Enter your comment" %>
+            <%= f.submit %>
+          </div>
+        <% end %>
+        <ul class="comments">
+          <% @comments.each do |comment| %>
+            <li><%= comment.content %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>

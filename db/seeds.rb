@@ -57,8 +57,8 @@ end
 puts "Users created successfully"
 # TODO: Workouts UNCOMMENT THE FOLLOWING CODE:
 
-# create_workouts(workouts)
-# puts "Workouts created successfully"
+#  create_workouts(workouts)
+#  puts "Workouts created successfully"
 
 # TODO: Recipes API data
 url = "https://www.themealdb.com/api/json/v1/1/random.php"

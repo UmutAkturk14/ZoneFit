@@ -10,39 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_20_194812) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_21_144224) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.bigint "user_id", null: false
-    t.bigint "recipe_id", null: false
-    t.bigint "workout_id", null: false
-    t.bigint "post_id", null: false
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
-    t.index ["recipe_id"], name: "index_comments_on_recipe_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-    t.index ["workout_id"], name: "index_comments_on_workout_id"
-  end
-
-  create_table "food_items", force: :cascade do |t|
-    t.string "name"
-    t.integer "calories"
-    t.integer "protein"
-    t.integer "carbs"
-    t.integer "fat"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "food_items_meals", id: false, force: :cascade do |t|
-    t.bigint "meal_id", null: false
-    t.bigint "food_item_id", null: false
-    t.index ["food_item_id", "meal_id"], name: "index_food_items_meals_on_food_item_id_and_meal_id"
-    t.index ["meal_id", "food_item_id"], name: "index_food_items_meals_on_meal_id_and_food_item_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -106,10 +84,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_194812) do
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "recipes"
-  add_foreign_key "comments", "users"
-  add_foreign_key "comments", "workouts"
   add_foreign_key "posts", "users"
   add_foreign_key "recipes", "users"
   add_foreign_key "workouts", "users"
