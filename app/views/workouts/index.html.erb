@@ -1,6 +1,6 @@
 <h2>Here are all the worksouts foer you to browse</h2>
 
-<div class="container d-flex">
+<div class="container d-flex" data-controller="workout-index">
   <%= form_with url: workouts_path, method: :get, class: "d-flex" do |f| %>
   <% @muscle_group_ops = [" ", "Chest", "Back", "Shoulder", "Legs", "Abs"] %>
   <% @style_ops = [" ", "Cardio", "HIIT", "Muscle"] %>
@@ -16,7 +16,7 @@
 <!--
 <div class="container w-100 border border-3">
   <div class="row">
-      <div class="col border border-3" data-controller="workout-index" >
+      <div class="col border border-3">
       <% @workouts.first(20).each do |workout| %>
         <a href="/workouts/<%= workout.id %>" class="d-flex">
           <div class="col d-flex flex-column align-items-center">
@@ -31,15 +31,27 @@
 </div>
 -->
 
+<!--  FontAwesome Icons here
+<i class="fa-solid fa-plus"></i>
+<i class="fa-thin fa-heart"></i>
+<i class="fa-solid fa-heart"></i>
+-->
+
 <div class="" style="margin: 40px 100px;">
-  <div class="d-flex flex-wrap justify-content-between">
+  <div class="d-flex flex-wrap justify-content-between" data-controller="workout-index">
     <% @workouts.first(20).each do |w| %>
-      <div class="card card-rounded overflow-hidden mb-3 border-0" style="height: 300px; width: 400px;">
+      <div class="card card-rounded overflow-hidden mb-3 border-0" style="height: 300px; width: 400px;" data-action="mouseenter->workout-index#hoverButton mouseleave->workout-index#hideButton">
+        <i class="fa-solid fa-plus add-button d-none" data-action="mouseenter->workout-index#hoverButton mouseleave->workout-index#hideButton"></i>
+        <a href="<%= workout_path(w)%>">
+          <i class="fa-solid fa-angles-right page-button d-none"></i>
+        </a>
         <div class="card-body d-flex flex-column justify-content-between">
           <iframe height="200" src="https://www.youtube.com/embed/<%= w.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5">
             </iframe>
           <div class="text-truncate text-center"><%= w.title %></div>
-        <%= link_to "Watch", workout_path(w), class: "text-truncate btn btn-success w-100" %>
+        <!-- Comment this out for "Watch" button that goes to the workout_path(w)
+        <%= link_to "Watch", workout_path(w), class: "text-truncate btn btn-success w-100 d-none" %>
+        -->
         </div>
       </div>
     <% end %>
