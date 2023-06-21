@@ -1,14 +1,11 @@
 <h2>Here are all the worksouts foer you to browse</h2>
-<p><%= @workouts.all %></p>
-
-
 
 <div class="container d-flex">
   <%= form_with url: workouts_path, method: :get, class: "d-flex" do |f| %>
-  <% @muscle_group_ops = ["Chest", "Back", "Shoulder", "Legs", "Abs"] %>
-  <% @style_ops = ["Cardio", "HIIT", "Muscle"] %>
-  <% @equipment_ops = ["No equipment", "Dumbbell", "Kettlebell", "Barbell", "Jump rope"] %>
-    <%= f.select :muscle_group, options_for_select(@muscle_group_ops) %>
+  <% @muscle_group_ops = [" ", "Chest", "Back", "Shoulder", "Legs", "Abs"] %>
+  <% @style_ops = [" ", "Cardio", "HIIT", "Muscle"] %>
+  <% @equipment_ops = [" ", "No equipment", "Dumbbell", "Kettlebell", "Barbell", "Jump rope"] %>
+    <%= f.select :title, options_for_select(@muscle_group_ops) %>
     <%= f.select :style, options_for_select(@style_ops) %>
     <%= f.select :equipment, options_for_select(@equipment_ops) %>
 
@@ -16,15 +13,35 @@
   <% end %>
 </div>
 
+<!--
 <div class="container w-100 border border-3">
   <div class="row">
-      <div class="col-sm border border-3" data-controller="workout-index" >
+      <div class="col border border-3" data-controller="workout-index" >
       <% @workouts.first(20).each do |workout| %>
-        <a href="/workouts/<%= workout.id %>">
-          <iframe width="400" height="200" src="https://www.youtube.com/embed/<%= workout.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5">
-          </iframe>
+        <a href="/workouts/<%= workout.id %>" class="d-flex">
+          <div class="col d-flex flex-column align-items-center">
+            <iframe width="400" height="200" src="https://www.youtube.com/embed/<%= workout.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5">
+            </iframe>
+            <h1 class="fs-6 w-25 "><%= workout.title %></h1>
+          </div>
         </a>
       <% end %>
       </div>
+  </div>
+</div>
+-->
+
+<div class="" style="margin: 40px 100px;">
+  <div class="d-flex flex-wrap justify-content-between">
+    <% @workouts.first(20).each do |w| %>
+      <div class="card card-rounded overflow-hidden mb-3 border-0" style="height: 300px; width: 400px;">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <iframe height="200" src="https://www.youtube.com/embed/<%= w.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5">
+            </iframe>
+          <div class="text-truncate text-center"><%= w.title %></div>
+        <%= link_to "Watch", workout_path(w), class: "text-truncate btn btn-success w-100" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
