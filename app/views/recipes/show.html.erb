@@ -1,30 +1,40 @@
-<div class="container">
-
+<div class="container mg-top-10">
   <div class="item">
-    <h1><%= @recipe.title %></h1>
-    <p><strong>Ingredients:</strong><%= @recipe.ingredients %></p>
-    <p><strong>Prep Time: </strong><%= @recipe.prep_time %> Minutes</p>
-    <p><strong>Instructions: </strong><%= @recipe.instructions %></p>
-    <p><strong>Dicciculty Level: </strong><%= @recipe.difficulty %></p>
-    <p><strong>Created By: </strong><%= @recipe.user.first_name %></p>
+    <div class="item-content">
+      <img src="<%= @recipe.url %>">
+      <div class="recipe-details">
+        <h1><%= @recipe.title %></h1>
+        <p><strong>Ingredients: </strong><%= @recipe.ingredients %></p>
+        <p><strong>Prep Time: </strong><%= @recipe.prep_time %> Minutes</p>
+        <p><strong>Instructions: </strong><%= @recipe.instructions %></p>
+        <p><strong>Difficulty Level: </strong><%= @recipe.difficulty %></p>
+        <p><strong>Created By: </strong><%= @recipe.user.first_name%> <%= @recipe.user.last_name %></p>
+      </div>
+    </div>
   </div>
-
-  <% link_to "Back to all recipes", recipe_path %>
 </div>
 
+<div class="container btn-warning">
+  <%= link_to "Back to all recipes", recipes_path %>
+</div>
 
 <div class="container">
   <h1>Reviews</h1>
-
+  <!-- Add your review display code here if needed -->
 </div>
 
+<h1 class="text-center title">Other Similar Recipes</h1>
 <div class="container">
-  <h1>Other similar receipes</h1>
-    <% @top_recipes.each do |i| %>
+  <div class="grid">
+    <% @top_recipes.each do |recipe| %>
       <div class="item">
-      <%= link_to i.title, recipe_path(i) %>
+        <div class="item-content">
+          <%= link_to recipe.title, recipe_path(recipe) %>
+        </div>
+        <img class="image" src="<%= recipe.url %>">
       </div>
     <% end %>
+  </div>
 </div>
 
 <style>
@@ -34,20 +44,34 @@
     border-radius: 5px;
   }
 
-  h1 {
+  .title {
     font-size: 30px;
     font-weight: bold;
   }
 
-   .container {
+  .container {
     display: flex;
     justify-content: center;
   }
-</style>
 
-  <h1><%= @recipe.title %></h1>
-  <p>Ingredients: <%= @recipe.ingredients %></p>
-  <p>Prep Time: <%= @recipe.prep_time %> minutes</p>
-  <p>Difficulty: <%= @recipe.difficulty %></p>
-  <p>Instructions: <%= @recipe.instructions %></p>
-</div>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+
+  .item-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .recipe-details {
+    margin-left: 20px;
+  }
+
+  .image {
+    width: 150px;
+  }
+</style>
