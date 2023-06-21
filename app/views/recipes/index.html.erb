@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="grid">
     <% @recipes.each do |recipe| %>
@@ -49,3 +48,11 @@
     }
   }
 </style>
+<div class="container">
+  <h1>All Recipes</h1>
+
+  <% @recipes.each do |recipe|%>
+    <p><%= link_to recipe.title, recipe_path(recipe) %></p>
+  <% end %>
+
+</div>

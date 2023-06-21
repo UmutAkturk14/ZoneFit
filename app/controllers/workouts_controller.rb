@@ -1,6 +1,7 @@
 class WorkoutsController < ApplicationController
   def index
     @workouts = policy_scope(Workout)
+    @workout = Workout.new
   end
 
   def show
@@ -25,7 +26,9 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  private
+
   def workout_params
-    params.require(:workout).permit(:title, :description, :url, :difficulty, :muscle_group)
+    params.require(:workout).permit(:title, :description, :url, :difficulty, :muscle_group, :style, :equipment)
   end
 end

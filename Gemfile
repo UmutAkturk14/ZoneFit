@@ -18,6 +18,9 @@ gem "puma", "~> 5.0"
 # Faker gem
 gem "faker"
 
+# Gem for Youtube API
+gem "google-apis-youtube_v3"
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
 
