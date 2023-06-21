@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :workouts, only: [:index, :show, :new, :create]
-  resources :recipes, only: [:index, :show]
+  resources :recipes, only: [:index, :show, :create, :new]
   resources :posts, only: [:new, :create]
 end

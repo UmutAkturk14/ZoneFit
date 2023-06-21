@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="create-container">
+    <div class="in-container validate-form">
+      <h1 class="c-title">Create a recipe...</h1>
+
+      <%= simple_form_for [@recipe] do |f| %>
+        <a class="title"><%= f.input :title %></a>
+        <%= f.input :instructions %>
+        <%= f.input :image, as: :file %>
+        <%= f.input :prep_time %>
+        <%= f.input :difficulty  do %>
+          <% f.collection_select :difficulty, [["Easy"], ["Intermediate"], ["Advanced"]], :first, :first, {}, class: "form-control"%>
+        <% end %>
+        <%= f.input :ingredients %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .create-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+
+  .in-container {
+    margin: 0 auto;
+    max-width: 500px;
+  }
+
+  .c-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+</style>
