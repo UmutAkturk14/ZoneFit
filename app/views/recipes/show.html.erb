@@ -1,1 +1,46 @@
-<h1><%= @recipe.title %></h1>
+<div class="container">
+
+  <div class="item">
+    <h1><%= @recipe.title %></h1>
+    <p><strong>Ingredients:</strong><%= @recipe.ingredients %></p>
+    <p><strong>Prep Time: </strong><%= @recipe.prep_time %> Minutes</p>
+    <p><strong>Instructions: </strong><%= @recipe.instructions %></p>
+    <p><strong>Dicciculty Level: </strong><%= @recipe.difficulty %></p>
+    <p><strong>Created By: </strong><%= @recipe.user.first_name %></p>
+  </div>
+
+  <% link_to "Back to all recipes", recipe_path %>
+</div>
+
+
+<div class="container">
+  <h1>Reviews</h1>
+
+</div>
+
+<div class="container">
+  <h1>Other similar receipes</h1>
+    <% @top_recipes.each do |i| %>
+      <div class="item">
+      <%= link_to i.title, recipe_path(i) %>
+      </div>
+    <% end %>
+</div>
+
+<style>
+  .item {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+   .container {
+    display: flex;
+    justify-content: center;
+  }
+</style>
