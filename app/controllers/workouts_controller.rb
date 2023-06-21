@@ -7,6 +7,9 @@ class WorkoutsController < ApplicationController
   def show
     @workout = Workout.find(params[:id])
     authorize @workout
+    @comments = Comment.where(commentable: @workout)
+    @comment = Comment.new
+    @commentable = @workout
   end
 
   def new
