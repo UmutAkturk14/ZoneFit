@@ -1,23 +1,26 @@
+<h1 class="text-center">All Recipes</h1>
 <div class="container">
   <div class="grid">
     <% @recipes.each do |recipe| %>
       <div class="item">
-        <h5><%= link_to recipe.title, recipe_path(recipe) %></h5>
-        <p><%= recipe.ingredients %></p>
-        <p><%= recipe.prep_time %></p>
-        <p><%= recipe.instructions %></p>
-        <p><%= recipe.difficulty %></p>
-        <p><%= recipe.user.first_name %></p>
+        <img class="image rounded-circle" src="<%= recipe.url %>">
+        <div class="item-content">
+          <h5><%= link_to recipe.title, recipe_path(recipe) %></h5>
+          <p>Prep time: <%= recipe.prep_time %> Minutes</p>
+          <p>Difficulty: <%= recipe.difficulty %></p>
+          <p>Created by: <%= recipe.user.first_name %></p>
+          <p>Rating: </p>
+        </div>
       </div>
     <% end %>
   </div>
 </div>
 
-
 <style>
   .container {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .grid {
@@ -30,16 +33,24 @@
     background-color: #f8f9fa;
     padding: 10px;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 400px;
+  }
+
+  .item-content {
+    flex: 1;
   }
 
   h5 {
     font-size: 18px;
     font-weight: bold;
+    margin-bottom: 5px;
   }
 
   p {
     font-size: 14px;
-    margin-top: 5px;
+    margin: 0;
   }
 
   @media (max-width: 992px) {
@@ -47,12 +58,9 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
+  .image {
+    width: 150px;
+    margin-right: 10px;
+  }
 </style>
-<div class="container">
-  <h1>All Recipes</h1>
-
-  <% @recipes.each do |recipe|%>
-    <p><%= link_to recipe.title, recipe_path(recipe) %></p>
-  <% end %>
-
-</div>

@@ -28,6 +28,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_194812) do
     t.index ["workout_id"], name: "index_comments_on_workout_id"
   end
 
+  create_table "food_items", force: :cascade do |t|
+    t.string "name"
+    t.integer "calories"
+    t.integer "protein"
+    t.integer "carbs"
+    t.integer "fat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "food_items_meals", id: false, force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "food_item_id", null: false
+    t.index ["food_item_id", "meal_id"], name: "index_food_items_meals_on_food_item_id_and_meal_id"
+    t.index ["meal_id", "food_item_id"], name: "index_food_items_meals_on_meal_id_and_food_item_id"
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
