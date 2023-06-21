@@ -1,0 +1,59 @@
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 70px;
+  right: 10px;
+  font-size: 30px;
+  background-color: rgba(0, 255, 171, 0.4);
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba(0, 255, 171, 0.8);
+    color: white;
+    border-style: solid;
+    border-color: white;
+    transition: background-color 0.3s ease-in-out;
+  }
+}
+
+.page-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 120px;
+  right: 10px;
+  font-size: 30px;
+  background-color: rgba(0, 255, 171, 0.4);
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba(0, 255, 171, 0.8);
+    color: white;
+    border-style: solid;
+    border-color: white;
+    transition: background-color 0.3s ease-in-out;
+  }
+}
+
+.zf-button {
+  // width: 400px;
+  // height: 400px;
+  font-size: 20px;
+  background-color: rgba(0, 255, 171, 0.4);
+  border-style: none;
+  padding: 5px 5px;
+  &:hover {
+    background-color: rgba(0, 255, 171, 0.8);
+    color: white;
+    border-style: solid;
+    border-color: white;
+    transition: background-color 0.3s ease-in-out;
+  }
+}
