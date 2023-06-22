@@ -1,0 +1,92 @@
+=> [32m#<Google::Apis::YoutubeV3::SearchListsResponse:0x00007fe6e3a26800[0m
+ @etag[32m=[0m[31m[1;31m"[0m[31mMqj-DygxZVsKgb58lC1AkiEjZT4[1;31m"[0m[31m[0m,
+ @items[32m=[0m
+  [[32m#<Google::Apis::YoutubeV3::SearchResult:0x00007fe6e861fea0[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mTXqQzXslQ1gJUp6PMFe37ejMXQY[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007fe6e861cfe8[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31mfRAj6gWZ87o[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007fe6e8626250[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUCBjkIxM3xOuq9H9eFgZASBw[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mBurpeeGirl[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31mThis workout targets the waist and abs using cardio & toning exercises. Get a smaller waist by increasing your calorie deficit ...[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2023-06-22T05:20:10+00:00 ((2460118j,19210s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007fe6e862ddc0[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e862c060[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/fRAj6gWZ87o/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85d7448[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/fRAj6gWZ87o/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85da9e0[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/fRAj6gWZ87o/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31m🔥SMALLER WAIST &amp; FLAT BELLY | Home Workout🔥30 Min Standing Workout🔥NO JUMPING TABATA WORKOUT🔥[1;31m"[0m[31m[0m[32m>[0m[32m>[0m,
+   [32m#<Google::Apis::YoutubeV3::SearchResult:0x00007fe6e85ddb40[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mWlUmM_ok_x-js94hwKbkIBuiAcM[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007fe6e85e3a90[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31mUItWltVZZmE[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007fe6e85e69e8[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUChVRfsT_ASBZk10o0An7Ucg[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mPamela Reif[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31mFinally: a workout suitable for BEGINNERS. // Werbung What makes this [1;35m\"[0m[31mbeginner friendly[1;35m\"[0m[31m? 1. I used BASIC movements, that are ...[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2019-09-01T10:12:36+00:00 ((2458728j,36756s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007fe6e85e8f90[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85efea8[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/UItWltVZZmE/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85ecac8[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/UItWltVZZmE/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85f06c8[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/UItWltVZZmE/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31m20 MIN FULL BODY WORKOUT - Beginner Version // No Equipment I Pamela Reif[1;31m"[0m[31m[0m[32m>[0m[32m>[0m,
+   [32m#<Google::Apis::YoutubeV3::SearchResult:0x00007fe6e85f40e8[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mt_4n9E-VdWT0iObwu05GhRuiJ28[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007fe6e85fa178[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31m2pLT-olgUJs[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007fe6e85fce50[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUCCgLoMYIyP0U56dEhEL1wXQ[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mChloe Ting[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31mAbs Abs Abs! Everyone seems to be asking for a QUICK and short schedule, so I put together a 2 weeks schedule to help you get ...[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2019-08-12T11:45:00+00:00 ((2458708j,42300s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007fe6e85a7270[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85a62d0[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/2pLT-olgUJs/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85aacb8[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/2pLT-olgUJs/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85ae778[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/2pLT-olgUJs/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31mGet Abs in 2 WEEKS | Abs Workout Challenge[1;31m"[0m[31m[0m[32m>[0m[32m>[0m,
+   [32m#<Google::Apis::YoutubeV3::SearchResult:0x00007fe6e85b1ce8[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mzWvo4os39mcSWpQtWyyr15G-oq8[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007fe6e85b7df0[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31mIT94xC35u6k[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007fe6e85baf50[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUCpQ34afVgk8cRQBjSJ1xuJQ[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mMadFit[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31ma 20 min fat burning, full body workout you can do at home without any equipment! A workout designed for TOTAL BEGINNERS![1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2022-02-07T18:25:28+00:00 ((2459618j,66328s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007fe6e85bd110[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85c3fd8[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/IT94xC35u6k/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85c0310[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/IT94xC35u6k/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e85cbe18[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/IT94xC35u6k/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31m20 min Fat Burning Workout for TOTAL BEGINNERS (Achievable, No Equipment)[1;31m"[0m[31m[0m[32m>[0m[32m>[0m,
+   [32m#<Google::Apis::YoutubeV3::SearchResult:0x00007fe6e85cfa68[0m
+    @etag[32m=[0m[31m[1;31m"[0m[31mRYDvK66oz7_Ar1fRWHyO5DHpWWI[1;31m"[0m[31m[0m,
+    @id[32m=[0m[32m#<Google::Apis::YoutubeV3::ResourceId:0x00007fe6e85cda60[0m @kind[32m=[0m[31m[1;31m"[0m[31myoutube#video[1;31m"[0m[31m[0m, @video_id[32m=[0m[31m[1;31m"[0m[31mohgLmY19jNg[1;31m"[0m[31m[0m[32m>[0m,
+    @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchResult[1;31m"[0m[31m[0m,
+    @snippet[32m=[0m
+     [32m#<Google::Apis::YoutubeV3::SearchResultSnippet:0x00007fe6e85d09b8[0m
+      @channel_id[32m=[0m[31m[1;31m"[0m[31mUCTsM1dSAiXqiV5oZjuNw_Bg[1;31m"[0m[31m[0m,
+      @channel_title[32m=[0m[31m[1;31m"[0m[31mLilly Sabri[1;31m"[0m[31m[0m,
+      @description[32m=[0m[31m[1;31m"[0m[31mLose belly, waist and abs fat in 7 days with this belly fat loss 5 minute home workout. These abs and waist exercises will target ...[1;31m"[0m[31m[0m,
+      @live_broadcast_content[32m=[0m[31m[1;31m"[0m[31mnone[1;31m"[0m[31m[0m,
+      @published_at[32m=[0m[32m#<DateTime: 2020-05-08T16:30:12+00:00 ((2458978j,59412s,0n),+0s,2299161j)>[0m,
+      @thumbnails[32m=[0m
+       [32m#<Google::Apis::YoutubeV3::ThumbnailDetails:0x00007fe6e37c2fc8[0m
+        @default[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e37c1cb8[0m @height[32m=[0m[1;34m90[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/ohgLmY19jNg/default.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m120[0m[32m>[0m,
+        @high[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e37c63f8[0m @height[32m=[0m[1;34m360[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/ohgLmY19jNg/hqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m480[0m[32m>[0m,
+        @medium[32m=[0m[32m#<Google::Apis::YoutubeV3::Thumbnail:0x00007fe6e37c9d00[0m @height[32m=[0m[1;34m180[0m, @url[32m=[0m[31m[1;31m"[0m[31mhttps://i.ytimg.com/vi/ohgLmY19jNg/mqdefault.jpg[1;31m"[0m[31m[0m, @width[32m=[0m[1;34m320[0m[32m>[0m[32m>[0m,
+      @title[32m=[0m[31m[1;31m"[0m[31mLOSE FAT in 7 days (belly, waist &amp; abs) | 5 minute Home Workout[1;31m"[0m[31m[0m[32m>[0m[32m>[0m],
+ @kind[32m=[0m[31m[1;31m"[0m[31myoutube#searchListResponse[1;31m"[0m[31m[0m,
+ @next_page_token[32m=[0m[31m[1;31m"[0m[31mCAUQAA[1;31m"[0m[31m[0m,
+ @page_info[32m=[0m[32m#<Google::Apis::YoutubeV3::PageInfo:0x00007fe6e37d2d10[0m @results_per_page[32m=[0m[1;34m5[0m, @total_results[32m=[0m[1;34m1000000[0m[32m>[0m,
+ @region_code[32m=[0m[31m[1;31m"[0m[31mTR[1;31m"[0m[31m[0m[32m>[0m

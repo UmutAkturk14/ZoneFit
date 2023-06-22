@@ -19,7 +19,8 @@ def create_workouts(arr)
         url: r.id.video_id,
         # ! We might need to remove users...
         user: User.all.sample,
-        tag: video_details.items.first.snippet.tags
+        tag: video_details.items.first.snippet.tags,
+        thumbnail: r.snippet.thumbnails.high.url
       )
     end
     puts "Workout added successfully"
@@ -57,8 +58,8 @@ end
 puts "Users created successfully"
 # TODO: Workouts UNCOMMENT THE FOLLOWING CODE:
 
-#  create_workouts(workouts)
-#  puts "Workouts created successfully"
+create_workouts(workouts)
+puts "Workouts created successfully"
 
 # TODO: Recipes API data
 url = "https://www.themealdb.com/api/json/v1/1/random.php"
@@ -70,7 +71,7 @@ url = "https://www.themealdb.com/api/json/v1/1/random.php"
   # puts info["meals"][0]["strIngredient"+"#{n}"]
   ingredient = ""
   while info["meals"][0]["strIngredient"+"#{n}"].present? && info["meals"][0]["strIngredient"+"#{n}"] != ""
-    ingredient += info["meals"][0]["strIngredient"+"#{n}"]+" "
+    ingredient += info["meals"][0]["strIngredient"+"#{n}"] + ","
     n += 1
   end
   image = ""
