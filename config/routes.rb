@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   end
   resources :recipes, only: [:index, :show, :create, :new]
   resources :posts, only: [:new, :create]
-
+  resources :users, only: [:show, :edit]
 end
