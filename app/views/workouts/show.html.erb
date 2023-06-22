@@ -24,11 +24,11 @@
           <div class="d-flex">
             <%= f.hidden_field :commentable_id, value: params[:id] %>
             <%= f.hidden_field :commentable_type, value: params["controller"].singularize.capitalize %>
-            <article class="comment justify-content-center align-items-center">
+            <article class="justify-content-center align-items-center flex-column">
               <div id="comment-div">
                 <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
               </div>
-              <%= f.submit "Submit", class: "custom-btn btn-green mx-1" %>
+              <%= f.submit "Submit", class: "custom-btn btn-green" %>
             </article>
           </div>
         <% end %>
@@ -37,7 +37,7 @@
             <article class="comment">
               <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
               <div class="comment-content">
-                <p><small><%= comment.created_at %></small></p>
+                <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
                 <p><%= comment.content %></p>
 
                 <% if comment.user == current_user %>
@@ -70,13 +70,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<!-- UNCOMMENT FOR EMOJI PICKER (DOESN'T WORK)
+<!-- UNCOMMENT FOR EMOJI PICKER (DOESN'T WORK) -->
 
 <script type="text/javascript">
   $('#comment_content').emojioneArea({
     pickerPosition: 'right',
-    container: "#comment-div"
   });
 </script>
-
--->
