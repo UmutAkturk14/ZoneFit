@@ -3,10 +3,17 @@
   <div class="d-flex mt-4">
     <div class="row">
       <div class="col-md-8">
-        <iframe width="1420" height="800" src="https://www.youtube.com/embed/<%= @workout.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5"></iframe>
+        <iframe width="1420" height="800" src="https://www.youtube.com/embed/<%= @workout.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5 show-video"></iframe>
       </div>
       <div class="col-md-4">
         <p><%= @workout.description %></p>
+        <p class="fs-3 fw-bold">Tags</p>
+        <ul>
+          <% @tags.each do |tag| %>
+            #<%= tag.strip %>
+          <% end %>
+        </ul>
+
         <div class="buttons">
           <button class="custom-btn btn-purple">Favourite</button>
           <button class="custom-btn btn-purple">Share</button>
@@ -18,7 +25,9 @@
             <%= f.hidden_field :commentable_id, value: params[:id] %>
             <%= f.hidden_field :commentable_type, value: params["controller"].singularize.capitalize %>
             <article class="comment justify-content-center align-items-center">
-              <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
+              <div id="comment-div">
+                <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
+              </div>
               <%= f.submit "Submit", class: "custom-btn btn-green mx-1" %>
             </article>
           </div>
@@ -26,7 +35,7 @@
         <section class="comments">
           <% @comments.each do |comment| %>
             <article class="comment">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
               <div class="comment-content">
                 <p><small><%= comment.created_at %></small></p>
                 <p><%= comment.content %></p>
@@ -44,7 +53,6 @@
                       <i class="far fa-trash-alt mx-1"></i>
                     <% end %>
                   </div>
-
               <% end %>
 
 
@@ -62,11 +70,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<!-- UNCOMMENT FOR EMOJI PICKER
+<!-- UNCOMMENT FOR EMOJI PICKER (DOESN'T WORK)
 
 <script type="text/javascript">
   $('#comment_content').emojioneArea({
-    pickerPosition: 'right'
+    pickerPosition: 'right',
+    container: "#comment-div"
   });
 </script>
 
