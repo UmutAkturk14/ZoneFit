@@ -41,7 +41,7 @@
               <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
               <div class="comment-content">
                 <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
-                <p><%= comment.content %></p>
+                <p class="text-break"><%= comment.content %></p>
 
                 <% if comment.user == current_user %>
                   <div class="comment-actions">
@@ -77,6 +77,6 @@
 
 <script type="text/javascript">
   $('#comment_content').emojioneArea({
-    pickerPosition: 'right',
+
   });
 </script>

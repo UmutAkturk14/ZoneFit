@@ -1,0 +1,51 @@
+<% if current_user == @user  %>
+  <div class="w-100">
+    <%= simple_form_for @post do |f| %>
+      <div class="d-flex">
+        <article class="post-div">
+          <%= f.input :content, as: :text, placeholder: "How are you feeling today?", label:false %>
+        </article>
+        <button type="submit" class="custom-btn btn-purple send-post">Send!</button>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+
+<% @posts.each do |p| %>
+<div class="post">
+  <div class="post-content d-flex">
+    <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+    <div class="ms-3">
+      <p><small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
+      <p class="text-break mt-2"><%= p.content %></p>
+    </div>
+  </div>
+
+  <% if p.user == current_user %>
+    <div class="post-actions">
+      <div class="">
+        <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
+        <p>Edit</p>
+        <i class="fas fa-pencil-alt mx-1"></i>
+        <% end %>
+
+        <%= link_to post_path(p), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this post?" }, class: "d-flex justify-content-center align-items-center" do %>
+        <p>Delete</p>
+        <i class="far fa-trash-alt mx-1"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+  $('#post_content').emojioneArea({
+
+  });
+</script>
