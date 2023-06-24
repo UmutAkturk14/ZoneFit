@@ -6,14 +6,20 @@ class UsersController < ApplicationController
     @post = Post.new
     @post.user = @user
     authorize @user
+    @markers =
+      {
+        lat: @user.latitude,
+        lng: @user.longitude
+      }
+      # @markers = @user.geocoded.map do |user|
+      #   {
+      #     lat: user.latitude,
+      #     lng: user.longitude
+      #   }
+      # end
   end
 
   def edit
     authorize @user
-    # if @user == record.user
-    #   true
-    # else
-    #   false
-    # end
   end
 end

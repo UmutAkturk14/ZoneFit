@@ -57,6 +57,9 @@ gem "sassc-rails"
 # Pundit
 gem "pundit"
 
+# Geocoder
+gem "geocoder"
+
 # Pg-search
 gem "pg_search"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
