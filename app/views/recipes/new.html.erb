@@ -12,7 +12,7 @@
           <% f.collection_select :difficulty, [["Easy"], ["Intermediate"], ["Advanced"]], :first, :first, {}, class: "form-control"%>
         <% end %>
         <%= f.input :ingredients %>
-        <%= f.submit %>
+        <%= f.submit, "Create Recipe" %>
       <% end %>
     </div>
   </div>

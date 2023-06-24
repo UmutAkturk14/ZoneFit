@@ -6,6 +6,9 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     authorize @recipe
+    @comments = Comment.where(commentable: @recipe)
+    @comment = Comment.new
+    @commentable = @recipe
     recipes = Recipe.all
     @top_recipes = []
     4.times do |_|
@@ -28,6 +31,34 @@ class RecipesController < ApplicationController
       redirect_to recipes_path
     else
       render :new, status: :unprocessible_entity
+    end
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+    @recipe.user = current_user
+    authorize @recipe
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    authorize @recipe
+    if @recipe.update(recipe_params)
+      flash[:notice] = "Your recipe has been updated"
+      redirect_to @recipe
+    else
+      redirect_to :edit
+    end
+
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.user = current_user
+    authorize @recipe
+    if @recipe.destroy
+      flash[:notice] = "Your recipe has been deleted"
+      redirect_to recipes_path(@recipes)
     end
   end
 

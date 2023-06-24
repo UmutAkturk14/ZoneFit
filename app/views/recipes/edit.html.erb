@@ -1,0 +1,13 @@
+<div class="container">
+  <%= simple_form_for [@recipe] do |f| %>
+      <a class="title"><%= f.input :title %></a>
+      <%= f.input :instructions %>
+      <%= f.input :image, as: :file %>
+      <%= f.input :prep_time %>
+      <%= f.input :difficulty  do %>
+         <% f.collection_select :difficulty, [["Easy"], ["Intermediate"], ["Advanced"]], :first, :first, {}, class: "form-control"%>
+      <% end %>
+      <%= f.input :ingredients %>
+      <%= f.submit %>
+  <% end %>
+</div>
