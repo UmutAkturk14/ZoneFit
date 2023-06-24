@@ -27,17 +27,21 @@
     <div class="post-actions">
       <div class="">
         <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
-        <p>Edit</p>
-        <i class="fas fa-pencil-alt mx-1"></i>
+          <p>Edit</p>
+          <i class="fas fa-pencil-alt mx-1"></i>
         <% end %>
 
         <%= link_to post_path(p), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this post?" }, class: "d-flex justify-content-center align-items-center" do %>
         <p>Delete</p>
         <i class="far fa-trash-alt mx-1"></i>
         <% end %>
+  <% end %>
+        <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
+          <p>Comment</p>
+          <i class="fa-regular fa-comment mx-1"></i>
+        <% end %>
       </div>
     </div>
-  <% end %>
 </div>
 <% end %>
 

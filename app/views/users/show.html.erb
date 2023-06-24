@@ -23,7 +23,7 @@
       <%# TODO: Send a message / Edit profile %>
       <article>
         <% if policy(@user).edit? %>
-          <%= link_to "Edit this section", edit_user_path(@user), class: "custom-btn btn-purple mt-2 text-center text-decoration-none" %>
+          <%= link_to "Edit this section", edit_user_profile_path(@user), class: "custom-btn btn-purple mt-2 text-center text-decoration-none" %>
         <% else %>
           <%= link_to "Message", "#", class: "custom-btn btn-purple text-center text-decoration-none" %>
         <% end %>
