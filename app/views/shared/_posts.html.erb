@@ -1,15 +1,19 @@
-<% if current_user == @user  %>
-  <div class="w-100">
+<%
+=begin%>
+ <% if current_user == @user  %> 
+<%
+=end%>
     <%= simple_form_for @post do |f| %>
-      <div class="d-flex">
-        <article class="post-div">
-          <%= f.input :content, as: :text, placeholder: "How are you feeling today?", label:false %>
-        </article>
-        <button type="submit" class="custom-btn btn-purple send-post">Send!</button>
-      </div>
+      <article class="position-relative">
+        <%= f.input :content, as: :text, placeholder: "How are you feeling today?", label:false %>
+        <button type="submit" class="custom-btn btn-send">Send!</button>
+      </article>
     <% end %>
-  </div>
-<% end %>
+<%
+=begin%>
+ <% end %> 
+<%
+=end%>
 
 
 
