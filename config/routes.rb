@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   resources :workouts, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create, :destroy]
   end
+
   resources :recipes, only: [:index, :show, :create, :new, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
   end
-  resources :posts, only: [:new, :create]
-  resources :users, only: [:show, :edit]
-
-  get '/recipes/search', to: 'recipes#search', as: 'search_recipes'
+  resources :posts, only: [:new, :create, :destroy] do
+    resources :comments, only: [:create, :destroy]
+  end
+  resources :users, only: [:show, :edit], path: 'profiles', as: 'user_profiles'
 end

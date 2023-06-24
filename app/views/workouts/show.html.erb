@@ -19,8 +19,9 @@
           <button class="custom-btn btn-purple">Share</button>
           <button class="custom-btn btn-purple">Watch list</button>
         </div>
-        <h1>Comment section goes here! ^^</h1>
-        <%= simple_form_for [@workout, @comment] do |f| %>
+        <br>
+        <div class="container w-100">
+          <%= simple_form_for [@workout, @comment] do |f| %>
           <div class="d-flex">
             <%= f.hidden_field :commentable_id, value: params[:id] %>
             <%= f.hidden_field :commentable_type, value: params["controller"].singularize.capitalize %>
@@ -28,17 +29,19 @@
               <div id="comment-div">
                 <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
               </div>
-              <%= f.submit "Submit", class: "custom-btn btn-green" %>
+              <button type="submit" class="custom-btn btn-green">Create!</button>
             </article>
           </div>
         <% end %>
-        <section class="comments">
+        </div>
+        <section class="comments mt-5">
+          <p class="fs-2">Comments</p>
           <% @comments.each do |comment| %>
             <article class="comment">
               <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
               <div class="comment-content">
                 <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
-                <p><%= comment.content %></p>
+                <p class="text-break"><%= comment.content %></p>
 
                 <% if comment.user == current_user %>
                   <div class="comment-actions">
@@ -74,6 +77,6 @@
 
 <script type="text/javascript">
   $('#comment_content').emojioneArea({
-    pickerPosition: 'right',
+
   });
 </script>

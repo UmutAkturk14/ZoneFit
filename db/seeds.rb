@@ -46,20 +46,21 @@ User.delete_all
 # TODO: Users
 20.times do |x|
   puts "Creating User #{x + 1}"
-  User.create!(
+  User.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     bio: Faker::Lorem.paragraph,
     email: Faker::Internet.email,
-    password: Faker::Internet.password
+    password: Faker::Internet.password,
+    location: Faker::Address.country
   )
 end
 
 puts "Users created successfully"
 # TODO: Workouts UNCOMMENT THE FOLLOWING CODE:
 
-create_workouts(workouts)
-puts "Workouts created successfully"
+# create_workouts(workouts)
+# puts "Workouts created successfully"
 
 # TODO: Recipes API data
 url = "https://www.themealdb.com/api/json/v1/1/random.php"
