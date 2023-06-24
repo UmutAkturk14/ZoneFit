@@ -1,12 +1,14 @@
 <h1 class="text-center">All Recipes</h1>
-<p>Add a new recipe <a href="/recipes/new">Add a new recipe</a></p>
+<div class="container">
+  <p><a href="/recipes/new" class="text-decoration-none"><strong>Add a new recipe</strong></a></p>
+</div>
 <div class="container">
   <div class="grid">
     <% @recipes.each do |recipe| %>
       <div class="item">
         <img class="image rounded-circle" src="<%= recipe.url %>">
         <div class="item-content">
-          <h5><%= link_to recipe.title, recipe_path(recipe) %></h5>
+          <h5 class="text-decoration-none"><%= link_to recipe.title, recipe_path(recipe) %></h5>
           <p>Prep time: <%= recipe.prep_time %> Minutes</p>
           <p>Difficulty: <%= recipe.difficulty %></p>
           <p>Created by: <%= recipe.user.first_name %></p>
