@@ -4,11 +4,24 @@
       <img src="<%= @recipe.url %>">
       <div class="recipe-details">
         <h1><%= @recipe.title %></h1>
-        <p><strong>Ingredients: </strong><%= @recipe.ingredients %></p>
+        <p><strong>Ingredients: </strong></p>
+          <ul>
+            <% @recipe.ingredients.each do |ingredient| %>
+              <li><%= ingredient.name %></li>
+              <ul>
+                <li>Protein: <%= ingredient.protein %></li>
+                <li>Carbohydrates: <%= ingredient.carbohydrates %></li>
+                <li>Fat: <%= ingredient.fat %></li>
+                <li>Calories: <%= ingredient.calories %></li>
+              </ul>
+           <% end %>
+          </ul>
         <p><strong>Prep Time: </strong><%= @recipe.prep_time %> Minutes</p>
         <p><strong>Instructions: </strong><%= @recipe.instructions %></p>
         <p><strong>Difficulty Level: </strong><%= @recipe.difficulty %></p>
         <p><strong>Created By: </strong><%= @recipe.user.first_name%> <%= @recipe.user.last_name %></p>
+
+
         <%= link_to "Delete",
           recipe_path(@recipe),
           data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>

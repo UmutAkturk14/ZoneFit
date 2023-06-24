@@ -1,0 +1,8 @@
+<ul>
+  <% results.each do |result| %>
+    <li>
+      <%= check_box_tag 'recipe[ingredient_ids][]', result.id %>
+      <%= result.name %>
+    </li>
+  <% end %>
+</ul>

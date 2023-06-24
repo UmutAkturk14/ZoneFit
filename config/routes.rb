@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   end
   resources :recipes, only: [:index, :show, :create, :new, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
+    collection do
+      get :search_ingredients
+    end
   end
   resources :posts, only: [:new, :create]
   resources :users, only: [:show, :edit]

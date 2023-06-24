@@ -1,0 +1,4 @@
+<%= form_tag search_ingredients_recipes_path, remote: true, id: 'ingredient-search-form' do %>
+  <%= text_field_tag :query, nil, placeholder: 'Search ingredients...' %>
+  <%= submit_tag 'Search' %>
+<% end %>

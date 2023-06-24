@@ -62,9 +62,18 @@ class RecipesController < ApplicationController
     end
   end
 
+  def search_ingredients
+    query = params[:query]
+    @results = Ingredient.search_nutrition(query)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :instructions, :url, :prep_time, :difficulty, :ingredients)
+    params.require(:recipe).permit(:title, :instructions, :url, :prep_time, :difficulty, ingredient_ids: [])
   end
 end

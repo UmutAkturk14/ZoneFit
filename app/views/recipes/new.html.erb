@@ -3,6 +3,8 @@
     <div class="in-container validate-form">
       <h1 class="c-title">Create a recipe...</h1>
 
+
+
       <%= simple_form_for [@recipe] do |f| %>
         <a class="title"><%= f.input :title %></a>
         <%= f.input :instructions %>
@@ -11,12 +13,58 @@
         <%= f.input :difficulty  do %>
           <% f.collection_select :difficulty, [["Easy"], ["Intermediate"], ["Advanced"]], :first, :first, {}, class: "form-control"%>
         <% end %>
-        <%= f.input :ingredients %>
-        <%= f.submit, "Create Recipe" %>
+        <div id="ingredient-search">
+          <%= render partial: 'ingredient_search' %>
+        </div>
+        <div id="ingredient-search-results"></div>
+         <h2>Selected Ingredients:</h2>
+          <ul id="selected-ingredients">
+            <% @recipe.ingredients.each do |ingredient| %>
+              <li><%= ingredient.name %></li>
+            <% end %>
+          </ul>
+        <%= f.submit %>
       <% end %>
     </div>
   </div>
 </div>
+
+
+<%= javascript_tag do %>
+  $('#ingredient-search-form').submit(function(event) {
+    event.preventDefault();
+    var form = $(this);
+
+    $.ajax({
+      url: form.attr('action'),
+      type: form.attr('method'),
+      data: form.serialize(),
+      dataType: 'script'
+    });
+  });
+
+  $('#ingredient-search-results').on('click', 'input[type="checkbox"]', function() {
+    var ingredient = $(this).closest('li');
+    var ingredientName = ingredient.find('label').text();
+    var ingredientId = $(this).val();
+
+    if ($(this).is(':checked')) {
+      $('<li>').text(ingredientName).appendTo('#selected-ingredients');
+      $('<input>').attr({
+        type: 'hidden',
+        name: 'recipe[ingredient_ids][]',
+        value: ingredientId
+      }).appendTo('#selected-ingredients');
+    } else {
+      $('#selected-ingredients li:contains("' + ingredientName + '")').remove();
+      $('#selected-ingredients input[value="' + ingredientId + '"]').remove();
+    }
+  });
+<% end %>
+
+
+
+
 
 <style>
   .create-container {
