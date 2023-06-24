@@ -10,9 +10,18 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize @post
     if @post.save!
-      redirect_to root_path
+      redirect_back(fallback_location: root_path)
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    authorize @post
+    if @post.destroy
+      flash[:notice] = "Post has been successfully deleted."
+      redirect_back(fallback_location: root_path)
     end
   end
 
