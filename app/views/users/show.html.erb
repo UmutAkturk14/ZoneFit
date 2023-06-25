@@ -1,14 +1,58 @@
+<section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1519219788971-8d9797e0928e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1144&q=80);">
+  <div class="container">
+    <%# ! Anything in the banner? %>
+  </div>
+</section>
 
+<div class="row">
+  <div class="col-md-4 profile-elements position-relative">
+    <section class="d-flex flex-column justify-content-center align-items-center profile-content">
+      <%# TODO: Profile pic %>
+      <div class="profile-pic">
+        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Profile picture" class="profile-picture position-relative">
+        <%# TODO: Add friend button %>
+        <a href=""><i class="fa-solid fa-user-plus text-center fs-5 add-friend"></i></a>
+      </div>
+      <article class="bio text-center">
+        <%# TODO: Name %>
+        <p class="fs-5 fw-bold"><%= "#{@user.first_name.capitalize} #{@user.last_name.capitalize}" %></p>
+        <p class="fs-6 fst-italic mb-3"><%= "##{@user.nickname}" %></p>
+        <%# TODO: Bio / About me %>
+        <%= @user.bio %>
+      </article>
+      <%# TODO: Send a message / Edit profile %>
+      <article>
+        <% if policy(@user).edit? %>
+          <%= link_to "Edit this section", edit_user_profile_path(@user), class: "custom-btn btn-purple mt-2 text-center text-decoration-none" %>
+        <% else %>
+          <%= link_to "Message", "#", class: "custom-btn btn-purple text-center text-decoration-none" %>
+        <% end %>
+      </article>
+    </section>
+  </div>
 
-<div class="w-100">
-  <img src="https://images.unsplash.com/photo-1687052470524-d5d74c13de59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" alt="" style="height:300px;">
+  <div class="col-md-6">
+    <%# ! SECOND COLUMN %>
+
+    <div class="posts my-4 ms-5">
+      <%= render "shared/posts", locals: {p: @post} %>
+    </div>
+
+  </div>
+
+  <div class="col-md-2">
+    <%# ! THIRD COLUMN (FOR MAP) %>
+  </div>
+
 </div>
 
-<div><%= @user.bio %></div>
-<% if policy(@user).edit? %>
-  <%= link_to "Edit this section", edit_user_path(@user) %>
-<% end %>
 
+<!-- MAP HERE
 <div><%= @user.interests %></div>
-
-
+=======
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+-->

@@ -1,0 +1,50 @@
+.post {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  background: white;
+  padding: 8px 16px;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 16px;
+  width: 75%;
+}
+
+.post .post-content {
+  flex-grow: 1;
+  padding: 0 24px;
+}
+
+.post p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.post small {
+  color: #999999;
+  font-weight: bold;
+}
+.post .post-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease 0.3s;
+}
+
+.post:hover .post-actions {
+  opacity: 1;
+}
+
+.post .post-actions a {
+  color: #999999;
+  margin-left: 0;
+  font-size: 14px;
+}
+
+.post .post-actions a:hover {
+  color: #555555;
+}
+
+.emojionearea .emojionearea-editor {
+  font-size: 16px !important;
+  font-family: "Noto Serif", serif !important;
+  width: 400px !important;
+}
