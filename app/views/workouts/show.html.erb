@@ -10,7 +10,7 @@
         <p class="fs-3 fw-bold">Tags</p>
         <ul>
           <% @tags.each do |tag| %>
-            #<%= tag.strip %>
+            <span class="fs-6 text-wrap badge bg-success bg-gradient rounded-pill mt-1">#<%= tag %></span>
           <% end %>
         </ul>
 
@@ -29,7 +29,7 @@
               <div id="comment-div">
                 <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
               </div>
-              <button type="submit" class="custom-btn btn-green">Create!</button>
+              <button type="submit" class="custom-btn btn-green">Comment</button>
             </article>
           </div>
         <% end %>

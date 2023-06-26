@@ -2,68 +2,20 @@
 <div class="container">
   <p><a href="/recipes/new" class="text-decoration-none"><strong>Add a new recipe</strong></a></p>
 </div>
-<div class="container">
+<div class="container d-flex justify-content-center align-items-center">
   <div class="grid">
     <% @recipes.each do |recipe| %>
       <div class="item">
-        <img class="image rounded-circle" src="<%= recipe.url %>">
-        <div class="item-content">
-          <h5 class="text-decoration-none"><%= link_to recipe.title, recipe_path(recipe) %></h5>
-          <p>Prep time: <%= recipe.prep_time %> Minutes</p>
-          <p>Difficulty: <%= recipe.difficulty %></p>
-          <p>Created by: <%= recipe.user.first_name %></p>
-          <p>Rating: </p>
+        <img class="w-100 h-75 object-fit-cover" src="<%= recipe.url %>">
+        <div class="item-content d-flex flex-column">
+          <p class="fs-5"><%= link_to recipe.title, recipe_path(recipe), class: "text-decoration-none" %></p>
+
+          <div class="d-flex flex-column align-items-center">
+            <p><%= recipe.prep_time %> Minutes</p>
+            <p><%= recipe.difficulty %></p>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-
-<style>
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-  }
-
-  .item {
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    width: 400px;
-  }
-
-  .item-content {
-    flex: 1;
-  }
-
-  h5 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  p {
-    font-size: 14px;
-    margin: 0;
-  }
-
-  @media (max-width: 992px) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .image {
-    width: 150px;
-    margin-right: 10px;
-  }
-</style>

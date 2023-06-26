@@ -9,12 +9,7 @@ class RecipesController < ApplicationController
     @comments = Comment.where(commentable: @recipe)
     @comment = Comment.new
     @commentable = @recipe
-    recipes = Recipe.all
-    @top_recipes = []
-    4.times do |_|
-      sampled_items = recipes.sample
-      @top_recipes << sampled_items
-    end
+    @top_recipes = Recipe.all.sample(4)
   end
 
   def new
@@ -62,9 +57,18 @@ class RecipesController < ApplicationController
     end
   end
 
+  def search_ingredients
+    query = params[:query]
+    @results = Ingredient.search_nutrition(query)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :instructions, :url, :prep_time, :difficulty, :ingredients)
+    params.require(:recipe).permit(:title, :instructions, :url, :prep_time, :difficulty, ingredient_ids: [])
   end
 end
