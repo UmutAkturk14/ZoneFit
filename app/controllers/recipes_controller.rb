@@ -9,12 +9,7 @@ class RecipesController < ApplicationController
     @comments = Comment.where(commentable: @recipe)
     @comment = Comment.new
     @commentable = @recipe
-    recipes = Recipe.all
-    @top_recipes = []
-    4.times do |_|
-      sampled_items = recipes.sample
-      @top_recipes << sampled_items
-    end
+    @top_recipes = Recipe.all.sample(4)
   end
 
   def new
