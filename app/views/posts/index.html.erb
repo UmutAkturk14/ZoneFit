@@ -17,7 +17,16 @@
         <div class="container">
           <h1><strong>ZoneFit App</strong></h1>
           <p>Get set, fit, ready, go.</p>
-          <%= link_to 'Workout', class: "custom-btn" %>
+          <%= link_to "See Workout Videos", workouts_path, class: "btn btn-gradient" %>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://img.freepik.com/free-photo/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay_2829-6471.jpg?w=2000);">
+        <div class="container">
+          <h1><strong>ZoneFit App</strong></h1>
+          <p>Get set, fit, ready, go.</p>
+          <%= link_to "See Meal Recipes", recipes_path, class: "btn btn-gradient" %>
         </div>
       </div>
     </div>
@@ -36,7 +45,7 @@
 <br>
 <br>
 
-  <div class="wrapper d-flex justify-content-center">
+<div class="wrapper d-flex justify-content-center">
   <div class="border border-gray p-3 text-center rounded" style="width: 800px; background-color: #E4EFE7;">
     <div class="col-md-10 offset-md-1">
       <%= form_with model: @post do |f| %>
@@ -69,3 +78,4 @@
     </div>
   </div>
 </div>
+
