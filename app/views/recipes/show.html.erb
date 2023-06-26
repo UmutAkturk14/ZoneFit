@@ -1,118 +1,119 @@
-<div class="container mg-top-10">
+<div class="container my-3">
   <div class="item">
-    <div class="item-content">
-      <img src="<%= @recipe.url %>">
-      <div class="recipe-details">
-        <h1><%= @recipe.title %></h1>
-        <p><strong>Ingredients: </strong><%= @recipe.ingredients %></p>
-        <p><strong>Prep Time: </strong><%= @recipe.prep_time %> Minutes</p>
-        <p><strong>Instructions: </strong><%= @recipe.instructions %></p>
-        <p><strong>Difficulty Level: </strong><%= @recipe.difficulty %></p>
-        <p><strong>Created By: </strong><%= @recipe.user.first_name%> <%= @recipe.user.last_name %></p>
-        <%= link_to "Delete",
-          recipe_path(@recipe),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-        <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
-        <%= simple_form_for [@recipe, @comment] do |f| %>
-          <div class="d-flex">
-            <%= f.hidden_field :commentable_id, value: params[:id] %>
-            <%= f.hidden_field :commentable_type, value: params["controller"].singularize.capitalize %>
-            <article class="justify-content-center align-items-center flex-column">
-              <div id="comment-div">
-                <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
-              </div>
-              <%= f.submit "Submit", class: "custom-btn btn-green" %>
-            </article>
-          </div>
-        <% end %>
-        <section class="comments">
-          <% @comments.each do |comment| %>
-            <article class="comment">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
-              <div class="comment-content">
-                <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
-                <p><%= comment.content %></p>
-
-                <% if comment.user == current_user %>
-                  <div class="comment-actions">
-                    <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
-                      <p>Edit</p>
-                      <i class="fas fa-pencil-alt mx-1"></i>
-                    <% end %>
-
-
-                    <%= link_to recipe_comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" }, class: "d-flex justify-content-center align-items-center" do %>
-                      <p>Delete</p>
-                      <i class="far fa-trash-alt mx-1"></i>
-                    <% end %>
-                  </div>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="item-content">
+          <div class="recipe-details">
+            <h1><%= @recipe.title %></h1>
+            <p><strong>Ingredients: </strong></p>
+              <ul>
+                <% @recipe.ingredients.each do |ingredient| %>
+                  <li><%= ingredient.name %></li>
+                  <ul>
+                    <li>Protein: <%= ingredient.protein %></li>
+                    <li>Carbohydrates: <%= ingredient.carbohydrates %></li>
+                    <li>Fat: <%= ingredient.fat %></li>
+                    <li>Calories: <%= ingredient.calories %></li>
+                  </ul>
               <% end %>
+              </ul>
+            <p><strong>Prep Time: </strong><%= @recipe.prep_time %> Minutes</p>
+            <p><strong>Instructions: </strong><%= @recipe.instructions %></p>
+            <p><strong>Difficulty Level: </strong><%= @recipe.difficulty %></p>
+            <p><strong>Created By: </strong><%= link_to "#{@recipe.user.first_name} #{@recipe.user.last_name}", user_profile_path(@recipe.user) %></p>
+
+            <%# TODO: We can only delete a recipe we created %>
+            <%= link_to edit_recipe_path(@recipe) do %>
+              <button class="custom-btn btn-purple" style="z-index: 1;">Edit this recipe</button>
+            <% end %>
+            <%= link_to recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+              <button class="custom-btn btn-purple mb-3" style="z-index: 1;">Delete recipe</button>
+            <% end %>
+
+            <%= simple_form_for [@recipe, @comment] do |f| %>
+              <div class="d-flex">
+                <%= f.hidden_field :commentable_id, value: params[:id] %>
+                <%= f.hidden_field :commentable_type, value: params["controller"].singularize.capitalize %>
+                <article class="justify-content-center align-items-center flex-column">
+                  <div id="comment-div">
+                    <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
+                  </div>
+                  <button type="submit" class="custom-btn btn-green">Comment</button>
+                </article>
               </div>
-            </article>
-          <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <img class="w-100 h-75 object-fit-cover shadow p-1 mb-5 bg-body-tertiary rounded" src="<%= @recipe.url %>">
+        <!-- <img src="<%= @recipe.url %>" class="recipe-image"> -->
       </div>
     </div>
   </div>
 </div>
 
 <div class="container btn-warning">
-  <%= link_to "Back to all recipes", recipes_path %>
+  <%= link_to recipes_path, class: "d-flex justify-content-end" do %>
+    <button class="custom-btn btn-purple mb-3" style="z-index: 1;">Back</button>
+  <% end %>
 </div>
 
 <div class="container">
-  <h1>Comments</h1>
+  <p class="fs-2">Comments</p>
   <!-- Add your review display code here if needed -->
+  <section class="comments w-50">
+    <% @comments.each do |comment| %>
+      <article class="comment">
+        <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
+        <div class="comment-content">
+          <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
+          <p><%= comment.content %></p>
+
+          <% if comment.user == current_user %>
+            <div class="comment-actions">
+              <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
+                <p>Edit</p>
+                <i class="fas fa-pencil-alt mx-1"></i>
+              <% end %>
+
+
+              <%= link_to recipe_comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" }, class: "d-flex justify-content-center align-items-center" do %>
+                <p>Delete</p>
+                <i class="far fa-trash-alt mx-1"></i>
+              <% end %>
+            </div>
+        <% end %>
+        </div>
+      </article>
+    <% end %>
+  </section>
 </div>
 
 <h1 class="text-center title">Other Similar Recipes</h1>
 <div class="container">
   <div class="grid">
     <% @top_recipes.each do |recipe| %>
-      <div class="item">
-        <div class="item-content">
-          <%= link_to recipe.title, recipe_path(recipe) %>
+      <%= link_to recipe_path(recipe), class: "text-decoration-none" do %>
+        <div class="item">
+          <p class="text-center fs-5"><%= recipe.title %></p>
+          <img class="w-100 h-75 object-fit-cover" src="<%= recipe.url %>">
         </div>
-        <img class="image" src="<%= recipe.url %>">
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
 
-<style>
-  .item {
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-radius: 5px;
-  }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  .title {
-    font-size: 30px;
-    font-weight: bold;
-  }
 
-  .container {
-    display: flex;
-    justify-content: center;
-  }
+<!-- UNCOMMENT FOR EMOJI PICKER (DOESN'T WORK) -->
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-  }
-
-  .item-content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 10px;
-  }
-
-  .recipe-details {
-    margin-left: 20px;
-  }
-
-  .image {
-    width: 150px;
-  }
-</style>
+<script type="text/javascript">
+  $('#comment_content').emojioneArea({
+    pickerPosition: 'right',
+  });
+</script>
