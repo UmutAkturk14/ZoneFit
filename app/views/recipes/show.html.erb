@@ -5,20 +5,15 @@
         <div class="item-content">
           <div class="recipe-details">
             <h1><%= @recipe.title %></h1>
-            <p><strong>Ingredients: </strong></p>
+            <p class="fs-4 text-decoration-underline"><strong>Ingredients: </strong></p>
               <ul>
-                <% @recipe.ingredients.each do |ingredient| %>
-                  <li><%= ingredient.name %></li>
-                  <ul>
-                    <li>Protein: <%= ingredient.protein %></li>
-                    <li>Carbohydrates: <%= ingredient.carbohydrates %></li>
-                    <li>Fat: <%= ingredient.fat %></li>
-                    <li>Calories: <%= ingredient.calories %></li>
-                  </ul>
+                <% @ingredients.each do |ingredient| %>
+                  <li class="fs-6"><i class="fa-solid fa-angles-right"></i> <%= ingredient.capitalize %></li>
               <% end %>
               </ul>
-            <p><strong>Prep Time: </strong><%= @recipe.prep_time %> Minutes</p>
-            <p><strong>Instructions: </strong><%= @recipe.instructions %></p>
+            <p><strong class="fs-4 text-decoration-underline">Prep Time: </strong><%= @recipe.prep_time %> Minutes</p>
+            <p><strong class="fs-4 text-decoration-underline">Instructions:</p></strong>
+            <p class="fs-6"><%= @recipe.instructions %></p>
             <p><strong>Difficulty Level: </strong><%= @recipe.difficulty %></p>
             <p><strong>Created By: </strong><%= link_to "#{@recipe.user.first_name} #{@recipe.user.last_name}", user_profile_path(@recipe.user) %></p>
 
@@ -48,7 +43,7 @@
       </div>
 
       <div class="col-md-5">
-        <img class="w-100 h-75 object-fit-cover shadow p-1 mb-5 bg-body-tertiary rounded" src="<%= @recipe.url %>">
+        <img class="w-100 h-50 object-fit-cover shadow p-1 mb-5 bg-body-tertiary rounded" src="<%= @recipe.url %>">
         <!-- <img src="<%= @recipe.url %>" class="recipe-image"> -->
       </div>
     </div>

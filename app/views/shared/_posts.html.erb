@@ -1,21 +1,12 @@
-<%
-=begin%>
- <% if current_user == @user  %> 
-<%
-=end%>
+
+ <% if current_user == @user  %>
     <%= simple_form_for @post do |f| %>
       <article class="position-relative">
         <%= f.input :content, as: :text, placeholder: "How are you feeling today?", label:false %>
         <button type="submit" class="custom-btn btn-send">Send!</button>
       </article>
     <% end %>
-<%
-=begin%>
- <% end %> 
-<%
-=end%>
-
-
+<% end %>
 
 <% @posts.each do |p| %>
 <div class="post">

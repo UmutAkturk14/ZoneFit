@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
     @comment = Comment.new
     @commentable = @recipe
     @top_recipes = Recipe.all.sample(4)
+    @ingredients = @recipe.ingredients.split(",")
   end
 
   def new
@@ -69,6 +70,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :instructions, :url, :prep_time, :difficulty, ingredient_ids: [])
+    params.require(:recipe).permit(:title, :instructions, :url, :prep_time, :difficulty, :ingredients)
   end
 end
