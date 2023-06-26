@@ -48,13 +48,14 @@
 <div class="wrapper d-flex justify-content-center">
   <div class="border border-gray p-3 text-center rounded" style="width: 800px; background-color: #E4EFE7;">
     <div class="col-md-10 offset-md-1">
-      <%= form_with model: @post do |f| %>
-        <div class="form-group">
-          <%= f.text_area :content, placeholder: 'Write Something', class: "form-control" %>
-        </div>
-        <br>
-        <%= f.submit 'Create Post', class: 'btn btn-primary float-end' %>
-      <% end %>
+      <div class="col-d-10 offset-md-1">
+        <%= simple_form_for @post do |f| %>
+          <div class="form-group">
+            <%= f.input :content, placeholder: "Write something", class: "form-control", label: false %>
+            <button type="submit" class="custom-btn btn-green">Comment</button>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <br>
@@ -67,7 +68,7 @@
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="avatar-dummy"></div>
-                  <h5 class="ms-3">John Doe</h5>
+                  <h5 class="ms-3"><%= "#{post.user.first_name} #{post.user.last_name}" %></h5>
                 </div>
                 <p class="card-text"><%= post.content %></p>
               </div>
@@ -79,3 +80,8 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  $('#post_content').emojioneArea({
+
+  });
+</script>

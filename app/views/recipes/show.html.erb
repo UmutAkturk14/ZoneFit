@@ -18,12 +18,16 @@
             <p><strong>Created By: </strong><%= link_to "#{@recipe.user.first_name} #{@recipe.user.last_name}", user_profile_path(@recipe.user) %></p>
 
             <%# TODO: We can only delete a recipe we created %>
-            <%= link_to edit_recipe_path(@recipe) do %>
-              <button class="custom-btn btn-purple" style="z-index: 1;">Edit this recipe</button>
+
+            <% if @recipe.user == current_user %>
+              <%= link_to edit_recipe_path(@recipe) do %>
+                <button class="custom-btn btn-purple" style="z-index: 1;">Edit this recipe</button>
+              <% end %>
+              <%= link_to recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                <button class="custom-btn btn-purple mb-3" style="z-index: 1;">Delete recipe</button>
+              <% end %>
             <% end %>
-            <%= link_to recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-              <button class="custom-btn btn-purple mb-3" style="z-index: 1;">Delete recipe</button>
-            <% end %>
+
 
             <%= simple_form_for [@recipe, @comment] do |f| %>
               <div class="d-flex">
