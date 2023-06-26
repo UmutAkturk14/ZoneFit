@@ -9,7 +9,7 @@ def create_workouts(arr)
   arr.each do |element|
     youtube = Google::Apis::YoutubeV3::YouTubeService.new
     youtube.key = ENV["YouTubeAPIKey"]
-    response = youtube.list_searches("snippet", q: "#{element}", max_results: 50, type: "video")
+    response = youtube.list_searches("snippet", q: "#{element}", max_results: 5, type: "video")
     response.items.each do |r|
       video_details = youtube.list_videos("snippet", id: r.id.video_id)
 
@@ -59,8 +59,8 @@ end
 puts "Users created successfully"
 # TODO: Workouts UNCOMMENT THE FOLLOWING CODE:
 
-# create_workouts(workouts)
-# puts "Workouts created successfully"
+create_workouts(workouts)
+puts "Workouts created successfully"
 
 # TODO: Recipes API data
 url = "https://www.themealdb.com/api/json/v1/1/random.php"
