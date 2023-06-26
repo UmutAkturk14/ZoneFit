@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :show, :create, :new, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
   end
-  resources :posts, only: [:new, :create, :destroy] do
+  resources :posts, only: [:index, :new, :create, :destroy] do
     resources :comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit], path: 'profiles', as: 'user_profiles'

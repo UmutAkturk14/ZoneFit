@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
   def new
     @post = Post.new
-    @post.user = current_user
     authorize @post
+  end
+
+  def index
+    @posts = policy_scope(Post).order(updated_at: :desc) 
   end
 
   def create
@@ -28,6 +31,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    # params.require(:post).permit(:content)
+    params.permit(:content)
   end
 end

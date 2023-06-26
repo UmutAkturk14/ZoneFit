@@ -1,20 +1,71 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.verival.co.uk/blog/wp-content/uploads/2022/04/post-workout-meal-wichtig.png);">
-  <div class="container">
-    <h1>ZoneFit App</h1>
-    <p>Look fit, Feel fit.</p>
+<% content_for(:title) do %>
+  <title>Posts | ZoneFit</title>
+<% end %>
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.verival.co.uk/blog/wp-content/uploads/2022/04/post-workout-meal-wichtig.png);">
+        <div class="container">
+          <h1><strong>ZoneFit App</strong></h1>
+          <p>Get set, fit, ready, go.</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://wallpaperaccess.com/full/8286338.jpg);">
+        <div class="container">
+          <h1><strong>ZoneFit App</strong></h1>
+          <p>Get set, fit, ready, go.</p>
+          <%= link_to 'Workout', class: "custom-btn" %>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
- <div class="container">
-    <div class="post-form">
-      <textarea id="post-text" placeholder="What's happening?" rows="3"></textarea>
-      <button class="btn btn-primary">Post</button>
+<br>
+<br>
+
+  <div class="wrapper d-flex justify-content-center">
+  <div class="border border-gray p-3 text-center rounded" style="width: 800px; background-color: #E4EFE7;">
+    <div class="col-md-10 offset-md-1">
+      <%= form_with model: @post do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, placeholder: 'Write Something', class: "form-control" %>
+        </div>
+        <br>
+        <%= f.submit 'Create Post', class: 'btn btn-primary float-end' %>
+      <% end %>
     </div>
 
-    <!-- Posts section -->
-    <!-- Add your existing posts section here -->
+    <br>
 
+    <div class="container">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-10 offset-md-1">
+            <div class="card mb-4 rounded">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="avatar-dummy"></div>
+                  <h5 class="ms-3">John Doe</h5>
+                </div>
+                <p class="card-text"><%= post.content %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-
- 
+</div>
