@@ -18,7 +18,8 @@ Rails.application.routes.draw do
     end
   end
   resources :posts, only: [:index, :new, :create, :destroy] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create]
   end
+  resources :comments, only: :destroy
   resources :users, only: [:show, :edit], path: 'profiles', as: 'user_profiles'
 end
