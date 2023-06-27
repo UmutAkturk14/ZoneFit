@@ -20,14 +20,14 @@ export default class extends Controller {
     })
     // console.log("hello world")
 
-    this.#addMarkersToMap()
+    // this.#addMarkersToMap()
   }
 
-  #addMarkersToMap() {
-    this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker()
-        .setLngLat([ marker.longitude, marker.latitude ])
-        .addTo(this.map)
-    })
-  }
+  // #addMarkersToMap() {
+  //   this.markersValue.forEach((marker) => {
+  //     new mapboxgl.Marker()
+  //       .setLngLat([ marker.longitude, marker.latitude ])
+  //       .addTo(this.map)
+  //   })
+  // }
   }

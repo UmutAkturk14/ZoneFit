@@ -53,6 +53,7 @@ User.delete_all
     email: Faker::Internet.email,
     password: Faker::Internet.password,
     location: Faker::Address.country
+    photo: 
   )
 end
 

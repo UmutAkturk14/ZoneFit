@@ -1,4 +1,10 @@
-<section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1519219788971-8d9797e0928e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1144&q=80);">
+<% if @user.banner.attached? %>
+  <section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path @user.banner.key, height: 300, crop: :fill %>)">
+  <%= cl_image_path @user.banner.key, height: 300, crop: :fill, class: "banner style: background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)" %>
+<% else  %>
+  <section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= src="http://source.unsplash.com/featured/?nature" %>)">
+<% end %>
+
   <div class="container">
     <%# ! Anything in the banner? %>
   </div>
@@ -9,7 +15,11 @@
     <section class="d-flex flex-column justify-content-center align-items-center profile-content">
       <%# TODO: Profile pic %>
       <div class="profile-pic">
-        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Profile picture" class="profile-picture position-relative">
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+      <% else %>
+        <%= image_tag "http://source.unsplash.com/featured/?people" %>
+    <% end %>
         <%# TODO: Add friend button %>
         <a href=""><i class="fa-solid fa-user-plus text-center fs-5 add-friend"></i></a>
       </div>
