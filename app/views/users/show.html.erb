@@ -9,7 +9,9 @@
     <section class="d-flex flex-column justify-content-center align-items-center profile-content">
       <%# TODO: Profile pic %>
       <div class="profile-pic">
-        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Profile picture" class="profile-picture position-relative">
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
         <%# TODO: Add friend button %>
         <a href=""><i class="fa-solid fa-user-plus text-center fs-5 add-friend"></i></a>
       </div>
