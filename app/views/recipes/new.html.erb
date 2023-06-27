@@ -19,9 +19,13 @@
         <div id="ingredient-search-results"></div>
          <h2>Selected Ingredients:</h2>
           <ul id="selected-ingredients">
-            <% @recipe.ingredients.each do |ingredient| %>
-              <li><%= ingredient.name %></li>
+
+            <% if @recipe.ingredients.present?  %>
+              <% @recipe.ingredients.each do |ingredient| %>
+                <li><%= ingredient.name %></li>
+              <% end %>
             <% end %>
+
           </ul>
         <%= f.submit %>
       <% end %>

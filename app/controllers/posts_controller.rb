@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = policy_scope(Post).order(updated_at: :desc) 
+    @posts = policy_scope(Post).order(updated_at: :desc)
+    @post = Post.new
   end
 
   def create
@@ -31,7 +32,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    # params.require(:post).permit(:content)
-    params.permit(:content)
+    params.require(:post).permit(:content)
   end
 end
