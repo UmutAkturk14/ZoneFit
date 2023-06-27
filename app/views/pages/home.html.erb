@@ -40,10 +40,10 @@
 
 
 <div class="row justify-content-center">
-  <div class="col-md-2">
+  <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
       <h2>Top workouts</h2>
-      <% Workout.all.sample(4).each do |workout| %>
+      <% Workout.all.sample(135).each do |workout| %>
         <div class="container text-truncate">
           <%= link_to workout.title, workout_path(workout), class: "text-truncate" %>
         </div>
@@ -57,13 +57,13 @@
 
   <div class="col-md-6">
     <div class="wrapper d-flex justify-content-center">
-      <div class="border border-gray p-3 text-center rounded" style="width: 800px; background-color: #E4EFE7;">
+      <div class="border border-gray p-3 text-center rounded" style="width: 800px; background-color: #E4EFE7;" data-controller="comments">
         <div class="col-md-10 offset-md-1">
           <div class="col-d-10 offset-md-1">
             <%= simple_form_for @post do |f| %>
               <div class="form-group">
                 <%= f.input :content, placeholder: "Write something", class: "form-control", label: false %>
-                <button type="submit" class="custom-btn btn-green">Comment</button>
+                <button type="submit" class="custom-btn btn-green">Post</button>
               </div>
             <% end %>
           </div>
@@ -71,46 +71,92 @@
 
         <br>
         <% @posts.each do |p| %>
-          <div class="post w-100">
-            <div class="post-content d-flex">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-              <div class="ms-3">
-                <p><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> <small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
-                <p class="text-break mt-2"><%= p.content %></p>
+          <div class="d-flex flex-column" id="post">
+            <div class="post w-100">
+              <div class="post-content d-flex">
+                <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+                <div class="ms-3">
+                  <p><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> <small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
+                  <p class="text-break mt-2"><%= p.content %></p>
+                </div>
               </div>
-            </div>
 
 
-            <% if p.user == current_user %>
-              <div class="post-actions">
-                <div class="">
+              <% if p.user == current_user %>
+                <div class="post-actions">
+                  <div class="">
+                    <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
+                      <p>Edit</p>
+                      <i class="fas fa-pencil-alt mx-1"></i>
+                    <% end %>
+
+                    <%= link_to post_path(p), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this post?" }, class: "d-flex justify-content-center align-ites-cetner" do %>
+                      <p>Delete</p>
+                      <i class="far fa-trash-alt mx-1"></i>
+                    <% end %>
+                  <%= link_to "/", class: "d-flex justify-content-center align-items-center", data: { action: "click->comments#clickButton" } do %>
+                    <p>Comment</p>
+                    <i class="fa-regular fa-comment mx-1"></i>
+                  <% end %>
+                  </div>
+                </div>
+
+              <% else %>
+                <div class="post-actions">
                   <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
-                    <p>Edit</p>
-                    <i class="fas fa-pencil-alt mx-1"></i>
-                  <% end %>
-
-                  <%= link_to post_path(p), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this post?" }, class: "d-flex justify-content-center align-ites-cetner" do %>
-                    <p>Delete</p>
-                    <i class="far fa-trash-alt mx-1"></i>
-                  <% end %>
-                <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
                   <p>Comment</p>
                   <i class="fa-regular fa-comment mx-1"></i>
                 <% end %>
                 </div>
-              </div>
-
-            <% else %>
-              <div class="post-actions">
-                <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
-                <p>Comment</p>
-                <i class="fa-regular fa-comment mx-1"></i>
               <% end %>
+            </div>
+            <section class="nested-comments d-none">
+              <div class="container w-100">
+                <%= simple_form_for [p, @comment] do |f| %>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <%= f.hidden_field :commentable_id, value: p[:id] %>
+                    <%= f.hidden_field :commentable_type, value: "Post" %>
+                    <article class="justify-content-center align-items-center flex-column w-75 flex-row">
+                      <div id="comment-div">
+                        <%= f.input :content, as: :text, placeholder: "Reply your heart out ❤️", class: "w-100", label: false %>
+                      </div>
+                    </article>
+                    <div class="">
+                      <button type="submit" class="custom-btn btn-purple ms-2" style="z-index: 1;">Comment</button>
+                    </div>
+                  </div>
+                <% end %>
+
+                <div class="comments">
+                  <% Comment.all.where(commentable_id: p[:id]).order("created_at DESC").each do |comment| %>
+                    <article class="comment">
+                      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
+                      <div class="comment-content">
+                        <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
+                        <p class="text-break"><%= comment.content %></p>
+
+                        <% if comment.user == current_user %>
+                          <div class="comment-actions">
+                            <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
+                              <p>Edit</p>
+                              <i class="fas fa-pencil-alt mx-1"></i>
+                            <% end %>
+
+
+                            <%= link_to comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" }, class: "d-flex justify-content-center align-items-center" do %>
+                              <p>Delete</p>
+                              <i class="far fa-trash-alt mx-1"></i>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </article>
+                  <% end %>
+                </div>
               </div>
-            <% end %>
-
-
+            </section>
           </div>
+          <%# TODO: Nested comment section here %>
 
         <% end %>
 
@@ -177,10 +223,6 @@
   margin-bottom: 10px;
 }
 
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
 
 .row.justify-content-center {
   margin-top: 20px;
@@ -190,18 +232,6 @@
   flex: 0 0 100%;
   max-width: 100%;
   text-align: center;
-}
-
-.form-control {
-  width: 100%;
-}
-
-.btn-primary {
-  margin-top: 10px;
-}
-
-img {
-  max-width: 100%;
 }
 
 </style>

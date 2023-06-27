@@ -11,14 +11,21 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:workout_id]) if params[:workout_id].present?
-    @comment = Comment.find(params[:recipe_id]) if params[:recipe_id].present?
-    @comment = Comment.find(params[:post_id]) if params[:post_id].present?
-    authorize @comment
-    if @comment.destroy
-      flash[:notice] = "Comment has been successfully deleted."
-      redirect_back(fallback_location: root_path)
-    end
+
+  if params[:workout_id].present?
+    @comment = Comment.find(params[:workout_id])
+  elsif params[:recipe_id].present?
+    @comment = Comment.find(params[:recipe_id])
+  elsif params[:post_id].present?
+    @comment = Comment.find(params[:post_id])
+  else
+    @comment = Comment.find(comment_params)
+  end
+  authorize @comment
+  if @comment.destroy
+    flash[:notice] = "Comment has been successfully deleted."
+    redirect_back(fallback_location: root_path)
+  end
   end
 
   private
