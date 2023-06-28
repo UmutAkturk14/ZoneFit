@@ -3,12 +3,12 @@ require "json"
 require "open-uri"
 require "google/apis/youtube_v3"
 youtube = Google::Apis::YoutubeV3::YouTubeService.new
-youtube.key = ENV["YouTubeAPIKey"]
+youtube.key = ENV["YOUTUBE_API_KEY"]
 
 def create_workouts(arr)
   arr.each do |element|
     youtube = Google::Apis::YoutubeV3::YouTubeService.new
-    youtube.key = ENV["YouTubeAPIKey"]
+    youtube.key = ENV["YOUTUBE_API_KEY"]
     response = youtube.list_searches("snippet", q: "#{element}", max_results: 5, type: "video")
     response.items.each do |r|
       video_details = youtube.list_videos("snippet", id: r.id.video_id)
@@ -53,7 +53,6 @@ User.delete_all
     email: Faker::Internet.email,
     password: Faker::Internet.password,
     location: Faker::Address.country
-    photo: 
   )
 end
 
