@@ -11,10 +11,16 @@
 <% @posts.each do |p| %>
 <div class="post">
   <div class="post-content d-flex">
-    <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+
+    <% if p.user.photo.key.present? %>
+      <%= cl_image_tag p.user.photo.key, height: 45, width: 45, crop: :fill, style: "border-radius: 50%;" %>
+    <% else %>
+      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+    <% end %>
+
     <div class="ms-3">
-      <p><small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
-      <p class="text-break mt-2"><%= p.content %></p>
+      <p><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> <small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
+                  <p class="text-break mt-2 text-start"><%= p.content %></p>
     </div>
   </div>
 

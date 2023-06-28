@@ -200,3 +200,8 @@
   color: white;
 }
 
+.post-button {
+  &:hover {
+    background-color: #03c8a8;
+  }
+}

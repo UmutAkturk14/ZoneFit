@@ -1,9 +1,9 @@
-<% if @user.banner.attached? %>
-  <section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path @user.banner.key, height: 300, crop: :fill %>)">
-  <%= cl_image_path @user.banner.key, height: 300, crop: :fill, class: "banner style: background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)" %>
-<% else  %>
-  <section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= src="http://source.unsplash.com/featured/?nature" %>)">
-<% end %>
+<section>
+  <% if @user.banner.attached? %>
+    <article class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path @user.banner.key, crop: :fill %>)"></article>
+  <% else  %>
+    <article class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= src="http://source.unsplash.com/featured/?nature" %>)">
+  <% end %></article>
 
   <div class="container">
     <%# ! Anything in the banner? %>
@@ -15,8 +15,8 @@
     <section class="d-flex flex-column justify-content-center align-items-center profile-content">
       <%# TODO: Profile pic %>
       <div class="profile-pic">
-      <% if @user.photo.attached? %>
-        <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
+      <% if @user.photo.key.present? %>
+        <%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill %>
       <% else %>
         <%= image_tag "http://source.unsplash.com/featured/?people" %>
     <% end %>
