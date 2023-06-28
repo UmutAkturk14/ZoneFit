@@ -129,14 +129,18 @@
 
                 <div class="comments">
                   <% Comment.all.where(commentable_id: p[:id]).order("created_at DESC").each do |comment| %>
-                    <article class="comment">
-                      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
-                      <div class="comment-content">
-                        <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
-                        <p class="text-break"><%= comment.content %></p>
+                    <article class="nested-comment" style="height: 6vh; width: 75%;">
+                      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-dummy" /> <%# TODO: Insert claudinary thingy here %>
+                      <div class="nested-comment-content d-flex flex-column">
+                        <div class="nested-comment-header d-flex justify-content-start">
+                          <p><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> <small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
+                        </div>
+                        <div class="nested-comment-content d-flex">
+                          <p class="text-start"><%= comment.content %></p>
+                        </div>
 
                         <% if comment.user == current_user %>
-                          <div class="comment-actions">
+                          <div class="nested-comment-actions">
                             <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
                               <p>Edit</p>
                               <i class="fas fa-pencil-alt mx-1"></i>

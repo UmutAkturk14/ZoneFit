@@ -57,6 +57,9 @@ gem "sassc-rails"
 # Pundit
 gem "pundit"
 
+# Cloudinary
+gem "cloudinary"
+
 # Geocoder
 gem "geocoder"
 

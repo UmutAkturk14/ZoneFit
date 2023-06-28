@@ -53,6 +53,7 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
     authorize @recipe
     if @recipe.destroy
+      Comment.where(commentable: @recipe).delete_all
       flash[:notice] = "Your recipe has been deleted"
       redirect_to recipes_path(@recipes)
     end
