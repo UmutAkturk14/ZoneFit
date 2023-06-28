@@ -43,7 +43,7 @@
   <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
       <h2>Top workouts</h2>
-      <% Workout.all.sample(135).each do |workout| %>
+      <% Workout.all.sample(10).each do |workout| %>
         <div class="container text-truncate">
           <%= link_to workout.title, workout_path(workout), class: "text-truncate" %>
         </div>
@@ -171,7 +171,7 @@
   <div class="col-md-2">
     <div class="container w-75 h-50 d-flex flex-column justify-content-center align-items-center">
       <h2>Top Recipes</h2>
-      <% Recipe.all.sample(4).each do |recipe| %>
+      <% Recipe.all.sample(10).each do |recipe| %>
         <%= link_to recipe.title, recipe_path(recipe) %>
       <img src="<%= recipe.url %>" class="w-100 h-75 object-fit-cover" style="border-radius: 16px;">
       <% end %>
