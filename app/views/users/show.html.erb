@@ -21,7 +21,13 @@
         <%= image_tag "http://source.unsplash.com/featured/?people" %>
     <% end %>
         <%# TODO: Add friend button %>
-        <a href=""><i class="fa-solid fa-user-plus text-center fs-5 add-friend"></i></a>
+
+        <% if @user == current_user %>
+          <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square text-center fs-5 add-friend"></i></a>
+        <% else %>
+          <a href="" data-bs-toggle="modal"><i class="fa-solid fa-user-plus text-center fs-5 add-friend"></i></a>
+        <% end %>
+
       </div>
       <article class="bio text-center">
         <%# TODO: Name %>
@@ -32,10 +38,8 @@
       </article>
       <%# TODO: Send a message / Edit profile %>
       <article>
-        <% if policy(@user).edit? %>
-          <%= link_to "Edit this section", edit_user_profile_path(@user), class: "custom-btn btn-purple mt-2 text-center text-decoration-none" %>
-        <% else %>
-          <%= link_to "Message", "#", class: "custom-btn btn-purple text-center text-decoration-none" %>
+        <% unless policy(@user).edit? %>
+          <%= link_to "Message", "#", class: "custom-btn btn-purple text-center text-decoration-none mt-2" %>
         <% end %>
       </article>
     </section>
@@ -66,3 +70,31 @@
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 -->
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <p class="fs-3 text-center fw-bold">Update profile</p>
+      </div>
+      <div class="modal-body">
+        <main class="user-form my-3">
+          <%= simple_form_for @user, url: user_profile_path(@user) do |f| %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :nickname %>
+          <%= f.input :bio, as: :text %>
+          <%= f.input :photo, as: :file %>
+          <%= f.input :banner, as: :file %>
+        </main>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="custom-btn btn-purple w-100 fw-bold" style="z-index: 1;">Update!</button>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

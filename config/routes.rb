@@ -21,5 +21,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
   resources :comments, only: :destroy
-  resources :users, only: [:show, :edit], path: 'profiles', as: 'user_profiles'
+  resources :users, only: [:show, :edit, :update], path: 'profiles', as: 'user_profiles'
 end

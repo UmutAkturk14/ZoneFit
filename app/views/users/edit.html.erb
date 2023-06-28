@@ -1,0 +1,20 @@
+<div class="container">
+
+  <main class="user-form my-3">
+    <%= simple_form_for @user, url: edit_user_profile_path(@user) do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :bio, as: :text %>
+    <%= f.input :photo, as: :file %>
+    <%= f.input :banner, as: :file %>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="custom-btn btn-purple w-25">Update!</button>
+    </div>
+  <% end %>
+  </main>
+
+  <%# @user, as: :user, method: :post, url: users_path %>
+
+
+
+</div>
