@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   end
   resources :comments, only: :destroy
   resources :users, only: [:show, :edit, :update], path: 'profiles', as: 'user_profiles'
+
+  resources :chatrooms, only: [:show] do
+    resources :messages, only: :create
+  end
 end
