@@ -43,7 +43,7 @@
   <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
       <h2>Top workouts</h2>
-      <% Workout.all.sample(135).each do |workout| %>
+      <% Workout.all.sample(10).each do |workout| %>
         <div class="container text-truncate">
           <%= link_to workout.title, workout_path(workout), class: "text-truncate" %>
         </div>
@@ -129,14 +129,18 @@
 
                 <div class="comments">
                   <% Comment.all.where(commentable_id: p[:id]).order("created_at DESC").each do |comment| %>
-                    <article class="comment">
-                      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
-                      <div class="comment-content">
-                        <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
-                        <p class="text-break"><%= comment.content %></p>
+                    <article class="nested-comment" style="height: 6vh; width: 75%;">
+                      <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-dummy" /> <%# TODO: Insert claudinary thingy here %>
+                      <div class="nested-comment-content d-flex flex-column">
+                        <div class="nested-comment-header d-flex justify-content-start">
+                          <p><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> <small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
+                        </div>
+                        <div class="nested-comment-content d-flex">
+                          <p class="text-start"><%= comment.content %></p>
+                        </div>
 
                         <% if comment.user == current_user %>
-                          <div class="comment-actions">
+                          <div class="nested-comment-actions">
                             <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
                               <p>Edit</p>
                               <i class="fas fa-pencil-alt mx-1"></i>
@@ -167,7 +171,7 @@
   <div class="col-md-2">
     <div class="container w-75 h-50 d-flex flex-column justify-content-center align-items-center">
       <h2>Top Recipes</h2>
-      <% Recipe.all.sample(4).each do |recipe| %>
+      <% Recipe.all.sample(10).each do |recipe| %>
         <%= link_to recipe.title, recipe_path(recipe) %>
       <img src="<%= recipe.url %>" class="w-100 h-75 object-fit-cover" style="border-radius: 16px;">
       <% end %>

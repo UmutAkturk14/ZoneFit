@@ -46,3 +46,50 @@
   font-family: 'Noto Serif', serif !important;
   width: 400px !important;
 }
+
+// Nested Comments
+
+.nested-comment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  background: rgb(243, 243, 243);
+  padding: 8px 16px;
+  border: 1px solid rgb(235,235,235);
+  border-radius: 20px;
+}
+
+.nested-comment .nested-comment-content {
+  flex-grow: 1;
+  padding: 0 24px;
+}
+
+.nested-comment p {
+  margin: 0;
+  line-height: 1;
+  font-size: 0.9rem;
+}
+
+.nested-comment small {
+  color: #999999;
+  font-weight: bold;
+}
+.nested-comment .nested-comment-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease .3s;
+}
+
+.nested-comment:hover .nested-comment-actions {
+  opacity: 1;
+}
+
+.nested-comment .nested-comment-actions a {
+  color: #999999;
+  margin-left: 0;
+  font-size: 14px;
+}
+
+.nested-comment .nested-comment-actions a:hover {
+  color: #555555;
+}
