@@ -2,13 +2,32 @@
   <title>Recipes | ZoneFit</title>
 <% end %>
 
-<h1 class="text-center">All Recipes</h1>
+<p class="text-center fs-1 mt-2">All Recipes</p>
 <div class="container">
   <p><a href="/recipes/new" class="text-decoration-none"><strong>Add a new recipe</strong></a></p>
 </div>
 <div class="container d-flex justify-content-center align-items-center">
   <div class="grid">
     <% @recipes.each do |recipe| %>
+      <%= link_to recipe_path(recipe), class: "text-decoration-none fs-6", html_wrapper: "item" do %>
+        <div class="item" style="background-color: #fcfcfc;" >
+          <img class="w-100 h-75 object-fit-cover" src="<%= recipe.url %>">
+
+          <div class="item-content d-flex flex-column">
+            <p class="text-decoration-none fs-6 fw-bold text-dark text-decoration-none"><%= recipe.title %></p>
+
+            <div class="d-flex flex-column align-items-center ">
+              <p class="text-decoration-none text-dark"><%= recipe.prep_time %> Minutes</p>
+              <p class="text-decoration-none text-dark"><%= recipe.difficulty %></p>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
+
+
+      <!--
       <div class="item">
         <img class="w-100 h-75 object-fit-cover" src="<%= recipe.url %>">
         <div class="item-content d-flex flex-column">
@@ -20,6 +39,7 @@
           </div>
         </div>
       </div>
+      -->
     <% end %>
   </div>
 </div>

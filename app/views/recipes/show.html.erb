@@ -99,13 +99,13 @@
   </section>
 </div>
 
-<h1 class="text-center title">Other Similar Recipes</h1>
+<p class="text-center title fs-1">Other Similar Recipes</p>
 <div class="container">
   <div class="grid">
     <% @top_recipes.each do |recipe| %>
       <%= link_to recipe_path(recipe), class: "text-decoration-none" do %>
         <div class="item">
-          <p class="text-center fs-5"><%= recipe.title %></p>
+          <p class="text-center fs-5 text-dark fw-bold"><%= recipe.title %></p>
           <img class="w-100 h-75 object-fit-cover" src="<%= recipe.url %>">
         </div>
       <% end %>

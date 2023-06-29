@@ -7,16 +7,16 @@
     <div class="carousel-item active">
       <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.verival.co.uk/blog/wp-content/uploads/2022/04/post-workout-meal-wichtig.png);">
         <div class="container">
-          <h1><strong>ZoneFit App</strong></h1>
-          <p>Get set, fit, ready, go.</p>
+          <h1><strong>Get set, fit, ready, go.</strong></h1>
+          <p>Your journey to a healthier you starts now!</p>
         </div>
       </div>
     </div>
     <div class="carousel-item">
       <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://wallpaperaccess.com/full/8286338.jpg);">
         <div class="container">
-          <h1><strong>ZoneFit App</strong></h1>
-          <p>Get set, fit, ready, go.</p>
+          <h1><strong>Sweat, smile, succeed!</strong></h1>
+          <p>Embrace the challenge, celebrate your victories!</p>
           <%= link_to "See Workout Videos", workouts_path, class: "btn btn-gradient" %>
         </div>
       </div>
@@ -24,8 +24,8 @@
     <div class="carousel-item">
       <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://img.freepik.com/free-photo/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay_2829-6471.jpg?w=2000);">
         <div class="container">
-          <h1><strong>ZoneFit App</strong></h1>
-          <p>Get set, fit, ready, go.</p>
+          <h1><strong>Train smart, train in the Zone.</strong></h1>
+          <p>Walk in strong, walk out stronger!</p>
           <%= link_to "See Meal Recipes", recipes_path, class: "btn btn-gradient" %>
         </div>
       </div>
@@ -46,10 +46,10 @@
 <div class="row justify-content-center">
   <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
-      <h2>Top workouts</h2>
+      <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 2px;">Top Workouts</p>
       <% Workout.all.sample(10).each do |workout| %>
         <div class="container text-truncate">
-          <%= link_to workout.title, workout_path(workout), class: "text-truncate" %>
+          <%= link_to workout.title, workout_path(workout), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
         </div>
         <div class="container">
           <img src="<%= workout.thumbnail %>" class="img-fluid" style="border-radius: 16px;">
@@ -115,7 +115,7 @@
               <% else %>
                 <div class="post-actions">
                   <div class="d-flex align-items-end pt-5 justify-content-center">
-                    <%= link_to "/", class: "d-flex justify-content-center align-items-center", data: { action: "click->comments#clickButton" } do %>
+                    <%= link_to "/", class: "d-flex justify-content-center align-items-center text-decoration-none", data: { action: "click->comments#clickButton" } do %>
                       <span class="text-dark text-decoration-none "><%= p.comments.count %> </span><i class="fa-regular fa-comment mx-2 fs-6"></i>
                     <% end %>
                   </div>
@@ -188,10 +188,12 @@
 
   <div class="col-md-2">
     <div class="container w-75 h-50 d-flex flex-column justify-content-center align-items-center">
-      <h2>Top Recipes</h2>
-      <% Recipe.all.sample(10).each do |recipe| %>
-        <%= link_to recipe.title, recipe_path(recipe) %>
-      <img src="<%= recipe.url %>" class="w-100 h-75 object-fit-cover" style="border-radius: 16px;">
+      <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 2px;">Top Recipes</p>
+      <% Recipe.all.sample(8).each do |recipe| %>
+        <%= link_to recipe_path(recipe), class: "text-decoration-none" do %>
+          <p class="fs-6 text-center text-dark fw-bold"><%= recipe.title %></p>
+          <img src="<%= recipe.url %>" class="w-100 h-75 object-fit-cover" style="border-radius: 16px;">
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -199,6 +201,9 @@
 
 </div>
 
+<!-- SEARCH BAR HERE. COMMENT THIS OUT LATER, MAKE A DEDICATED PAGE FOR IT -->
+
+<!--
 <div class="row justify-content-center">
   <div class="col-sm-8 my-5">
     <div class="row">
@@ -214,6 +219,7 @@
     </div>
   </div>
 </div>
+-->
 
 <style>
 .container {
