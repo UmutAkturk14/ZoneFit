@@ -1,7 +1,19 @@
- <div id="message-<%= message.id %>">
+ <div class="h-10" id="message-<%= message.id %>">
+  <div class="d-flex">
+      <% if message.user.photo.key.present? %>
+             <%= link_to user_profile_path(message.user), class: "d-flex justify-content-center align-items-center" do  %>           <%= cl_image_tag message.user.photo.key, height: 55, width: 55, crop: :fill, style: "border-radius: 50%;" %>
+        <% end %>
+      <% else %>
+        <%= link_to user_profile_path(message.user), class: "d-flex justify-content-center align-items-center" do  %>
+       <img src='https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png' class="avatar-large" />
+      <% end %>
+    <% end %>
+    <div class="p-2">
         <small>
-          <strong><%= message.user.nickname %></strong>
+          <strong><%= link_to message.user.nickname, user_profile_path(message.user), class: "text-decoration-none" %></strong>
            <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
         </small>
         <p><%= message.content %></p>
+    </div>
+  </div>
 </div>
