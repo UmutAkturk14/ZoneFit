@@ -23,7 +23,13 @@
           </li>
           <li class="nav-item dropdown d-flex align-items-center text-decoration-none">
           <a href="#" class="" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <% if current_user.photo.key.present? %>
+              <%= cl_image_tag current_user.photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; border-style: solid; border-width: 2px; border-color: white;" %>
+            <% else %>
             <i class="fa-solid fa-bars text-dark"></i>
+            <% end %>
+
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My profile", user_profile_path(current_user), class: "dropdown-item" %>

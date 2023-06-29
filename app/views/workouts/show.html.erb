@@ -1,12 +1,16 @@
+<% content_for(:title) do %>
+  <title><%= @workout.title %> | Profile </title>
+<% end %>
+
 <main class="mx-5 my-5">
-  <h1><%= @workout.title %></h1>
+  <p class="fs-1 text-center"><%= @workout.title %></p>
   <div class="d-flex mt-4">
     <div class="row">
       <div class="col-md-8">
         <iframe width="1420" height="800" src="https://www.youtube.com/embed/<%= @workout.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5 show-video"></iframe>
       </div>
       <div class="col-md-4">
-        <p><%= @workout.description %></p>
+        <p class="fs-6"><%= @workout.description %></p>
         <p class="fs-3 fw-bold">Tags</p>
         <ul>
           <% @tags.each do |tag| %>
@@ -38,21 +42,24 @@
           <p class="fs-2">Comments</p>
           <% @comments.each do |comment| %>
             <article class="comment">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" /> <%# TODO: Insert claudinary thingy here %>
-              <div class="comment-content">
-                <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
-                <p class="text-break"><%= comment.content %></p>
+              <% if comment.user.photo.key.present? %>
+                <%= link_to user_profile_path(comment.user), class: "d-flex justify-content-center align-items-center" do  %>
+                  <%= cl_image_tag comment.user.photo.key, height: 55, width: 55, crop: :fill, style: "border-radius: 50%;" %>
+                <% end %>
+              <% else %>
+                <%= link_to user_profile_path(comment.user), class: "d-flex justify-content-center align-items-center" do  %>
+                  <img src='https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png' class="avatar-large" />
+                <% end %>
+              <% end %>
+              <div class="comment-content d-flex justify-content-between">
+                <div>
+                  <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
+                  <p><%= comment.content %></p>
+                </div>
 
                 <% if comment.user == current_user %>
-                  <div class="comment-actions">
-                    <%= link_to "/", class: "d-flex justify-content-center align-items-center" do %>
-                      <p>Edit</p>
-                      <i class="fas fa-pencil-alt mx-1"></i>
-                    <% end %>
-
-
+                  <div class="comment-actions d-flex justify-content-end align-items-end">
                     <%= link_to workout_comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" }, class: "d-flex justify-content-center align-items-center" do %>
-                      <p>Delete</p>
                       <i class="far fa-trash-alt mx-1"></i>
                     <% end %>
                   </div>
