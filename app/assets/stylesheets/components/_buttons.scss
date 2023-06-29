@@ -59,8 +59,8 @@
 }
 
 .custom-btn {
-  width: 130px;
-  height: 40px;
+  // width: 130px;
+  // height: 40px;
   color: #fff;
   border-radius: 5px;
   padding: 10px 25px;
@@ -203,5 +203,16 @@
 .post-button {
   &:hover {
     background-color: #03c8a8;
+  }
+}
+
+.community-button {
+  background-color: #f79e97;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px #cacaca;
+  &:hover {
+    background-color: #f5786f;
+    color: white;
   }
 }
