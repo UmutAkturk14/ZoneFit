@@ -24,6 +24,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     authorize @post
     if @post.destroy
+      Comment.where(commentable: @post).delete_all
       flash[:notice] = "Post has been successfully deleted."
       redirect_back(fallback_location: root_path)
     end

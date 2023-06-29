@@ -5,6 +5,8 @@ class UsersController < ApplicationController
     @posts = @user.posts.order("created_at DESC")
     @post = Post.new
     @post.user = @user
+    @comment = Comment.new
+    @comment.user = current_user
     authorize @user
     @markers =
       {
@@ -36,6 +38,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :bio, :nickname, :photo, :banner)
+    params.require(:user).permit(:email, :first_name, :last_name, :bio, :nickname, :photo, :banner)
   end
 end

@@ -10,7 +10,8 @@
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 .avatar-large {
-  width: 56px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
 }
 .avatar-bordered {
@@ -34,9 +35,8 @@
 }
 
 .avatar-dummy {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-color: #ccc;
 }
-

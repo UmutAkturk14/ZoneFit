@@ -65,7 +65,7 @@ puts "Workouts created successfully"
 # TODO: Recipes API data
 url = "https://www.themealdb.com/api/json/v1/1/random.php"
 
-20.times do
+30.times do
   var = URI.open(url).read
   info = JSON.parse(var)
   n = 1

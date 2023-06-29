@@ -1,5 +1,12 @@
+<% content_for(:title) do %>
+  <title>Workouts | ZoneFit</title>
+<% end %>
+
 <h2>Here are all the worksouts for you to browse</h2>
 
+
+<%#  TODO: Make this search bar work %>
+<!--
 <div class="container d-flex" data-controller="workout-index">
   <%= form_with url: workouts_path, method: :get, class: "d-flex" do |f| %>
   <% @muscle_group_ops = [" ", "Chest", "Back", "Shoulder", "Legs", "Abs"] %>
@@ -12,24 +19,8 @@
     <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
   <% end %>
 </div>
-
-<!--
-<div class="container w-100 border border-3">
-  <div class="row">
-      <div class="col border border-3">
-      <% @workouts.first(20).each do |workout| %>
-        <a href="/workouts/<%= workout.id %>" class="d-flex">
-          <div class="col d-flex flex-column align-items-center">
-            <iframe width="400" height="200" src="https://www.youtube.com/embed/<%= workout.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5">
-            </iframe>
-            <h1 class="fs-6 w-25 "><%= workout.title %></h1>
-          </div>
-        </a>
-      <% end %>
-      </div>
-  </div>
-</div>
 -->
+
 
 <!--  FontAwesome Icons here
 <i class="fa-solid fa-plus"></i>
