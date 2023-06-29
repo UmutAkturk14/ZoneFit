@@ -1,3 +1,7 @@
+<% content_for(:title) do %>
+  <title>Dashboard | ZoneFit</title>
+<% end %>
+
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -62,7 +66,7 @@
           <div class="col-d-10 offset-md-1">
             <%= simple_form_for @post do |f| %>
               <div class="form-group d-flex flex-column justify-content-center align-items-center">
-                <%= f.input :content, placeholder: "Write your heart out ❤️", class: "form-control", label: false, wrapper_html: { style: "width: 600px;" } %>
+                <%= f.input :content, placeholder: "Share your heart out ❤️", class: "form-control", label: false, wrapper_html: { style: "width: 600px;" } %>
                 <button type="submit" class="custom-btn btn-green">Post</button>
               </div>
             <% end %>

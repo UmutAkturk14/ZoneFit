@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :workouts
   has_many :recipes
   has_many :posts
+  has_many :comments, through: :posts
   has_one_attached :photo
   has_one_attached :banner
 
