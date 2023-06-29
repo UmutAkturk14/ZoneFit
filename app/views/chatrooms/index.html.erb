@@ -1,11 +1,66 @@
 <div class="container">
-  <h1>Speak with your fellows</h1>
+  <p class="fs-1 text-center">Speak with your fellows</p>
 
+  <div class="d-flex justify-content-end align-items-center">
+    <button class="custom-btn btn-purple" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Found your own!</button>
+  </div>
   <ul>
-    <% @chatroom.each do |chatroom| %>
+    <% @chatrooms.each do |chatroom| %>
       <li>
-        <p class="border rounded-shadow"><%= link_to chatroom.name, chatroom_path(chatroom) %></p>
+        <%= link_to chatroom_path(chatroom), class: "text-decoration-none" do  %>
+          <%# TODO: Chatroom come here %>
+          <div class="card-product">
+
+            <% if chatroom.photo.key.present? %>
+              <%= cl_image_tag chatroom.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 8px;" %>
+            <% else %>
+              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" style="border-radius: 8px;" />
+            <% end %>
+
+            <div class="card-product-infos w-100">
+              <p class="fs-5 text-dark fw-bold text-capitalize"><%= chatroom.name %></p>
+              <div class="d-flex justify-content-between">
+                <p class="fs-6 text-dark"><%= chatroom.description %></p>
+                <%# TODO: If clause goes here. Check if the current_user is the creator %>
+                <% if chatroom.user_id == current_user.id %>
+                  <%= link_to chatroom_path(chatroom), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this chatroom?" } do %>
+                    <button class="btn community-button">Delete</button>
+                  <% end %>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+
       </li>
     <% end %>
   </ul>
+</div>
+
+
+
+
+<%# ! ICON HERE %>
+<%# <i class="fa-solid fa-people-group"></i> %>
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <p class="fs-3 text-center fw-bold">Found your own community!</p>
+      </div>
+      <div class="modal-body">
+        <main class="user-form my-3">
+          <%= simple_form_for @community do |f| %>
+          <%= f.input :name %>
+          <%= f.input :description %>
+          <%= f.input :photo, as: :file %>
+        </main>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="custom-btn btn-purple w-100 fw-bold" style="z-index: 1;">Update!</button>
+          <% end %>
+      </div>
+    </div>
+  </div>
 </div>
