@@ -82,7 +82,7 @@
         <% end %>
         <div class="comment-content d-flex justify-content-between">
           <div>
-            <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
+            <span><a href="<%= user_profile_path(comment.user) %>" class="text-decoration-none text-dark me-1"><strong><%= "#{comment.user.first_name} #{comment.user.last_name}" %></strong> </a></span><span><small><%= comment.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></span>
             <p><%= comment.content %></p>
           </div>
 

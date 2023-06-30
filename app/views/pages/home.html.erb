@@ -67,6 +67,7 @@
             <%= simple_form_for @post do |f| %>
               <div class="form-group d-flex flex-column justify-content-center align-items-center">
                 <%= f.input :content, placeholder: "Share your heart out ❤️", class: "form-control", label: false, wrapper_html: { style: "width: 600px;" } %>
+                <%= f.input :attachment, as: :file, label: false %>
                 <button type="submit" class="custom-btn btn-green">Post</button>
               </div>
             <% end %>
@@ -80,23 +81,41 @@
               <div class="post-content d-flex ">
 
                 <% if p.user.photo.key.present? %>
-                  <%= link_to user_profile_path(p.user), class: "d-flex justify-content-center align-items-center" do  %>
+                  <%= link_to user_profile_path(p.user), class: "d-flex justify-content-center align-items-start" do  %>
                     <%= cl_image_tag p.user.photo.key, height: 55, width: 55, crop: :fill, style: "border-radius: 50%;" %>
                   <% end %>
                 <% else %>
-                  <%= link_to user_profile_path(p.user), class: "d-flex justify-content-center align-items-center" do  %>
+                  <%= link_to user_profile_path(p.user), class: "d-flex justify-content-center align-items-start" do  %>
                     <img src='https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png' class="avatar-large" />
                   <% end %>
                 <% end %>
 
                 <div class="ms-3">
                   <span><a href="<%= user_profile_path(p.user) %>" class="text-decoration-none text-dark me-1"><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> </a></span><span><small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></span>
+                  <% if p.attachment.key.present? %>
+                    <%= cl_image_tag p.attachment.key, class: "mt-2 object-fit-cover", style: "border-radius: 16px;", crop: :fill %>
+                  <% elsif p.thumbnail.present? %>
+                    <%= link_to workout_path(Workout.find_by(thumbnail: p.thumbnail).id) do  %>
+                      <img src="<%= p.thumbnail %>" alt="Thumbnail image" class="mt-2 w-100 object-fit-cover" style="border-radius: 16px;" >
+                    <% end %>
+                  <% end %>
+
 
 
                   <!--
                   <p><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> <small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
                   -->
-                  <p class="text-break mt-2 text-start"><%= p.content %></p>
+
+                  <% if p.attachment.key.present? %>
+                    <div class="">
+                      <p class="text-break mt-4 text-start"><%= p.content %></p>
+                    </div>
+                  <% elsif p.thumbnail.present? %>
+                    <p class="text-break mt-4 text-start"><%= p.content %></p>
+                  <% else %>
+                    <p class="text-break mt-2 text-start"><%= p.content %></p>
+                  <% end %>
+
                 </div>
               </div>
               <% if p.user == current_user %>
@@ -123,7 +142,9 @@
               <% end %>
 
 
+
             </div>
+
             <section class="nested-comments d-none">
               <div class="container w-100">
                 <%= simple_form_for [p, @comment] do |f| %>
