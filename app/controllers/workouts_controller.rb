@@ -1,7 +1,8 @@
 class WorkoutsController < ApplicationController
   def index
-    @workouts = policy_scope(Workout)
+    @w = policy_scope(Workout)
     @workout = Workout.new
+    @workouts = Workout.page(params[:page]).per(20)
   end
 
   def show

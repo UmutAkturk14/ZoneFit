@@ -9,7 +9,7 @@ def create_workouts(arr)
   arr.each do |element|
     youtube = Google::Apis::YoutubeV3::YouTubeService.new
     youtube.key = ENV["YOUTUBE_API_KEY"]
-    response = youtube.list_searches("snippet", q: "#{element}", max_results: 5, type: "video")
+    response = youtube.list_searches("snippet", q: "#{element}", max_results: 50, type: "video")
     response.items.each do |r|
       video_details = youtube.list_videos("snippet", id: r.id.video_id)
 
@@ -33,6 +33,10 @@ workouts = ["workout", "dumbbell workout", "kettlebell workout", "jump rope work
 # TODO: Delete everything
 puts "Deleting Comments..."
 Comment.delete_all
+puts "Deleting Messages..."
+Message.delete_all
+puts "Deleting Chatrooms..."
+Chatroom.delete_all
 puts "Deleting Posts..."
 Post.delete_all
 puts "Deleting Recipes..."
@@ -65,7 +69,7 @@ puts "Workouts created successfully"
 # TODO: Recipes API data
 url = "https://www.themealdb.com/api/json/v1/1/random.php"
 
-30.times do
+300.times do
   var = URI.open(url).read
   info = JSON.parse(var)
   n = 1

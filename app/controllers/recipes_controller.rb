@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = policy_scope(Recipe)
+    @r = policy_scope(Recipe)
+    @recipes = Recipe.page(params[:page]).per(20)
   end
 
   def show

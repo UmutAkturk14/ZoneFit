@@ -30,7 +30,7 @@
 
 <div class="" style="margin: 40px 100px;">
   <div class="d-flex flex-wrap justify-content-between" data-controller="workout-index">
-    <% @workouts.first(20).each do |w| %>
+    <% @workouts.each do |w| %>
       <div class="card card-rounded overflow-hidden mb-3 border-0" style="height: 300px; width: 400px;" data-action="mouseenter->workout-index#hoverButton mouseleave->workout-index#hideButton">
         <i class="fa-solid fa-plus add-button d-none" data-action="mouseenter->workout-index#hoverButton mouseleave->workout-index#hideButton"></i>
         <a href="<%= workout_path(w)%>">
@@ -47,4 +47,8 @@
       </div>
     <% end %>
   </div>
+</div>
+
+<div class="container d-flex justify-content-end pgn">
+  <%= paginate @workouts %>
 </div>

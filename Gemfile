@@ -57,6 +57,9 @@ gem "sassc-rails"
 # Pundit
 gem "pundit"
 
+# Kaminari [for pagination]
+gem 'kaminari'
+
 # Cloudinary
 gem "cloudinary"
 
