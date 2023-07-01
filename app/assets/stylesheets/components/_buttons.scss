@@ -252,7 +252,6 @@ $green: #97ffc2;
   }
 }
 
-//BUTTON 5
 .prev, .next {
   border-color: black;
   text-decoration: none;
@@ -290,4 +289,58 @@ $green: #97ffc2;
   text-decoration: none;
   color: black;
   font-weight: normal;
+}
+
+// Navbar buttons
+
+/* 5 */
+.btn-navbar {
+  width: 140px;
+  height: 40px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  background: rgb(34,166,153);
+  background: linear-gradient(0deg, rgba(34,166,153, 0.1) 0%, rgba(34,166,153, 1) 100%);
+  box-shadow: none;
+  color: inherit;
+  font-family: inherit;
+}
+.btn-navbar:hover {
+  color: #ffffff;
+  background: transparent;
+  box-shadow:none;
+}
+.btn-navbar:before,
+.btn-navbar:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(255, 255, 255);
+  transition:400ms ease all;
+}
+.btn-navbar:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.btn-navbar:hover:before,
+.btn-navbar:hover:after{
+  width:100%;
+  transition:400ms ease all;
+}
+
+.dropdown-menu {
+  background-color: rgb(34,166,153);
+  &:hover {
+    background-color: rgb(34,166,153);
+  }
+}
+
+.dropdown-menu a:hover {
+  background-color: rgb(34,166,153);
 }
