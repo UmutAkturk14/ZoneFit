@@ -32,6 +32,12 @@
               <% end %>
             <% end %>
 
+            <div class="buttons">
+              <button class="custom-btn btn-purple mb-2" style="z-index: 1;">Favourite</button>
+              <button class="custom-btn btn-purple" style="z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
+              <button class="custom-btn btn-purple mb-2" style="z-index: 1;">Watch list</button>
+            </div>
+
 
             <%= simple_form_for [@recipe, @comment] do |f| %>
               <div class="d-flex">
@@ -82,7 +88,7 @@
         <% end %>
         <div class="comment-content d-flex justify-content-between">
           <div>
-            <p><small><%= comment.created_at.strftime("%a, %d %b %Y") %></small></p>
+            <span><a href="<%= user_profile_path(comment.user) %>" class="text-decoration-none text-dark me-1"><strong><%= "#{comment.user.first_name} #{comment.user.last_name}" %></strong> </a></span><span><small><%= comment.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></span>
             <p><%= comment.content %></p>
           </div>
 
@@ -110,6 +116,29 @@
         </div>
       <% end %>
     <% end %>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Share</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @post do |f| %>
+          <div class="form-group d-flex flex-column justify-content-center align-items-center">
+            <%= f.input :content, placeholder: "Spread the word! 🥰", class: "form-control", label: false, wrapper_html: { style: "width: 400px;" } %>
+            <%= f.hidden_field :url, value: @recipe.url %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="custom-btn btn-green">Post</button>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

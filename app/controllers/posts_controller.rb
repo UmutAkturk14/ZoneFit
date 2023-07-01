@@ -14,7 +14,8 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize @post
     if @post.save!
-      redirect_back(fallback_location: root_path)
+      flash[:notice] = "Your post has been successfully created."
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,6 +34,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :thumbnail, :attachment, :url)
   end
 end

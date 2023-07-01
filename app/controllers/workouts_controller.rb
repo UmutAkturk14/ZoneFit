@@ -10,7 +10,10 @@ class WorkoutsController < ApplicationController
     @comments = Comment.where(commentable: @workout)
     @comment = Comment.new
     @commentable = @workout
-    @tags = @workout.tag.gsub!("\"", "").gsub!("[", "").gsub!("]", "").split(",")
+    @post = Post.new
+    unless @workout.tag.nil?
+      @tags = @workout.tag.gsub!("\"", "").gsub!("[", "").gsub!("]", "").split(",")
+    end
   end
 
   def new
