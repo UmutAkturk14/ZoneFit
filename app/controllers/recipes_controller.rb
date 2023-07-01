@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
     @comments = Comment.where(commentable: @recipe)
     @comment = Comment.new
     @commentable = @recipe
+    @post = Post.new
     @top_recipes = Recipe.all.sample(4)
     @ingredients = @recipe.ingredients.split(",")
   end

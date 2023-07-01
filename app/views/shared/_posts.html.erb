@@ -1,11 +1,13 @@
 
- <% if current_user == @user  %>
-    <%= simple_form_for @post do |f| %>
-      <article class="position-relative">
-        <%= f.input :content, as: :text, placeholder: "How are you feeling today?", label:false %>
-        <button type="submit" class="custom-btn btn-send">Send!</button>
-      </article>
-    <% end %>
+<% if current_user == @user  %>
+  <%= simple_form_for @post do |f| %>
+    <article class="position-relative">
+      <%= f.input :content, as: :text, placeholder: "Share your heart out ❤️", label:false %>
+      <%= f.input :attachment, as: :file, label: false %>
+      <button type="submit" class="custom-btn btn-send">Share!</button>
+
+    </article>
+  <% end %>
 <% end %>
 
 <% @posts.each do |p| %>
@@ -14,23 +16,45 @@
       <div class="post-content d-flex ">
 
         <% if p.user.photo.key.present? %>
-          <%= link_to user_profile_path(p.user), class: "d-flex justify-content-center align-items-center" do  %>
+          <%= link_to user_profile_path(p.user), class: "d-flex justify-content-center align-items-start" do  %>
             <%= cl_image_tag p.user.photo.key, height: 55, width: 55, crop: :fill, style: "border-radius: 50%;" %>
           <% end %>
         <% else %>
-          <%= link_to user_profile_path(p.user), class: "d-flex justify-content-center align-items-center" do  %>
+          <%= link_to user_profile_path(p.user), class: "d-flex justify-content-center align-items-start" do  %>
             <img src='https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png' class="avatar-large" />
           <% end %>
         <% end %>
 
         <div class="ms-3">
           <span><a href="<%= user_profile_path(p.user) %>" class="text-decoration-none text-dark me-1"><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> </a></span><span><small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></span>
+          <% if p.attachment.key.present? %>
+            <%= cl_image_tag p.attachment.key, class: "mt-2 object-fit-cover", style: "border-radius: 16px;", crop: :fill %>
+          <% elsif p.thumbnail.present? %>
+            <%= link_to workout_path(Workout.find_by(thumbnail: p.thumbnail).id) do  %>
+              <img src="<%= p.thumbnail %>" alt="Thumbnail image" class="mt-2 w-100 object-fit-cover" style="border-radius: 16px;" >
+            <% end %>
+          <% elsif p.url.present? %>
+            <%= link_to recipe_path(Recipe.find_by(url: p.url).id) do  %>
+              <img src="<%= p.url %>" alt="Thumbnail image" class="mt-2 object-fit-cover" style="border-radius: 16px;" >
+            <% end %>
+          <% end %>
+
 
 
           <!--
           <p><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> <small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></p>
           -->
-          <p class="text-break mt-2 text-start"><%= p.content %></p>
+
+          <% if p.attachment.key.present? %>
+            <div class="">
+              <p class="text-break mt-4 text-start"><%= p.content %></p>
+            </div>
+          <% elsif p.thumbnail.present? %>
+            <p class="text-break mt-4 text-start"><%= p.content %></p>
+          <% else %>
+            <p class="text-break mt-2 text-start"><%= p.content %></p>
+          <% end %>
+
         </div>
       </div>
       <% if p.user == current_user %>
@@ -49,7 +73,7 @@
       <% else %>
         <div class="post-actions">
           <div class="d-flex align-items-end pt-5 justify-content-center">
-            <%= link_to "/", class: "d-flex justify-content-center align-items-center", data: { action: "click->comments#clickButton" } do %>
+            <%= link_to "/", class: "d-flex justify-content-center align-items-center text-decoration-none", data: { action: "click->comments#clickButton" } do %>
               <span class="text-dark text-decoration-none "><%= p.comments.count %> </span><i class="fa-regular fa-comment mx-2 fs-6"></i>
             <% end %>
           </div>
@@ -57,7 +81,9 @@
       <% end %>
 
 
+
     </div>
+
     <section class="nested-comments d-none">
       <div class="container w-100">
         <%= simple_form_for [p, @comment] do |f| %>
