@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
+  root to: "pages#landing"
   devise_for :users
-  root to: "pages#home"
+  get 'home', to: 'pages#home', as: 'home'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -8,6 +10,8 @@ Rails.application.routes.draw do
   post "recipes/:id/cookbook", to: "recipes#cookbook", as: "cookbook"
   post "workout/:id/watchlist", to: "workouts#watchlist", as: "watchlist_workout"
   post "workout/:id/favorite", to: "workouts#favorite", as: "favorite_workout"
+
+
 
   resources :workouts, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create, :destroy]

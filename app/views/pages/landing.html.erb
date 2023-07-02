@@ -1,0 +1,88 @@
+<div class="background-image">
+  <div class="container landing">
+    <h1 class="text-center m-3">Welcome to Zone fit</h1>
+    <div class="d-flex mt-1">
+      <div class="info">
+        <p class="title">No gym? No fear, we have everything you need</p>
+        <p><small>Access all your workout and recipe inspiration alongside others</small></p>
+      </div>
+      <div class="image">
+        <%= image_tag "cartoon_land.png", height: 300, width: 500%>
+      </div>
+    </div>
+    <div class="button d-flex justify-content-center">
+      <p class="m-2 btn btn-info text-decoration-none"><%= link_to "Sign in", new_user_session_path%></p>
+      <p class="m-2 btn btn-info"><%= link_to "Sign up", new_user_registration_path%></p>
+    </div>
+    <div class="boxes">
+      <div class="box">
+        <p >Access hundreds of workouts</p>
+        <p><small>Improve your fitness with our extensive range of fitness videos</small></p>
+      </div>
+      <div class="box">
+        <p >Cook from thousands of recipes</p>
+        <p><small>Take control of your nutrition with enough recipes so your never bored</small></p>
+      </div>
+      <div class="box">
+        <p >Join the community</p>
+        <p><small>Share and discuss your experiences with others no matter where you are in the world</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .background-image {
+    background-color: #97cba9; ;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .landing {
+    max-width: 1000px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    min-height: calc(100vh - 40px);
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    width: 300px;
+  }
+
+  .boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+    max-width: 200px;
+  }
+
+  small {
+    color: #A9A9A9;
+  }
+
+  .image {
+    padding-left: 10px;
+  }
+
+  .button {
+    text-decoration: none;
+    color: white;
+  }
+</style>
