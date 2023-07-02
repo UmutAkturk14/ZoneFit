@@ -1,0 +1,6 @@
+<p class="fs-1">Here is all your chats!</p>
+
+
+<% @chats.each do |chat| %>
+  <%= render "chat", chat: chat %>
+<% end %>

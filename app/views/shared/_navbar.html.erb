@@ -30,11 +30,18 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to chatrooms_path, class: "nav-link" do %>
-              <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fas fa-users" style="margin-right: 12px; font-size: 24px;"></i>Communities</button>
+            <%= link_to private_chatrooms_path, class: "nav-link" do %>
+              <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fa-solid fa-envelope" style="margin-right: 12px; font-size: 24px;"></i>Messages</button>
             <% end %>
 
           </li>
+
+          <li class="nav-item">
+            <%= link_to chatrooms_path, class: "nav-link" do %>
+              <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fas fa-users" style="margin-right: 12px; font-size: 24px;"></i>Communities</button>
+            <% end %>
+          </li>
+
           <li class="nav-item dropdown d-flex align-items-center text-decoration-none">
           <a href="#" class="" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 

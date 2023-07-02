@@ -43,7 +43,9 @@
       <%# TODO: Send a message / Edit profile %>
       <article>
         <% unless policy(@user).edit? %>
-          <%= link_to "Message", "#", class: "custom-btn btn-purple text-center text-decoration-none mt-2" %>
+          <%= simple_form_for @user, url: message_profile_path, method: :post do |f| %>
+            <button type="submit" class="custom-btn btn-purple text-center text-decoration-none mt-2">Message</button>
+          <% end %>
         <% end %>
       </article>
     </section>

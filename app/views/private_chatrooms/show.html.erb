@@ -1,0 +1,27 @@
+<p class="fs-1">
+  <%= @chat.creator == current_user ?
+  "#{@chat.joiner.first_name} #{@chat.joiner.last_name}" :
+  "#{@chat.creator.first_name} #{@chat.creator.last_name}"
+  %>
+
+</p>
+
+
+<div class="container chatroom">
+  <p class="fs-1"><%= @chat.creator == current_user ?
+  "#{@chat.joiner.first_name} #{@chat.joiner.last_name}" :
+  "#{@chat.creator.first_name} #{@chat.creator.last_name}"
+  %></p>
+
+  <div class="messages">
+    <% @chatroom.messages.each do |message| %>
+      <div id="message-<%= message.id %>">
+        <small>
+          <strong><%= message.user.nickname %></strong>
+          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+        </small>
+        <p><%= message.content %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

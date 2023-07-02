@@ -17,4 +17,8 @@ class UserPolicy < ApplicationPolicy
   def update?
     edit?
   end
+
+  def message?
+    !user.nil?
+  end
 end
