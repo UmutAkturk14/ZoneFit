@@ -10,8 +10,6 @@ application.register("chatroom-subscription", ChatroomSubscriptionController)
 import CommentsController from "./comments_controller"
 application.register("comments", CommentsController)
 
-import ContentLoaderController from "./content_loader_controller"
-application.register("content-loader", ContentLoaderController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

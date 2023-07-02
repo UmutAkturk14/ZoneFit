@@ -34,6 +34,40 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  def watchlist
+    @workout = Workout.find(params[:id])
+    authorize @workout
+    if current_user.favorited?(@workout, scope: :watchlist)
+      if current_user.unfavorite(@workout, scope: :watchlist)
+        flash[:notice] = "You have successfully removed this workout to your watchlist"
+        redirect_to @workout
+        return
+      end
+    else
+      current_user.favorite(@workout, scope: :watchlist)
+      flash[:notice] = "You have successfully added this recipe to your watchlist"
+      redirect_to @workout
+      return
+    end
+  end
+
+  def favorite
+    @workout = Workout.find(params[:id])
+    authorize @workout
+    if current_user.favorited?(@workout)
+      if current_user.unfavorite(@workout)
+        flash[:notice] = "You have successfully removed this workout to your favorites"
+        redirect_to @workout
+        return
+      end
+    else
+      current_user.favorite(@workout)
+      flash[:notice] = "You have successfully added this recipe to your favorites"
+      redirect_to @workout
+      return
+    end
+  end
+
   private
 
   def workout_params
