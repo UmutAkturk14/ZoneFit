@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
+  post "recipes/:id/cookbook", to: "recipes#cookbook", as: "cookbook"
+  post "workout/:id/watchlist", to: "workouts#watchlist", as: "watchlist_workout"
+  post "workout/:id/favorite", to: "workouts#favorite", as: "favorite_workout"
 
   resources :workouts, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create, :destroy]

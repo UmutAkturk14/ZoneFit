@@ -1,11 +1,12 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:show, :edit, :update, :cookbook, :uncookbook, :destroy]
+
   def index
     @r = policy_scope(Recipe)
     @recipes = Recipe.page(params[:page]).per(20)
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
     authorize @recipe
     @comments = Comment.where(commentable: @recipe)
     @comment = Comment.new
@@ -33,13 +34,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     @recipe.user = current_user
     authorize @recipe
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     authorize @recipe
     if @recipe.update(recipe_params)
       flash[:notice] = "Your recipe has been updated"
@@ -47,11 +46,25 @@ class RecipesController < ApplicationController
     else
       redirect_to :edit
     end
+  end
 
+  def cookbook
+    authorize @recipe
+    if current_user.favorited?(@recipe, scope: :cookbook)
+      if current_user.unfavorite(@recipe, scope: :cookbook)
+        flash[:notice] = "You have successfully removed this recipe to your cookbook"
+        redirect_to @recipe
+        return
+      end
+    else
+      current_user.favorite(@recipe, scope: :cookbook)
+      flash[:notice] = "You have successfully added this recipe to your cookbook"
+      redirect_to @recipe
+      return
+    end
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     @recipe.user = current_user
     authorize @recipe
     if @recipe.destroy
@@ -71,6 +84,10 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 
   def recipe_params
     params.require(:recipe).permit(:title, :instructions, :url, :prep_time, :difficulty, :ingredients)

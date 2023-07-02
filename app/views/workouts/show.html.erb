@@ -13,17 +13,35 @@
         <p class="fs-6"><%= @workout.description %></p>
         <% unless @workout.tag.nil? %>
           <p class="fs-3 fw-bold">Tags</p>
-          <ul>
-            <% @tags.each do |tag| %>
-              <span class="fs-6 text-wrap badge bg-success bg-gradient rounded-pill mt-1 text-justify">#<%= tag %></span>
-            <% end %>
-          </ul>
+          <% @tags.each do |tag| %>
+            <span class="fs-6 text-wrap badge bg-success bg-gradient rounded-pill mt-1 text-justify">#<%= tag %></span>
+          <% end %>
         <% end %>
 
-        <div class="buttons">
-          <button class="custom-btn btn-purple">Favourite</button>
-          <button class="custom-btn btn-purple" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
-          <button class="custom-btn btn-purple">Watch list</button>
+        <div class="buttons d-flex justify-content-end mt-5">
+          <% if current_user.favorited?(@workout) %>
+            <%= simple_form_for @workout, url: favorite_workout_path, method: :post do |f|  %>
+              <%# TODO: We can get rid of the text and use this icon %>
+              <%# ! <i class="fa-solid fa-bookmark"></i> %>
+              <button type="submit" class="custom-btn btn-purple mx-1" style="z-index: 1;"><i class="fa-solid fa-star me-2 fs-5"></i>Unfavorite</button>
+            <% end %>
+          <% else %>
+            <%= simple_form_for @workout, url: favorite_workout_path, method: :post do |f|  %>
+              <%# ! SAME! <i class="fa-regular fa-bookmark"></i> %>
+              <button type="submit" class="custom-btn btn-purple mx-1" style="z-index: 1;"><i class="fa-regular fa-star me-2 fs-5"></i>Favorite</button>
+            <% end %>
+          <% end %>
+
+          <button class="custom-btn btn-purple mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
+          <% if current_user.favorited?(@workout, scope: :watchlist) %>
+            <%= simple_form_for @workout, url: watchlist_workout_path, method: :post do |f|  %>
+              <button type="submit" class="custom-btn btn-purple mx-1" style="z-index: 1;">Unwatchlist</button>
+            <% end %>
+          <% else %>
+            <%= simple_form_for @workout, url: watchlist_workout_path, method: :post do |f|  %>
+              <button type="submit" class="custom-btn btn-purple mx-1" style="z-index: 1;">Watchlist</button>
+            <% end %>
+          <% end %>
         </div>
         <br>
         <div class="container w-100">
