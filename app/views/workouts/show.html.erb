@@ -23,12 +23,12 @@
             <%= simple_form_for @workout, url: favorite_workout_path, method: :post do |f|  %>
               <%# TODO: We can get rid of the text and use this icon %>
               <%# ! <i class="fa-solid fa-bookmark"></i> %>
-              <button type="submit" class="custom-btn btn-purple mx-1" style="z-index: 1;"><i class="fa-solid fa-star me-2 fs-5"></i>Unfavorite</button>
+              <button type="submit" class="custom-btn btn-purple mx-1" style="z-index: 1;"></i>Unfavorite</button>
             <% end %>
           <% else %>
             <%= simple_form_for @workout, url: favorite_workout_path, method: :post do |f|  %>
               <%# ! SAME! <i class="fa-regular fa-bookmark"></i> %>
-              <button type="submit" class="custom-btn btn-purple mx-1" style="z-index: 1;"><i class="fa-regular fa-star me-2 fs-5"></i>Favorite</button>
+              <button type="submit" class="custom-btn btn-purple mx-1" style="z-index: 1;"></i>Favorite</button>
             <% end %>
           <% end %>
 

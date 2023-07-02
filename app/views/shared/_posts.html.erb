@@ -46,10 +46,10 @@
           -->
 
           <% if p.attachment.key.present? %>
-            <div class="">
-              <p class="text-break mt-4 text-start"><%= p.content %></p>
-            </div>
+            <p class="text-break mt-4 text-start"><%= p.content %></p>
           <% elsif p.thumbnail.present? %>
+            <p class="text-break mt-4 text-start"><%= p.content %></p>
+          <% elsif p.url.present? %>
             <p class="text-break mt-4 text-start"><%= p.content %></p>
           <% else %>
             <p class="text-break mt-2 text-start"><%= p.content %></p>
