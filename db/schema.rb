@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_201708) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
@@ -60,6 +60,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_201708) do
     t.bigint "user_id", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ingredients", force: :cascade do |t|

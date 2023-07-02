@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  def after_sign_in_path_for(resource)
+    home_path
+  end
+
   private
 
   def skip_pundit?
