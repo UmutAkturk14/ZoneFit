@@ -57,6 +57,12 @@ gem "sassc-rails"
 # Pundit
 gem "pundit"
 
+# Acts as favoritor
+gem 'acts_as_favoritor'
+
+# Kaminari [for pagination]
+gem 'kaminari'
+
 # Cloudinary
 gem "cloudinary"
 

@@ -32,10 +32,21 @@
               <% end %>
             <% end %>
 
-            <div class="buttons">
-              <button class="custom-btn btn-purple mb-2" style="z-index: 1;">Favourite</button>
-              <button class="custom-btn btn-purple" style="z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
-              <button class="custom-btn btn-purple mb-2" style="z-index: 1;">Watch list</button>
+            <div class="buttons d-flex justify-content-end my-2">
+              <button class="custom-btn btn-purple mx-1" style="z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
+              <% if current_user.favorited?(@recipe, scope: :cookbook) %>
+                <%= simple_form_for @recipe, url: cookbook_path, method: :post do |f|  %>
+                  <%# TODO: We can use this! %>
+                  <%# ! <i class="fa-sharp fa-regular fa-book"></i> %>
+                  <button type="submit" class="custom-btn btn-purple" style="z-index: 1;">Remove from your cookbook</button>
+                <% end %>
+              <% else %>
+                <%= simple_form_for @recipe, url: cookbook_path, method: :post do |f|  %>
+                  <%# SAME! %>
+                  <%# ! <i class="fa-thin fa-book"></i> %>
+                  <button type="submit" class="custom-btn btn-purple" style="z-index: 1;">Add to your cookbook</button>
+                <% end %>
+              <% end %>
             </div>
 
 

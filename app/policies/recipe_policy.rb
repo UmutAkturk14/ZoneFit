@@ -29,4 +29,8 @@ class RecipePolicy < ApplicationPolicy
   def search?
     true
   end
+
+  def cookbook?
+    !user.nil?
+  end
 end

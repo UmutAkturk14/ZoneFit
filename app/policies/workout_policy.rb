@@ -21,4 +21,12 @@ class WorkoutPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def watchlist?
+    !user.nil?
+  end
+
+  def favorite?
+    !user.nil?
+  end
 end
