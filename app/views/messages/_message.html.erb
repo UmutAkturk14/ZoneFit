@@ -2,7 +2,7 @@
   <div class="d-flex">
       <% if message.user.photo.key.present? %>
         <%= link_to user_profile_path(message.user), class: "d-flex justify-content-center align-items-center" do  %>
-          <%= cl_image_tag message.user.photo.key, height: 55, width: 55, crop: :fill, style: "border-radius: 50%; border-style: solid; border-width: 1px; border-color: black;" %>
+          <%= cl_image_tag message.user.photo.key, height: 55, width: 55, crop: :fill, style: "border-radius: 50%; border-width: 1px; border-color: black;" %>
         <% end %>
       <% else %>
         <%= link_to user_profile_path(message.user), class: "d-flex justify-content-center align-items-center" do  %>

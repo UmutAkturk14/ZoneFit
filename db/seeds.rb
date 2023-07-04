@@ -33,6 +33,10 @@ workouts = ["workout", "dumbbell workout", "kettlebell workout", "jump rope work
 # TODO: Delete everything
 puts "Deleting Comments..."
 Comment.delete_all
+puts "Deleting Private Messages..."
+PrivateMessage.delete_all
+puts "Deleting Private Chatrooms..."
+PrivateChatroom.delete_all
 puts "Deleting Messages..."
 Message.delete_all
 puts "Deleting Chatrooms..."

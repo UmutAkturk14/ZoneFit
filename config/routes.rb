@@ -35,5 +35,7 @@ Rails.application.routes.draw do
   end
 
   # Can comment this out if messages and communities are going to be in the same page
-  resources :private_chatrooms, only: [:index, :show]
+  resources :private_chatrooms, only: [:index, :show] do
+    resources :private_messages, only: :create
+  end
 end

@@ -9,6 +9,7 @@ class PrivateChatroomsController < ApplicationController
 
   def show
     authorize @chat
+    @message = PrivateMessage.new
   end
 
   private

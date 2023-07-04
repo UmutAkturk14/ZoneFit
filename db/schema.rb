@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_02_180134) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_03_170813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -137,12 +137,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_180134) do
 
   create_table "private_messages", force: :cascade do |t|
     t.string "content"
-    t.bigint "chatroom_id", null: false
-    t.bigint "sender_id"
-    t.bigint "recipient_id"
+    t.bigint "private_chatroom_id", null: false
+    t.bigint "sender_id", null: false
+    t.bigint "recipient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chatroom_id"], name: "index_private_messages_on_chatroom_id"
+    t.index ["private_chatroom_id"], name: "index_private_messages_on_private_chatroom_id"
     t.index ["recipient_id"], name: "index_private_messages_on_recipient_id"
     t.index ["sender_id"], name: "index_private_messages_on_sender_id"
   end
@@ -208,7 +208,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_180134) do
   add_foreign_key "posts", "users"
   add_foreign_key "private_chatrooms", "users", column: "creator_id"
   add_foreign_key "private_chatrooms", "users", column: "joiner_id"
-  add_foreign_key "private_messages", "chatrooms"
+  add_foreign_key "private_messages", "private_chatrooms"
   add_foreign_key "private_messages", "users", column: "recipient_id"
   add_foreign_key "private_messages", "users", column: "sender_id"
   add_foreign_key "recipes", "users"
