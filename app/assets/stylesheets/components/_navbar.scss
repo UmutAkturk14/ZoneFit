@@ -14,4 +14,7 @@
 .navbar {
   box-shadow: inset;
   height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
