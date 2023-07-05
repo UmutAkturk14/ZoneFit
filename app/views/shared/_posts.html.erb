@@ -25,17 +25,17 @@
           <% end %>
         <% end %>
 
-        <div class="ms-3">
+        <div class="ms-3 w-100">
           <span><a href="<%= user_profile_path(p.user) %>" class="text-decoration-none text-dark me-1"><strong><%= "#{p.user.first_name} #{p.user.last_name}" %></strong> </a></span><span><small><%= p.created_at.strftime("%k:%M, %a, %d, %b, %Y") %></small></span>
           <% if p.attachment.key.present? %>
-            <%= cl_image_tag p.attachment.key, class: "mt-2 object-fit-cover", style: "border-radius: 16px;", crop: :fill %>
+            <%= cl_image_tag p.attachment.key, class: "mt-2 w-100 object-fit-cover", style: "border-radius: 16px;", crop: :fill %>
           <% elsif p.thumbnail.present? %>
             <%= link_to workout_path(Workout.find_by(thumbnail: p.thumbnail).id) do  %>
               <img src="<%= p.thumbnail %>" alt="Thumbnail image" class="mt-2 w-100 object-fit-cover" style="border-radius: 16px;" >
             <% end %>
           <% elsif p.url.present? %>
             <%= link_to recipe_path(Recipe.find_by(url: p.url).id) do  %>
-              <img src="<%= p.url %>" alt="Thumbnail image" class="mt-2 object-fit-cover" style="border-radius: 16px;" >
+              <img src="<%= p.url %>" alt="Thumbnail image" class="mt-2 w-100 object-fit-cover" style="border-radius: 16px;" >
             <% end %>
           <% end %>
 
@@ -46,43 +46,32 @@
           -->
 
           <% if p.attachment.key.present? %>
-            <p class="text-break mt-4 text-start"><%= p.content %></p>
+            <div class="d-flex justify-content-between">
+              <p class="text-break mt-4 text-start"><%= p.content %></p>
+              <%= render "shared/post_actions", p: p %>
+            </div>
           <% elsif p.thumbnail.present? %>
-            <p class="text-break mt-4 text-start"><%= p.content %></p>
+            <div class="d-flex justify-content-between">
+              <p class="text-break mt-4 text-start"><%= p.content %></p>
+              <%= render "shared/post_actions", p: p %>
+            </div>
           <% elsif p.url.present? %>
-            <p class="text-break mt-4 text-start"><%= p.content %></p>
+            <div class="d-flex justify-content-between">
+              <p class="text-break mt-4 text-start"><%= p.content %></p>
+              <%= render "shared/post_actions", p: p %>
+            </div>
           <% else %>
-            <p class="text-break mt-2 text-start"><%= p.content %></p>
+            <div class="d-flex justify-content-between">
+              <p class="text-break mt-2 text-start"><%= p.content %></p>
+              <%= render "shared/post_actions", p: p %>
+            </div>
           <% end %>
 
         </div>
       </div>
-      <% if p.user == current_user %>
-        <div class="post-actions">
-          <div class="d-flex align-items-end pt-5 justify-content-center">
-
-            <%= link_to "/", class: "d-flex justify-content-center align-items-center text-decoration-none", data: { action: "click->comments#clickButton" } do %>
-              <span class="text-dark text-decoration-none "><%= p.comments.count %> </span><i class="fa-regular fa-comment mx-2 fs-6"></i>
-            <% end %>
-            <%= link_to post_path(p), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this post?" }, class: "" do %>
-              <i class="far fa-trash-alt mx-2 fs-6"></i>
-            <% end %>
-
-            <%# TODO: Add a thumbsup button to favourite the post, maybe? %>
-            <%# ! <i class="fa-solid fa-thumbs-up"></i> %>
-            <%# ! <i class="fa-regular fa-thumbs-up"></i> %>
-          </div>
-        </div>
-
-      <% else %>
-        <div class="post-actions">
-          <div class="d-flex align-items-end pt-5 justify-content-center">
-            <%= link_to "/", class: "d-flex justify-content-center align-items-center text-decoration-none", data: { action: "click->comments#clickButton" } do %>
-              <span class="text-dark text-decoration-none "><%= p.comments.count %> </span><i class="fa-regular fa-comment mx-2 fs-6"></i>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <!--
+      <%= render "shared/post_actions", p: p %>
+      -->
 
 
 

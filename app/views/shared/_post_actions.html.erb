@@ -1,0 +1,26 @@
+<% if p.user == current_user %>
+  <div class="post-actions">
+    <div class="d-flex align-items-end pt-3 justify-content-center">
+
+      <%= link_to "/", class: "d-flex justify-content-center align-items-center text-decoration-none", data: { action: "click->comments#clickButton" } do %>
+        <span class="text-dark text-decoration-none "><%= p.comments.count %> </span><i class="fa-regular fa-comment mx-2 fs-6"></i>
+      <% end %>
+      <%= link_to post_path(p), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this post?" }, class: "" do %>
+        <i class="far fa-trash-alt mx-2 fs-6"></i>
+      <% end %>
+
+      <%# TODO: Add a thumbsup button to favourite the post, maybe? %>
+      <%# ! <i class="fa-solid fa-thumbs-up"></i> %>
+      <%# ! <i class="fa-regular fa-thumbs-up"></i> %>
+    </div>
+  </div>
+
+<% else %>
+  <div class="post-actions">
+    <div class="d-flex align-items-end pt-5 justify-content-center">
+      <%= link_to "/", class: "d-flex justify-content-center align-items-center text-decoration-none", data: { action: "click->comments#clickButton" } do %>
+        <span class="text-dark text-decoration-none "><%= p.comments.count %> </span><i class="fa-regular fa-comment mx-2 fs-6"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
