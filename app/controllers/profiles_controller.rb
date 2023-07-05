@@ -13,4 +13,20 @@ class ProfilesController < ApplicationController
       false
     end
   end
+
+  def message
+    @recipient = User.find(params[:id])
+    authorize current_user
+    @chat = if PrivateChatroom.where(creator: @recipient, joiner: current_user).first.nil?
+              PrivateChatroom.where(creator: current_user, joiner: @recipient)
+            else
+              PrivateChatroom.where(creator: @recipient, joiner: current_user)
+            end
+    unless @chat.first.nil?
+      redirect_to private_chatroom_path(@chat.first)
+    else
+      PrivateChatroom.create!(creator: current_user, joiner: @recipient)
+      redirect_to private_chatroom_path(PrivateChatroom.last)
+    end
+  end
 end

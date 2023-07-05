@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :posts
   has_many :comments, through: :posts
+  has_many :private_chatrooms
   has_one_attached :photo
   has_one_attached :banner
   acts_as_favoritor

@@ -10,12 +10,14 @@ application.register("chatroom-subscription", ChatroomSubscriptionController)
 import CommentsController from "./comments_controller"
 application.register("comments", CommentsController)
 
-
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import PrivateChatroomSubscriptionController from "./private_chatroom_subscription_controller"
+application.register("private-chatroom-subscription", PrivateChatroomSubscriptionController)
 
 import WorkoutIndexController from "./workout_index_controller"
 application.register("workout-index", WorkoutIndexController)

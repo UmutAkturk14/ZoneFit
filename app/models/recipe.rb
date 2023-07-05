@@ -6,7 +6,7 @@ class Recipe < ApplicationRecord
   validates :title, presence: true
   validates :ingredients, presence: true
   validates :prep_time, presence: true
-  validates :prep_timeinstructions, presence: true
+  validates :instructions, presence: true
   validates :url, presence: true
 
   include PgSearch::Model

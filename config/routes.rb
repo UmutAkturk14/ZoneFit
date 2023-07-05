@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post "recipes/:id/cookbook", to: "recipes#cookbook", as: "cookbook"
   post "workout/:id/watchlist", to: "workouts#watchlist", as: "watchlist_workout"
   post "workout/:id/favorite", to: "workouts#favorite", as: "favorite_workout"
+  post "profiles/:id/message", to: "profiles#message", as: "message_profile"
 
 
 
@@ -31,5 +32,10 @@ Rails.application.routes.draw do
 
   resources :chatrooms, only: [:show, :index, :create, :destroy] do
     resources :messages, only: :create
+  end
+
+  # Can comment this out if messages and communities are going to be in the same page
+  resources :private_chatrooms, only: [:index, :show] do
+    resources :private_messages, only: :create
   end
 end
