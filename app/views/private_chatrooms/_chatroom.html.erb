@@ -16,9 +16,9 @@
           <% end %>
 
           <div class="card-product-infos w-100">
-            <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{chat_with.first_name} #{chat_with.last_name}" %></p>
+            <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{chat_with.first_name.capitalize} #{chat_with.last_name.capitalize}" %></p>
             <div class="d-flex justify-content-between">
-              <p class="fs-6 text-dark"><%= chat.private_messages.last.present? ? "#{chat.private_messages.last.sender == current_user ? "You" : chat.private_messages.last.sender.first_name}: #{chat.private_messages.last.content}" : "Message #{chat_with.first_name.capitalize} now!" %></p>
+              <p class="fs-6 text-dark"><%= chat.private_messages.last.present? ? "#{chat.private_messages.last.sender == current_user ? "You" : chat.private_messages.last.sender.first_name.capitalize}: #{chat.private_messages.last.content}" : "Message #{chat_with.first_name.capitalize} now!" %></p>
               <%# TODO: If clause goes here. Check if the current_user is the creator %>
             </div>
 
