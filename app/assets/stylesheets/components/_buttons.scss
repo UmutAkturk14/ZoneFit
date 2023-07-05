@@ -344,3 +344,16 @@ $green: #97ffc2;
 .dropdown-menu a:hover {
   background-color: rgb(34,166,153);
 }
+
+// Login
+
+.login {
+  background-color: #63ffd0;
+  // border-color: #B8F1B0;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: #98fddf;
+    transition-duration: 0.3s;
+  }
+}

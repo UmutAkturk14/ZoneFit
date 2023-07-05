@@ -1,60 +1,38 @@
-<p class="fs-1 text-center">Welcome to ZoneFit! 🎉🎉</p>
-<div class="d-flex mx-1">
-  <div class="container d-flex">
-    <div class="info ">
-      <p class="title fs-1">No gym? No fear, we have everything you need</p>
+<div class="d-flex mx-5">
+  <div class="container d-flex mt-5">
+    <div class="info mx-2">
+      <p class="title fs-1">No gym? No fear, <strong>ZoneFit</strong> have everything you need 🎉🎉</p>
       <p class="fs-4"><small>Access all your workout and recipe inspiration alongside others</small></p>
     </div>
 
-    <div class="image">
-      <%= image_tag "cartoon_land.png" %>
+    <div class="image-fluid">
+      <%= image_tag "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80", class: "object-fit-cover", style: "height: 30vh; width: 50vh; border-radius: 16px; box-shadow: 1px 1px 3px 1px #888888;" %>
     </div>
   </div>
+
 </div>
 
+<div class="button d-flex justify-content-center">
+  <p class="m-2 btn login text-decoration-none"><%= link_to "Sign in", new_user_session_path, class: "text-decoration-none text-dark" %></p>
+  <p class="m-2 btn login" ><%= link_to "Sign up", new_user_registration_path, class: "text-decoration-none text-dark" %></p>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="background-image">
-  <div class="container landing">
-    <h1 class="text-center m-3">Welcome to Zone fit</h1>
-    <div class="d-flex mt-1">
-      <div class="info">
-        <p class="title">No gym? No fear, we have everything you need</p>
-        <p><small>Access all your workout and recipe inspiration alongside others</small></p>
-      </div>
-      <div class="image">
-        <%= image_tag "cartoon_land.png", height: 300, width: 500%>
-      </div>
+<div class="cotainer d-flex justify-content-center">
+  <div class="boxes d-flex justify-content-between mt-5">
+    <div class="box text-center mx-2" style="padding: 10px; border-radius: 16px; width: 50vh;">
+      <%= image_tag "https://images.unsplash.com/photo-1616279967983-ec413476e824?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1152&q=80", class: "object-fit-cover w-100", style: "height: 300px; border-radius: 16px; box-shadow: 1px 1px 3px 1px #888888;" %>
+      <p class="mt-4 fw-bold">Access hundreds of workouts</p>
+      <p><small>Improve your fitness with our extensive range of fitness videos</small></p>
     </div>
-    <div class="button d-flex justify-content-center">
-      <p class="m-2 btn btn-info text-decoration-none"><%= link_to "Sign in", new_user_session_path%></p>
-      <p class="m-2 btn btn-info"><%= link_to "Sign up", new_user_registration_path%></p>
+    <div class="box text-center mx-2" style="padding: 10px; border-radius: 16px; width: 50vh;">
+      <%= image_tag "https://images.unsplash.com/photo-1467453678174-768ec283a940?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1144&q=80", class: "object-fit-cover w-100", style: "height: 300px; border-radius: 16px; box-shadow: 1px 1px 3px 1px #888888;" %>
+      <p class="mt-4 fw-bold">Cook from thousands of recipes</p>
+      <p><small>Take control of your nutrition with enough recipes so your never bored</small></p>
     </div>
-    <div class="boxes">
-      <div class="box">
-        <p >Access hundreds of workouts</p>
-        <p><small>Improve your fitness with our extensive range of fitness videos</small></p>
-      </div>
-      <div class="box">
-        <p >Cook from thousands of recipes</p>
-        <p><small>Take control of your nutrition with enough recipes so your never bored</small></p>
-      </div>
-      <div class="box">
-        <p >Join the community</p>
-        <p><small>Share and discuss your experiences with others no matter where you are in the world</small></p>
-      </div>
+    <div class="box text-center mx-2" style="padding: 10px; border-radius: 16px; width: 50vh;">
+      <%= image_tag "https://images.unsplash.com/photo-1556484687-30636164638b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80", class: "object-fit-cover w-100", style: "height: 300px; border-radius: 16px; box-shadow: 1px 1px 3px 1px #888888;" %>
+      <p class="mt-4 fw-bold">Join the community</p>
+      <p><small>Share and discuss your experiences with others no matter where you are in the world</small></p>
     </div>
   </div>
 </div>
@@ -72,33 +50,8 @@
     border-radius: 10px;
   }
 
-  .landing {
-    max-width: 1000px;
-    margin: 20px;
-    padding: 20px;
-    background-color: #ffffff;
-    min-height: calc(100vh - 40px);
-  }
-
-  .title {
-    font-size: 30px;
-    font-weight: bold;
-    width: 300px;
-  }
-
-  .boxes {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-
   .box {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px;
-    text-align: center;
-    max-width: 200px;
+
   }
 
   small {
