@@ -2,7 +2,26 @@ class WorkoutsController < ApplicationController
   def index
     @w = policy_scope(Workout)
     @workout = Workout.new
-    @workouts = Workout.page(params[:page]).per(20)
+
+    if params[:title].present? || params[:style].present? || params[:equipment].present?
+      if params[:title].present? && params[:style].present? && params[:equipment].present?
+        @workouts = Workout.search_by_title_and_description_and_tag(params[:title]) + Workout.search_by_title_and_description_and_tag(params[:style]) + Workout.search_by_title_and_description_and_tag(params[:equipment])
+      elsif params[:title].present? && params[:style].present?
+        @workouts = Workout.search_by_title_and_description_and_tag(params[:title]) + Workout.search_by_title_and_description_and_tag(params[:style])
+      elsif params[:title].present? && params[:equipment].present?
+        @workouts = Workout.search_by_title_and_description_and_tag(params[:title]) + Workout.search_by_title_and_description_and_tag(params[:equipment])
+      elsif params[:style].present? && params[:equipment].present?
+        @workouts = Workout.search_by_title_and_description_and_tag(params[:style]) + Workout.search_by_title_and_description_and_tag(params[:equipment])
+      elsif params[:title].present?
+        @workouts = Workout.search_by_title_and_description_and_tag(params[:title])
+      elsif params[:style].present?
+        @workouts = Workout.search_by_title_and_description_and_tag(params[:style])
+      elsif params[:equipment].present?
+        @workouts = Workout.search_by_title_and_description_and_tag(params[:equipment])
+      end
+    else
+      @workouts = Workout.page(params[:page]).per(20)
+    end
   end
 
   def show
