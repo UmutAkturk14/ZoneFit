@@ -25,11 +25,33 @@
         <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png" %>
     <% end %>
         <%# TODO: Add friend button %>
+        <!-- <%= button_to "friend", friend_path, class: "custom-btn btn-purple" %> -->
 
         <% if @user == current_user %>
           <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square text-center fs-5 add-friend"></i></a>
         <% else %>
-          <a href="" data-bs-toggle="modal"><i class="fa-solid fa-user-plus text-center fs-5 add-friend"></i></a>
+          <!--
+          <%= button_to friend_path(@user), class: "" do  %>
+            <%= content_tag :i, "", class: "fa-solid fa-user-plus text-center fs-5 add-friend" %>
+          <% end %>
+          -->
+          <% if current_user.mutual_following_with?(@user) %>
+            <%= form_tag unfriend_path(@user) do %>
+              <%= button_tag(type: "submit", class: "fa-solid fa-user-minus text-center fs-5 add-friend") do %>
+              <% end %>
+            <% end %>
+          <% elsif %>
+            <% if current_user.sent_follow_request_to?(@user) %>
+              <%# ! Passive buttons for profiles that a friendship request is already sent. Comment this out to get rid of the button altogether. %>
+              <%= button_tag(type: "submit", class: "fa-solid fa-user-minus text-center fs-5 add-friend", disabled: true) do %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= form_tag friend_path(@user) do %>
+              <%= button_tag(type: "submit", class: "fa-solid fa-user-plus text-center fs-5 add-friend") do %>
+              <% end %>
+            <% end %>
+          <% end %>
         <% end %>
 
       </div>
@@ -57,7 +79,6 @@
     <div class="posts my-4 ms-5">
       <%= render "shared/posts", locals: {p: @post} %>
     </div>
-
   </div>
 
   <div class="col-md-2">

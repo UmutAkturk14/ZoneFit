@@ -9,7 +9,7 @@ class PrivateMessagesController < ApplicationController
     @message.save
     PrivateChatroomChannel.broadcast_to(
       @chatroom,
-      message: render_to_string(partial: "private_message", locals: { message: @message }),
+      message: render_to_string(partial: "private_chatrooms/chat", locals: { message: @message }),
       sender_id: @message.sender.id
     )
     head :ok

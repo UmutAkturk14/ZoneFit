@@ -335,6 +335,7 @@ $green: #97ffc2;
 }
 
 .dropdown-menu {
+  z-index: 1000;
   background-color: rgb(34,166,153);
   &:hover {
     background-color: rgb(34,166,153);
@@ -355,5 +356,17 @@ $green: #97ffc2;
   &:hover {
     background-color: #98fddf;
     transition-duration: 0.3s;
+  }
+}
+
+// Friendship buttons
+
+.add-friend {
+  border-style: none;
+
+  &:hover {
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
   }
 }

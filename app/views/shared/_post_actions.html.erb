@@ -1,6 +1,6 @@
 <% if p.user == current_user %>
   <div class="post-actions">
-    <div class="d-flex align-items-end pt-3 justify-content-center">
+    <div class="d-flex align-items-end justify-content-center">
 
       <%= link_to "/", class: "d-flex justify-content-center align-items-center text-decoration-none", data: { action: "click->comments#clickButton" } do %>
         <span class="text-dark text-decoration-none "><%= p.comments.count %> </span><i class="fa-regular fa-comment mx-2 fs-6"></i>
@@ -17,7 +17,7 @@
 
 <% else %>
   <div class="post-actions">
-    <div class="d-flex align-items-end pt-5 justify-content-center">
+    <div class="d-flex align-items-end justify-content-center">
       <%= link_to "/", class: "d-flex justify-content-center align-items-center text-decoration-none", data: { action: "click->comments#clickButton" } do %>
         <span class="text-dark text-decoration-none "><%= p.comments.count %> </span><i class="fa-regular fa-comment mx-2 fs-6"></i>
       <% end %>

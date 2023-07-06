@@ -18,6 +18,8 @@ gem "puma", "~> 5.0"
 # Faker gem
 gem "faker"
 
+gem 'followability', github: 'nejdetkadir/followability', branch: 'main'
+
 # Gem for Youtube API
 gem "google-apis-youtube_v3"
 
