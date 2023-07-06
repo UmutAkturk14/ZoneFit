@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#landing"
   devise_for :users
   get 'home', to: 'pages#home', as: 'home'
+  get 'search', to: 'pages#search', as: 'search'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
