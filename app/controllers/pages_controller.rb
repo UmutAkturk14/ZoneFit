@@ -20,6 +20,20 @@ class PagesController < ApplicationController
     end
   end
 
+
+  def friends
+    @f = policy_scope(User)
+    @user = current_user
+    # TODO: Pending friend requests sent by me
+    # @pending_requests = @user.follow_requests
+    @pending_requests = @user.follow_requests
+    console
+    # TODO: Pending friend requests came to me
+    @pending_requests_came = @user.pending_requests
+    # TODO: All friends
+    @friends = @user.followers & @user.following
+  end
+
   def search
     @workouts = Workout.all
     @recipes = Recipe.all
@@ -27,4 +41,5 @@ class PagesController < ApplicationController
       @results = PgSearch.multisearch(params[:query])
     end
   end
+
 end

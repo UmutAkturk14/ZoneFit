@@ -1,9 +1,13 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+    def resolve
+      scope.all
+    end
+  end
+
+  def index?
+    !user.nil?
   end
 
   def show?
@@ -19,6 +23,26 @@ class UserPolicy < ApplicationPolicy
   end
 
   def message?
+    !user.nil?
+  end
+
+  def friend?
+    !user.nil?
+  end
+
+  def unfriend?
+    !user.nil?
+  end
+
+  def accept?
+    !user.nil?
+  end
+
+  def decline?
+    !user.nil?
+  end
+
+  def cancel?
     !user.nil?
   end
 end
