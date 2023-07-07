@@ -10,5 +10,5 @@ class Recipe < ApplicationRecord
   validates :url, presence: true
 
   include PgSearch::Model
-  multisearchable against: [:title, :ingredients]
+  multisearchable against: [:title, :ingredients, :instructions]
 end

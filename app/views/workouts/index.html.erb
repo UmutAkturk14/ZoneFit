@@ -6,7 +6,7 @@
 
 
 <%#  TODO: Make this search bar work %>
-<!--
+
 <div class="container d-flex" data-controller="workout-index">
   <%= form_with url: workouts_path, method: :get, class: "d-flex" do |f| %>
   <% @muscle_group_ops = [" ", "Chest", "Back", "Shoulder", "Legs", "Abs"] %>
@@ -19,7 +19,7 @@
     <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
   <% end %>
 </div>
--->
+
 
 
 <!--  FontAwesome Icons here
@@ -49,6 +49,6 @@
   </div>
 </div>
 
-<div class="container d-flex justify-content-end pgn">
+<%# <div class="container d-flex justify-content-end pgn">
   <%= paginate @workouts %>
-</div>
+<%# </div> %> %>

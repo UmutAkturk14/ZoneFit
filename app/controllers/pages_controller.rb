@@ -6,6 +6,12 @@ class PagesController < ApplicationController
     @post = Post.new
     @comment = Comment.new
     @user = current_user
+    @workouts = Workout.all
+    @recipes = Recipe.all
+    # if params[:query].present?
+    #   @results = PgSearch.multisearch(params[:query])
+    #   redirect_to workouts_path()
+    # end
   end
 
   def landing
@@ -13,6 +19,7 @@ class PagesController < ApplicationController
       redirect_to home_path
     end
   end
+
 
   def friends
     @f = policy_scope(User)
@@ -25,6 +32,14 @@ class PagesController < ApplicationController
     @pending_requests_came = @user.pending_requests
     # TODO: All friends
     @friends = @user.followers & @user.following
+  end
+
+  def search
+    @workouts = Workout.all
+    @recipes = Recipe.all
+    if params[:query].present?
+      @results = PgSearch.multisearch(params[:query])
+    end
   end
 
 end
