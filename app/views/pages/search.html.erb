@@ -1,52 +1,45 @@
-<% content_for(:title) do %>
-  <title>Workouts | ZoneFit</title>
-<% end %>
-
-<div class="d-flex justify-content-center"><p class="fs-2 text-center mt-2 w-50" style="background-color: aquamarine; border-radius: 16px; color: black; "></p></div>
-
-<div>
-  <% if @results.present? && @results.size > 0 %>
-    <% @results.map do |result| %>
-        <% if result.searchable_type == "Workout" %>
+<% if @results.present? && @results.size > 0 %>
+  <div class="d-flex flex-wrap justify-content-between m-5">
+    <% @results.each do |result| %>
+      <% if result.searchable_type == "Workout" %>
+        <div data-controller="workout-index">
           <div class="card card-rounded overflow-hidden mb-3 border-0" style="height: 300px; width: 400px;" data-action="mouseenter->workout-index#hoverButton mouseleave->workout-index#hideButton">
             <i class="fa-solid fa-plus add-button d-none" data-action="mouseenter->workout-index#hoverButton mouseleave->workout-index#hideButton"></i>
-              <a href="<%= workout_path((result.searchable_id))%>">
-                <i class="fa-solid fa-angles-right page-button d-none"></i>
-              </a>
-          <div class="card-body d-flex flex-column justify-content-between">
-            <iframe height="200" src="https://www.youtube.com/embed/<%= result.searchable.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5 index-video">
-            </iframe>
-            <div class="text-truncate text-center"><%= result.searchable.title %>
-            </div>
-        <% elsif result.searchable_type == "Recipe"  %>
-          <div class="container">
-            <div class="container d-flex justify-content-center align-items-center">
-              <div class="grid">
-              <%# <%= link_to recipe_path(result.searchable_id), class: "text-decoration-none fs-6", html_wrapper: "item" do %>
-                <div class="item" style="background-color: #fcfcfc;" >
-                  <img class="w-100 h-75 object-fit-cover" src="<%= result.searchable.url %>">
-                  <div class="item-content d-flex flex-column">
-                    <p class="text-decoration-none fs-6 fw-bold text-dark text-decoration-none"><%= result.searchable.title %></p>
-                    <div class="d-flex flex-column align-items-center ">
-                      <p class="text-decoration-none text-dark"><%= result.searchable.prep_time %> Minutes</p>
-                      <p class="text-decoration-none text-dark"><%= result.searchable.difficulty %></p>
-                    </div>
-                  </div>
-                </div>
+            <a href="<%= workout_path(result.searchable_id) %>">
+              <i class="fa-solid fa-angles-right page-button d-none"></i>
+            </a>
+            <div class="card-body d-flex flex-column justify-content-between">
+              <iframe height="200" src="https://www.youtube.com/embed/<%= result.searchable.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="border border-3 rounded-5 index-video"></iframe>
+              <div class="text-truncate text-center">
+                <%= result.searchable.title %>
               </div>
             </div>
           </div>
-          <% end %>
+        </div>
+      <% elsif result.searchable_type == "Recipe" %>
+            <div class="col-md-3 overflow-auto flex">
+              <%= link_to recipe_path(result.searchable_id), class: "text-decoration-none fs-6", html_wrapper: "item" do %>
+                <div class="item" style="background-color: #FCFCFC;">
+                  <img class="w-100 h-75 object-fit-cover" src="<%= result.searchable.url %>" />
+                  <div class="item-content d-flex flex-column">
+                    <p class="text-decoration-none fs-6 fw-bold text-dark text-decoration-none">
+                      <%= result.searchable.title %>
+                    </p>
+                    <div class="d-flex flex-column align-items-center">
+                      <p class="text-decoration-none text-dark">
+                        <%= result.searchable.prep_time %> Minutes
+                      </p>
+                      <p class="text-decoration-none text-dark">
+                        <%= result.searchable.difficulty %>
+                      </p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
-  <% elsif params[:query].present? && @results.size == 0 %>
-    <p>Sorry, no results match your search. Try again!</p>
-  <% end %>
-</div>
-
-
-
-<!--  FontAwesome Icons here
-<i class="fa-solid fa-plus"></i>
-<i class="fa-thin fa-heart"></i>
-<i class="fa-solid fa-heart"></i>
--->
+    <% end %>
+  </div>
+<% elsif params[:query].present? && @results.size == 0 %>
+  <p>Sorry, no results match your search. Try again!</p>
+<% end %>
