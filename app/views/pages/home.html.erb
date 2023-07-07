@@ -43,6 +43,41 @@
 </div>
 
 
+  <%# TODO: SEARCH BAR HERE. COMMENT THIS OUT LATER, MAKE A DEDICATED PAGE FOR IT %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-5">
+      <div class="row">
+
+        <%= form_with url: search_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Type a keyword"
+            %>
+          <%= submit_tag "Search", name: "", class: "btn login", style: "border-radius: 8px; margin-left: 0.2rem;" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <% if @results.present? && @results.size > 0 %>
+      <% @results.map do |result| %>
+          <% if result.searchable_type == "Workout" %>
+            <p><%= link_to result.searchable.title, workout_path(result.searchable_id) %></p>
+          <% elsif result.searchable_type == "Recipe"  %>
+            <p><%= link_to result.searchable.title, recipe_path(result.searchable_id)  %></p>
+          <% end %>
+      <% end %>
+    <% elsif params[:query].present? && @results.size == 0 %>
+      <p>Sorry, no results match your search. Try again!</p>
+    <% end %>
+  </div>
+</div>
+
+
 <div class="row justify-content-center">
   <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
@@ -84,38 +119,7 @@
 
 </div>
 
-<%# TODO: SEARCH BAR HERE. COMMENT THIS OUT LATER, MAKE A DEDICATED PAGE FOR IT %>
 
-
-<div class="row justify-content-center">
-  <div class="col-sm-8 my-5">
-    <div class="row">
-
-      <%= form_with url: search_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Type a keyword"
-          %>
-        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<div>
-  <% if @results.present? && @results.size > 0 %>
-    <% @results.map do |result| %>
-        <% if result.searchable_type == "Workout" %>
-          <p><%= link_to result.searchable.title, workout_path(result.searchable_id) %></p>
-        <% elsif result.searchable_type == "Recipe"  %>
-          <p><%= link_to result.searchable.title, recipe_path(result.searchable_id)  %></p>
-        <% end %>
-    <% end %>
-  <% elsif params[:query].present? && @results.size == 0 %>
-    <p>Sorry, no results match your search. Try again!</p>
-  <% end %>
-</div>
 
 
 <style>

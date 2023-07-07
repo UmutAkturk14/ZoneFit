@@ -27,7 +27,6 @@ class PagesController < ApplicationController
     # TODO: Pending friend requests sent by me
     # @pending_requests = @user.follow_requests
     @pending_requests = @user.follow_requests
-    console
     # TODO: Pending friend requests came to me
     @pending_requests_came = @user.pending_requests
     # TODO: All friends

@@ -34,7 +34,7 @@ class ProfilesController < ApplicationController
   def friend
     authorize current_user
     if current_user.send_follow_request_to(@user)
-      flash[:notice] = "Friendship request sent to #{@user.first_name}"
+      flash[:notice] = "Friendship request sent to #{@user.first_name}. New friendships, new adventures! Yaay!🎉🎉"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -43,7 +43,7 @@ class ProfilesController < ApplicationController
     authorize current_user
     if current_user.unfollow(@user)
       @user.unfollow(current_user)
-      flash[:notice] = "You are not friends with #{@user.first_name} anymore."
+      flash[:notice] = "You are not friends with #{@user.first_name} anymore. You happy?😔"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -69,7 +69,7 @@ class ProfilesController < ApplicationController
   def cancel
     authorize current_user
     if current_user.remove_follow_request_for(@user)
-      flash[:notice] = "You have successfully reoved your friendship request for #{@user.first_name}."
+      flash[:notice] = "You have successfully removed your friendship request for #{@user.first_name}. Are you joking around?🙄"
       redirect_back(fallback_location: root_path)
     end
   end
