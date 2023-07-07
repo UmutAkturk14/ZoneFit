@@ -1,0 +1,15 @@
+<h1>Friends#index</h1>
+<p>Find me in app/views/friends/index.html.erb</p>
+
+
+<% @pending_requests.each do |friend| %>
+  <%= render "shared/friend", friend: friend %>
+<% end %>
+
+<% @pending_requests_came.each do |friend| %>
+  <%= render "shared/friend", friend: friend %>
+<% end %>
+
+<% @friends.each do |friend| %>
+  <%= render "shared/friend", friend: friend %>
+<% end %>

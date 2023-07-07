@@ -33,4 +33,16 @@ class UserPolicy < ApplicationPolicy
   def unfriend?
     !user.nil?
   end
+
+  def accept?
+    !user.nil?
+  end
+
+  def decline?
+    !user.nil?
+  end
+
+  def cancel?
+    !user.nil?
+  end
 end

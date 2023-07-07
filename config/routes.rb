@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "pages#landing"
   devise_for :users
   get 'home', to: 'pages#home', as: 'home'
+
+  # Route for a `Friends` page
+  get 'friends', to: 'pages#friends', as: 'friends'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -37,10 +40,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
   resources :comments, only: :destroy
-  resources :users, only: [:show, :edit, :update], path: 'profiles', as: 'user_profiles' do
-    # Route for a `Friends` page
-    resources :friends, only: [:index]
-  end
+  resources :users, only: [:show, :edit, :update], path: 'profiles', as: 'user_profiles'
 
   resources :chatrooms, only: [:show, :index, :create, :destroy] do
     resources :messages, only: :create
