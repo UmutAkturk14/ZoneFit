@@ -4,4 +4,5 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
   validates :user, presence: true
+  has_noticed_notifications
 end
