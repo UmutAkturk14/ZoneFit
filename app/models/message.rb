@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  belongs_to :chatroom, counter_cache: true
+  belongs_to :chatroom
   belongs_to :user
 
   after_create_commit :increment_notification_count

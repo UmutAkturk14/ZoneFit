@@ -23,7 +23,7 @@
 
             <div class="card-product-infos w-100">
               <p class="fs-5 text-dark fw-bold text-capitalize"><%= chatroom.name %></p>
-              <p>Unread messages: <%= chatroom.notifications_count %></p>
+              <p data-controller="chat-refresh" data-chat-refresh-target="notificationCount">Unread messages: <%= chatroom.notifications_count %></p>
               <div class="d-flex justify-content-between">
                 <p class="fs-6 text-dark"><%= chatroom.description %></p>
                 <%# TODO: If clause goes here. Check if the current_user is the creator %>

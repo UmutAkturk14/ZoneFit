@@ -36,6 +36,11 @@ class ChatroomsController < ApplicationController
     end
   end
 
+  def notifications_count
+    count = Chatroom.find(params[:id]).notifications_count # Retrieve the notification count from the Chatroom model
+    render json: { count: count }
+  end
+
   private
 
   def chatroom_params
