@@ -1,14 +1,37 @@
 <%# TODO: Needs styling! %>
 
 
-<div class="container">
+<div class="container w-50">
   <ul>
     <li>
+      <%# Friends list %>
+      <% if friend.class == User %>
+        <%= link_to user_profile_path(friend), class: "text-decoration-none" do  %>
+          <%# TODO: chat come here %>
+          <div class="card-product w-100">
 
-      <% unless friend.class == User %>
+            <% if friend.photo.key.present? %>
+              <%= cl_image_tag friend.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 50%;" %>
+            <% else %>
+              <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png", style: "border-radius: 50%;" %>
+            <% end %>
+
+            <div class="d-flex justify-content-between w-100 align-items-center">
+              <div class="card-product-infos w-100">
+
+                <% if friend == current_user %>
+                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.first_name.capitalize} #{friend.last_name.capitalize}" %></p>
+                <% else %>
+                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.first_name.capitalize} #{friend.last_name.capitalize}" %></p>
+                <% end %>
+
+              </div>
+        <% end %>
+      <%#  %>
+      <% elsif friend.followerable.sent_follow_request_to?(@user) %>
         <%= link_to user_profile_path(friend.followerable), class: "text-decoration-none" do  %>
           <%# TODO: chat come here %>
-          <div class="card-product w-75">
+          <div class="card-product w-100">
 
             <% if friend.followerable.photo.key.present? %>
               <%= cl_image_tag friend.followerable.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 50%;" %>
@@ -29,12 +52,12 @@
         <% end %>
 
       <% else %>
-        <%= link_to user_profile_path(friend), class: "text-decoration-none" do  %>
+        <%= link_to user_profile_path(friend.followable), class: "text-decoration-none" do  %>
           <%# TODO: chat come here %>
-          <div class="card-product w-75">
+          <div class="card-product w-100">
 
-            <% if friend.photo.key.present? %>
-              <%= cl_image_tag friend.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 50%;" %>
+            <% if friend.followable.photo.key.present? %>
+              <%= cl_image_tag friend.followable.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 50%;" %>
             <% else %>
               <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png", style: "border-radius: 50%;" %>
             <% end %>
@@ -42,15 +65,14 @@
             <div class="d-flex justify-content-between w-100 align-items-center">
               <div class="card-product-infos w-100">
 
-                <% if friend == current_user %>
-                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.first_name.capitalize} #{friend.last_name.capitalize}" %></p>
+                <% if friend.followable == current_user %>
+                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.followerable.first_name.capitalize} #{friend.followerable.last_name.capitalize}" %></p>
                 <% else %>
-                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.first_name.capitalize} #{friend.last_name.capitalize}" %></p>
+                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.followable.first_name.capitalize} #{friend.followable.last_name.capitalize}" %></p>
                 <% end %>
 
               </div>
         <% end %>
-
       <% end %>
 
 
@@ -67,7 +89,7 @@
                   </ul>
 
                 <% elsif @user.sent_follow_request_to?(friend.followable) %>
-                  Pending
+                  Request sent
                   </button>
                   <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1" style="background-color: white; border-style: none;">
                     <li>

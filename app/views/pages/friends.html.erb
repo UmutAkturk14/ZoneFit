@@ -5,23 +5,20 @@
 
 
 
-<div class="container">
+<div class="container my-5">
   <% if @pending_requests_came.count > 0 %>
-    <p class="fs-2 text-center">Your pending requests🧐</p>
     <% @pending_requests_came.each do |friend| %>
       <%= render "shared/friend", friend: friend %>
     <% end %>
   <% end %>
 
-  <% if @pending_requests.count > 0 %>
-    <p class="fs-2 text-center">People looking forward to be your friend!🤗</p>
+  <% if @pending_requests.count > 0 %></p>
     <% @pending_requests.each do |friend| %>
       <%= render "shared/friend", friend: friend %>
     <% end %>
   <% end %>
 
   <% if @friends.count > 0 %>
-    <p class="fs-2 text-center">Your lovely friends💗</p>
     <% @friends.each do |friend| %>
       <%= render "shared/friend", friend: friend %>
     <% end %>

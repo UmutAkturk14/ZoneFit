@@ -20,7 +20,6 @@ class PagesController < ApplicationController
     end
   end
 
-
   def friends
     @f = policy_scope(User)
     @user = current_user
@@ -40,5 +39,4 @@ class PagesController < ApplicationController
       @results = PgSearch.multisearch(params[:query])
     end
   end
-
 end
