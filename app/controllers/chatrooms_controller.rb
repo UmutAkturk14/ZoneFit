@@ -3,6 +3,8 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.find(params[:id])
     authorize @chatroom
     @message = Message.new
+    @chatrooms = policy_scope(Chatroom)
+    @chatroom.reset_notification_count
   end
 
   def index
