@@ -1,18 +1,9 @@
-<p class="fs-1">
-  <%= @chat.creator == current_user ?
-  "#{@chat.joiner.first_name} #{@chat.joiner.last_name}" :
-  "#{@chat.creator.first_name} #{@chat.creator.last_name}"
-  %>
-
-</p>
-
-
 <div class="container chatroom"
   data-controller="private-chatroom-subscription"
   data-private-chatroom-subscription-chatroom-id-value="<%= @chat.id%>"
   data-private-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
   >
-  <p class="fs-1"><%= @chat.creator == current_user ?
+  <p class="fs-2"><%= @chat.creator == current_user ?
   "#{@chat.joiner.first_name} #{@chat.joiner.last_name}" :
   "#{@chat.creator.first_name} #{@chat.creator.last_name}"
   %></p>
