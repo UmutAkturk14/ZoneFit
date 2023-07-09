@@ -1,37 +1,14 @@
 <%# TODO: Needs styling! %>
 
 
-<div class="container">
+<div class="container w-50">
   <ul>
     <li>
-
-      <% unless friend.class == User %>
-        <%= link_to user_profile_path(friend.followable), class: "text-decoration-none" do  %>
-          <%# TODO: chat come here %>
-          <div class="card-product w-75">
-
-            <% if friend.followable.photo.key.present? %>
-              <%= cl_image_tag friend.followable.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 50%;" %>
-            <% else %>
-              <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png", style: "border-radius: 50%;" %>
-            <% end %>
-
-            <div class="d-flex justify-content-between w-100 align-items-center">
-              <div class="card-product-infos w-100">
-
-                <% if friend.followable == current_user %>
-                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.followerable.first_name.capitalize} #{friend.followerable.last_name.capitalize}" %></p>
-                <% else %>
-                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.followable.first_name.capitalize} #{friend.followable.last_name.capitalize}" %></p>
-                <% end %>
-
-              </div>
-        <% end %>
-
-      <% else %>
+      <%# Friends list %>
+      <% if friend.class == User %>
         <%= link_to user_profile_path(friend), class: "text-decoration-none" do  %>
           <%# TODO: chat come here %>
-          <div class="card-product w-75">
+          <div class="card-product w-100">
 
             <% if friend.photo.key.present? %>
               <%= cl_image_tag friend.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 50%;" %>
@@ -50,39 +27,84 @@
 
               </div>
         <% end %>
+      <%#  %>
+      <% elsif friend.followerable.sent_follow_request_to?(@user) %>
+        <%= link_to user_profile_path(friend.followerable), class: "text-decoration-none" do  %>
+          <%# TODO: chat come here %>
+          <div class="card-product w-100">
 
+            <% if friend.followerable.photo.key.present? %>
+              <%= cl_image_tag friend.followerable.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 50%;" %>
+            <% else %>
+              <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png", style: "border-radius: 50%;" %>
+            <% end %>
+
+            <div class="d-flex justify-content-between w-100 align-items-center">
+              <div class="card-product-infos w-100">
+
+                <% if friend.followable == current_user %>
+                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.followerable.first_name.capitalize} #{friend.followerable.last_name.capitalize}" %></p>
+                <% else %>
+                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.followable.first_name.capitalize} #{friend.followable.last_name.capitalize}" %></p>
+                <% end %>
+
+              </div>
+        <% end %>
+
+      <% else %>
+        <%= link_to user_profile_path(friend.followable), class: "text-decoration-none" do  %>
+          <%# TODO: chat come here %>
+          <div class="card-product w-100">
+
+            <% if friend.followable.photo.key.present? %>
+              <%= cl_image_tag friend.followable.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 50%;" %>
+            <% else %>
+              <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png", style: "border-radius: 50%;" %>
+            <% end %>
+
+            <div class="d-flex justify-content-between w-100 align-items-center">
+              <div class="card-product-infos w-100">
+
+                <% if friend.followable == current_user %>
+                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.followerable.first_name.capitalize} #{friend.followerable.last_name.capitalize}" %></p>
+                <% else %>
+                  <p class="fs-5 text-dark fw-bold text-capitalize"><%= "#{friend.followable.first_name.capitalize} #{friend.followable.last_name.capitalize}" %></p>
+                <% end %>
+
+              </div>
+        <% end %>
       <% end %>
 
 
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn login dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 
                 <% if @user.mutual_following_with?(friend) %>
                   Friend
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1" style="background-color: white; border-style: none;">
                     <li>
-                      <%= button_to "Unfriend", unfriend_path(friend) %>
+                      <%= button_to "Unfriend", unfriend_path(friend), class: "btn login fw-bold" %>
                     </li>
                   </ul>
 
                 <% elsif @user.sent_follow_request_to?(friend.followable) %>
-                  Pending
+                  Request sent
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1" style="background-color: white; border-style: none;">
                     <li>
-                      <%= button_to "Cancel request", cancel_path(friend.followable) %>
+                      <%= button_to "Cancel", cancel_path(friend.followable), class: "btn login fw-bold" %>
                     </li>
                   </ul>
                 <% elsif friend.followerable.sent_follow_request_to?(@user) %>
                   Pending
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1" style="background-color: white; border-style: none;">
                     <li>
-                      <%= button_to "Accept request", accept_path(friend.followerable) %>
+                      <%= button_to "Accept", accept_path(friend.followerable), class: "btn login fw-bold" %>
                     </li>
                     <li>
-                      <%= button_to "Decline request", decline_path(friend.followerable) %>
+                      <%= button_to "Decline", decline_path(friend.followerable), class: "btn login fw-bold" %>
                     </li>
                   </ul>
                 <% end %>

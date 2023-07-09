@@ -11,8 +11,15 @@
       <% end %>
     <div class="p-2">
         <small>
-          <strong><%= link_to "#{message.user.first_name}", user_profile_path(message.user), class: "text-decoration-none" %></strong>
-          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+
+          <% if message.user == current_user %>
+            <strong><%= link_to "You", user_profile_path(message.user), class: "text-decoration-none" %></strong>
+            <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+          <% else %>
+            <strong><%= link_to "#{message.user.first_name}", user_profile_path(message.user), class: "text-decoration-none" %></strong>
+            <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+          <% end %>
+
         </small>
         <p><%= message.content %></p>
     </div>
