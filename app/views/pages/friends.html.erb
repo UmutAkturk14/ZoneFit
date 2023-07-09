@@ -1,15 +1,26 @@
-<h1>Friends#index</h1>
-<p>Find me in app/views/friends/index.html.erb</p>
-
-
-<% @pending_requests.each do |friend| %>
-  <%= render "shared/friend", friend: friend %>
+<% content_for(:title) do %>
+  <title>Your friends | ZoneFit</title>
 <% end %>
 
-<% @pending_requests_came.each do |friend| %>
-  <%= render "shared/friend", friend: friend %>
-<% end %>
 
-<% @friends.each do |friend| %>
-  <%= render "shared/friend", friend: friend %>
-<% end %>
+
+
+<div class="container my-5">
+  <% if @pending_requests_came.count > 0 %>
+    <% @pending_requests_came.each do |friend| %>
+      <%= render "shared/friend", friend: friend %>
+    <% end %>
+  <% end %>
+
+  <% if @pending_requests.count > 0 %></p>
+    <% @pending_requests.each do |friend| %>
+      <%= render "shared/friend", friend: friend %>
+    <% end %>
+  <% end %>
+
+  <% if @friends.count > 0 %>
+    <% @friends.each do |friend| %>
+      <%= render "shared/friend", friend: friend %>
+    <% end %>
+  <% end %>
+</div>
