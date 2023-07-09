@@ -8,7 +8,7 @@ url = "https://www.themealdb.com/api/json/v1/1/random.php"
   # puts info["meals"][0]["strIngredient"+"#{n}"]
   ingredient = ""
   while info["meals"][0]["strIngredient"+"#{n}"].present? && info["meals"][0]["strIngredient"+"#{n}"] != ""
-    ingredient += info["meals"][0]["strIngredient"+"#{n}"] + ","
+    ingredient += (info["meals"][0]["strIngredient"+"#{n}"] +  info["meals"][0]["strMeasure"+"#{n}"]) + ","
     n += 1
   end
   image = ""
