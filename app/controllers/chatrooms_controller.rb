@@ -4,6 +4,8 @@ class ChatroomsController < ApplicationController
     authorize @chatroom
     @message = Message.new
     @chatrooms = policy_scope(Chatroom)
+    @private_chatrooms = policy_scope(PrivateChatroom)
+    @chats = PrivateChatroom.where(creator_id: current_user.id) + PrivateChatroom.where(joiner_id: current_user.id)
     @chatroom.reset_notification_count
   end
 

@@ -12,7 +12,7 @@ export default class extends Controller {
   startRefreshing() {
     this.refreshTimer = setInterval(() => {
       this.refreshCount();
-    }, 1000); // Refresh every 5 seconds (adjust as needed)
+    }, 1000);
   }
 
   stopRefreshing() {
@@ -21,7 +21,7 @@ export default class extends Controller {
 
   refreshCount() {
     Rails.ajax({
-      url: '/chatroom/notifications_count', // Replace with your actual route to the action in ChatroomController
+      url: '/chatroom/notifications_count', 
       type: 'GET',
       dataType: 'json',
       success: (data) => {

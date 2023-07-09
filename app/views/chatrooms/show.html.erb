@@ -2,26 +2,74 @@
   <title><%= @chatroom.name %> | ZoneFit</title>
 <% end %>
 
-<div class="container chatroom"
-  data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id%>"
-  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-  <p class="fs-1"><%= @chatroom.name %> </p>
-  <div class="messages" data-chatroom-subscription-target="messages">
-    <% @chatroom.messages.each do |message| %>
-     <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-          <%= render "messages/message", message: message %>
-        </div>
-      </div>
-    <% end %>
+
+<div class="d-flex">
+  <div>
+    <p class="text-center">Communities</p>
+      <% @chatrooms.each do |chatroom| %>
+      <ul>
+        <% if chatroom.notifications_count > 0 %>
+          <div class="bg-primary">
+        <% else %>
+        <div>
+        <% end %>
+          <li>
+            <%= link_to chatroom_path(chatroom), class: "text-decoration-none" do  %>
+              <div class="card-product">
+                <% if chatroom.photo.key.present? %>
+                  <%= cl_image_tag chatroom.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 8px;" %>
+                <% else %>
+                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" style="border-radius: 8px;" />
+                <% end %>
+              </div>
+            <% end %>
+          </li>
+      </ul>
+     <% end %>
+    <div class="container">
+      <p class="text-center">Direct Messages</p>
+        <% @chats.each do |chat| %>
+          <ul>
+            <% chat_with = chat.creator_id == current_user.id ? User.find(chat.joiner_id) : User.find(chat.creator_id) %>
+            <li>
+              <%= link_to private_chatroom_path(chat), class: "text-decoration-none" do  %>
+                <div class="card-product">
+                  <% if chat_with.photo.key.present? %>
+                    <%= cl_image_tag chat_with.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 8px;" %>
+                  <% else %>
+                    <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+    </div>
   </div>
-    <%= simple_form_for [@chatroom, @message],
-      html: { data: { action: "turbo:submit-end->ch  atroom-subscription#resetForm" }, class: "d-flex"} do |f| %>
-      <%= f.input :content,
-        label: false,
-        placeholder: "Message ##{ @chatroom.name.split.each { |w| w.capitalize! }.join }",
-        wrapper_html: {class: "flex-grow-1"} %>
-      <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-    <% end %>
+
+
+  <div class="container chatroom"
+    data-controller="chatroom-subscription"
+    data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id%>"
+    data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
+    <p class="fs-1"><%= @chatroom.name %> </p>
+    <div class="messages" data-chatroom-subscription-target="messages">
+      <% @chatroom.messages.each do |message| %>
+      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+          <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+            <%= render "messages/message", message: message %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+      <%= simple_form_for [@chatroom, @message],
+        html: { data: { action: "turbo:submit-end->ch  atroom-subscription#resetForm" }, class: "d-flex"} do |f| %>
+        <%= f.input :content,
+          label: false,
+          placeholder: "Message ##{ @chatroom.name.split.each { |w| w.capitalize! }.join }",
+          wrapper_html: {class: "flex-grow-1"} %>
+        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+      <% end %>
+  </div>
+  </div>
 </div>

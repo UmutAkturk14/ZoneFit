@@ -10,6 +10,8 @@ class PrivateChatroomsController < ApplicationController
   def show
     authorize @chat
     @message = PrivateMessage.new
+    @chatrooms = policy_scope(Chatroom)
+    @chats = PrivateChatroom.where(creator_id: current_user.id) + PrivateChatroom.where(joiner_id: current_user.id)
   end
 
   private
