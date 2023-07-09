@@ -3,6 +3,10 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.find(params[:id])
     authorize @chatroom
     @message = Message.new
+    @chatrooms = policy_scope(Chatroom)
+    @private_chatrooms = policy_scope(PrivateChatroom)
+    @chats = PrivateChatroom.where(creator_id: current_user.id) + PrivateChatroom.where(joiner_id: current_user.id)
+    @chatroom.reset_notification_count
   end
 
   def index
@@ -32,6 +36,11 @@ class ChatroomsController < ApplicationController
       flash[:notice] = "Your community has been successfully removed. Your gang is now without a chieftain."
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def notifications_count
+    count = Chatroom.find(params[:id]).notifications_count # Retrieve the notification count from the Chatroom model
+    render json: { count: count }
   end
 
   private

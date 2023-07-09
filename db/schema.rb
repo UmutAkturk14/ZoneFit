@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_07_08_171619) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_07_08_125219) do
+>>>>>>> e7f792c66160ad9aa2206cc59babc28a9514cb68
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,7 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_171619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
+    t.integer "notifications_count", default: 0
     t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
@@ -97,21 +102,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_171619) do
     t.index ["followerable_type", "followerable_id"], name: "index_followability_relationships_on_followerable"
   end
 
-  create_table "friends", force: :cascade do |t|
+  create_table "meals", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "ingredients"
+    t.integer "total_calories"
+    t.integer "total_protein"
+    t.integer "total_carbs"
+    t.integer "total_fats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredients", force: :cascade do |t|
-    t.string "name"
-    t.float "protein"
-    t.float "carbohydrates"
-    t.float "fat"
-    t.float "calories"
-    t.bigint "recipe_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
+    t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -186,6 +186,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_171619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
+    t.integer "calories"
+    t.integer "fat"
+    t.integer "carbs"
+    t.integer "protein"
+    t.integer "saturated_fat"
+    t.integer "sugars"
+    t.integer "trans_fat"
+    t.integer "cholesterol"
+    t.integer "sodium"
+    t.integer "dietary_fiber"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -231,7 +241,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_171619) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chatrooms", "users"
   add_foreign_key "comments", "users"
-  add_foreign_key "ingredients", "recipes"
+  add_foreign_key "meals", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"

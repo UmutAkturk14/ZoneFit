@@ -1,3 +1,70 @@
+<p class="fs-1">
+  <%= @chat.creator == current_user ?
+  "#{@chat.joiner.first_name} #{@chat.joiner.last_name}" :
+  "#{@chat.creator.first_name} #{@chat.creator.last_name}"
+  %>
+</p>
+
+<div class="d-flex">
+  <div>
+    <p class="text-center">Communities</p>
+      <% @chatrooms.each do |chatroom| %>
+      <ul>
+        <% if chatroom.notifications_count > 0 %>
+          <div class="bg-primary">
+        <% else %>
+        <div>
+        <% end %>
+          <li>
+            <%= link_to chatroom_path(chatroom), class: "text-decoration-none" do  %>
+              <div class="card-product">
+                <% if chatroom.photo.key.present? %>
+                  <%= cl_image_tag chatroom.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 8px;" %>
+                <% else %>
+                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" style="border-radius: 8px;" />
+                <% end %>
+              </div>
+            <% end %>
+          </li>
+      </ul>
+     <% end %>
+    <div class="container">
+      <p class="text-center">Direct Messages</p>
+        <% @chats.each do |chat| %>
+          <ul>
+            <% chat_with = chat.creator_id == current_user.id ? User.find(chat.joiner_id) : User.find(chat.creator_id) %>
+            <li>
+              <%= link_to private_chatroom_path(chat), class: "text-decoration-none" do  %>
+                <div class="card-product">
+                  <% if chat_with.photo.key.present? %>
+                    <%= cl_image_tag chat_with.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 8px;" %>
+                  <% else %>
+                    <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+    </div>
+  </div>
+  <div class="container chatroom"
+    data-controller="private-chatroom-subscription"
+    data-private-chatroom-subscription-chatroom-id-value="<%= @chat.id%>"
+    data-private-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
+    >
+    <p class="fs-1"><%= @chat.creator == current_user ?
+    "#{@chat.joiner.first_name} #{@chat.joiner.last_name}" :
+    "#{@chat.creator.first_name} #{@chat.creator.last_name}"
+    %></p>
+
+    <div class="messages" data-private-chatroom-subscription-target="messages">
+      <% @chat.private_messages.each do |message| %>
+      <div class="message-row d-flex <%= message.sender == current_user ? 'justify-content-end' : 'justify-content-start' %>">
+          <div class="<%= message.sender == current_user ? 'sender-style' : 'receiver-style' %>">
+            <%= render "chat", message: message %>
+          </div>
+
 <div class="container chatroom"
   data-controller="private-chatroom-subscription"
   data-private-chatroom-subscription-chatroom-id-value="<%= @chat.id%>"
@@ -13,11 +80,21 @@
      <div class="message-row d-flex <%= message.sender == current_user ? 'justify-content-end' : 'justify-content-start' %>">
         <div class="<%= message.sender == current_user ? 'sender-style' : 'receiver-style' %>">
           <%= render "chat", message: message %>
+
         </div>
-      </div>
+      <% end %>
+    </div>
+
+
+    <%= simple_form_for [@chat, @message],
+      html: { data: { action: "turbo:submit-end->private-chatroom-subscription#resetForm" }, class: "d-flex"} do |f| %>
+      <%= f.input :content,
+        label: false,
+        placeholder: "Message your ❤️ out ",
+        wrapper_html: {class: "flex-grow-1"} %>
+      <%= f.submit "Send", class: "btn btn-primary mb-3 border", style: "border-radius: 8px; margin-left: 0.2rem;" %>
     <% end %>
   </div>
-
 
   <%= simple_form_for [@chat, @message],
     html: { data: { action: "turbo:submit-end->private-chatroom-subscription#resetForm" }, class: "d-flex"} do |f| %>

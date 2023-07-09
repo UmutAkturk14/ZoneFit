@@ -32,42 +32,42 @@ workouts = ["workout", "dumbbell workout", "kettlebell workout", "jump rope work
 
 # TODO: Delete everything
 puts "Deleting Comments..."
-Comment.delete_all
+#Comment.delete_all
 puts "Deleting Private Messages..."
-PrivateMessage.delete_all
+# PrivateMessage.delete_all
 puts "Deleting Private Chatrooms..."
-PrivateChatroom.delete_all
+# PrivateChatroom.delete_all
 puts "Deleting Messages..."
-Message.delete_all
+# Message.delete_all
 puts "Deleting Chatrooms..."
-Chatroom.delete_all
+# Chatroom.delete_all
 puts "Deleting Posts..."
-Post.delete_all
+# Post.delete_all
 puts "Deleting Recipes..."
 Recipe.delete_all
 puts "Deleting Workouts..."
-Workout.delete_all
+# Workout.delete_all
 puts "Deleting Users..."
-User.delete_all
+# User.delete_all
 
 
 # TODO: Users
-20.times do |x|
-  puts "Creating User #{x + 1}"
-  User.create(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    bio: Faker::Lorem.paragraph,
-    email: Faker::Internet.email,
-    password: Faker::Internet.password,
-    location: Faker::Address.country
-  )
-end
+# 20.times do |x|
+#  puts "Creating User #{x + 1}"
+#  User.create(
+#    first_name: Faker::Name.first_name,
+#    last_name: Faker::Name.last_name,
+#    bio: Faker::Lorem.paragraph,
+#    email: Faker::Internet.email,
+#    password: Faker::Internet.password,
+#    location: Faker::Address.country
+#  )
+#end
 
 puts "Users created successfully"
 # TODO: Workouts UNCOMMENT THE FOLLOWING CODE:
 
-create_workouts(workouts)
+# create_workouts(workouts)
 puts "Workouts created successfully"
 
 # TODO: Recipes API data
@@ -80,7 +80,7 @@ url = "https://www.themealdb.com/api/json/v1/1/random.php"
   # puts info["meals"][0]["strIngredient"+"#{n}"]
   ingredient = ""
   while info["meals"][0]["strIngredient"+"#{n}"].present? && info["meals"][0]["strIngredient"+"#{n}"] != ""
-    ingredient += info["meals"][0]["strIngredient"+"#{n}"] + ","
+    ingredient += (info["meals"][0]["strMeasure"+"#{n}"] + " " + info["meals"][0]["strIngredient"+"#{n}"]) + ","
     n += 1
   end
   image = ""
@@ -102,14 +102,14 @@ end
 puts "Recipes created successfully"
 
 # TODO: Posts
-20.times do |x|
-  puts "Creating Post #{x + 1}"
-  Post.create!(
-    content: Faker::Lorem.paragraph(sentence_count: 5),
-    user: User.all.sample
-  )
-end
-puts "Posts created successfully"
+# 20.times do |x|
+ # puts "Creating Post #{x + 1}"
+ # Post.create!(
+ #   content: Faker::Lorem.paragraph(sentence_count: 5),
+ #   user: User.all.sample
+ # )
+# end
+# puts "Posts created successfully"
 # TODO: Comments
 
 
