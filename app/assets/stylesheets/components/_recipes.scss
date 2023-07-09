@@ -1,8 +1,13 @@
-.item {
+.grid .item {
   background-color: #f8f9fa;
   padding: 10px;
   border-radius: 5px;
+  transition: transform .2s;
   // background-size: ;
+}
+
+.grid .item:hover {
+  transform: scale(1.5);
 }
 
 
