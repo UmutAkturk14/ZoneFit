@@ -1,0 +1,2 @@
+class Noticed::NotificationChannel
+end

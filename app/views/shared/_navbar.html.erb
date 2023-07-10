@@ -45,7 +45,9 @@
       </ul>
     </div>
 
-    <div class="d-flex flex-row align-items-center">
+
+    <div class="d-flex flex-row align-items-center"
+    data-controller="notifications">
       <% if current_user %>
         <%# Notification dropdown %>
         <div class="dropdown dropstart">
@@ -53,9 +55,10 @@
             <i class="fa-regular fa-bell"></i>
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+            <% current_user.notifications.each do |notification| %>
+              <li><a class="dropdown-item" href="#"><%= "#{notification.params[:comment].user.first_name} #{notification.params[:comment].user.last_name} commented on your #{notification.params[:comment].commentable_type.downcase}." %></a></li>
+            <% end %>
           </ul>
         </div>
         <%# Friends dropdown %>
