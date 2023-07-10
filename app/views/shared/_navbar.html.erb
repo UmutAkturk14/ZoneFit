@@ -41,8 +41,38 @@
               <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fas fa-users" style="margin-right: 12px; font-size: 24px;"></i>Communities</button>
             <% end %>
           </li>
+        <% end %>
+      </ul>
+    </div>
 
-          <li class="nav-item dropdown d-flex align-items-center text-decoration-none">
+    <div class="d-flex flex-row align-items-center">
+      <% if current_user %>
+        <%# Notification dropdown %>
+        <div class="dropdown dropstart">
+          <a href="#" class="fs-4 mx-3" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-regular fa-bell"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+        <%# Friends dropdown %>
+        <div class="dropdown dropstart">
+          <a href="#" class="fs-4 mx-3" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-regular fa-user"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+
+
+        <%# Profile dropdown %>
+        <li class="nav-item dropdown d-flex align-items-center text-decoration-none">
           <a href="#" class="" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
             <% if current_user.photo.key.present? %>
@@ -52,26 +82,25 @@
             <% end %>
 
           </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to user_profile_path(current_user), class: "dropdown-item" do %>
-                <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fas fa-user" style="margin-right: 8px; font-size: 18px;"></i>My profile</button>
-              <% end %>
-              <%# Friends button %>
-              <%= link_to friends_path, class: "dropdown-item" do %>
-                <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fa-solid fa-user-group" style="margin-right: 8px; font-size: 18px;"></i>Friends</button>
-              <% end %>
-              <!-- <%= link_to "Another action", "#", class: "dropdown-item" %> -->
-              <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
-                <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fas fa-sign-out-alt" style="margin-right: 8px; font-size: 18px;"></i>Log out</button>
-              <% end %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to user_profile_path(current_user), class: "dropdown-item" do %>
+              <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fas fa-user" style="margin-right: 8px; font-size: 18px;"></i>My profile</button>
+            <% end %>
+            <%# Friends button %>
+            <%= link_to friends_path, class: "dropdown-item" do %>
+              <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fa-solid fa-user-group" style="margin-right: 8px; font-size: 18px;"></i>Friends</button>
+            <% end %>
+            <!-- <%= link_to "Another action", "#", class: "dropdown-item" %> -->
+            <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
+              <button class="nav-button custom-btn btn-navbar d-flex justify-content-center align-items-center" style="z-index: 1;"><i class="fas fa-sign-out-alt" style="margin-right: 8px; font-size: 18px;"></i>Log out</button>
+            <% end %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
     </div>
   </div>
 </div>
