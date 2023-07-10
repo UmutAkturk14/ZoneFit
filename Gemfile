@@ -107,3 +107,5 @@ end
 group :production do
   gem 'dotenv-rails'
 end
+
+gem "noticed", "~> 1.6"
