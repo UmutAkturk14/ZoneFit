@@ -2,22 +2,22 @@
   <title>Workouts | ZoneFit</title>
 <% end %>
 
-<div class="d-flex justify-content-center"><p class="fs-2 text-center mt-2 w-50" style="background-color: aquamarine; border-radius: 16px; color: black; ">Ready to get knackered?</p></div>
-
 
 <%#  TODO: Make this search bar work %>
 
-<div class="container d-flex" data-controller="workout-index">
+<div class="d-flex justify-content-center mt-5">
+  <div data-controller="workout-index">
   <%= form_with url: workouts_path, method: :get, class: "d-flex" do |f| %>
-  <% @muscle_group_ops = [" ", "Chest", "Back", "Shoulder", "Legs", "Abs"] %>
-  <% @style_ops = [" ", "Cardio", "HIIT", "Muscle"] %>
-  <% @equipment_ops = [" ", "No equipment", "Dumbbell", "Kettlebell", "Barbell", "Jump rope"] %>
-    <%= f.select :title, options_for_select(@muscle_group_ops) %>
-    <%= f.select :style, options_for_select(@style_ops) %>
-    <%= f.select :equipment, options_for_select(@equipment_ops) %>
+    <% @muscle_group_ops = ["Chest", "Back", "Shoulder", "Legs", "Abs"] %>
+    <% @style_ops = ["Cardio", "HIIT", "Muscle"] %>
+    <% @equipment_ops = ["No equipment", "Dumbbell", "Kettlebell", "Barbell", "Jump rope"] %>
+      <%= f.select :title, options_for_select(@muscle_group_ops), { prompt: "Select a muscle group" }, class: "mx-1" %>
+      <%= f.select :style, options_for_select(@style_ops), { prompt: "Select a workout style" }, class: "mx-1" %>
+      <%= f.select :equipment, options_for_select(@equipment_ops), { prompt: "Select an equipment type" }, class: "mx-1" %>
 
-    <%= submit_tag "Search", name: "", class: "btn login mx-1" %>
+      <%= submit_tag "Search", name: "", class: "btn login" %>
   <% end %>
+</div>
 </div>
 
 
@@ -32,7 +32,7 @@
   <div class="d-flex flex-wrap justify-content-between" data-controller="workout-index">
     <% @workouts.each do |w| %>
       <div class="card card-rounded overflow-hidden mb-3 border-0" style="height: 300px; width: 400px;" data-action="mouseenter->workout-index#hoverButton mouseleave->workout-index#hideButton">
-        <i class="fa-solid fa-plus add-button d-none" data-action="mouseenter->workout-index#hoverButton mouseleave->workout-index#hideButton"></i>
+
         <a href="<%= workout_path(w)%>">
           <i class="fa-solid fa-angles-right page-button d-none"></i>
         </a>
