@@ -80,8 +80,7 @@
 <div class="row justify-content-center">
   <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
-      <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 2px;">Top Workouts</p>
-      <% console %>
+      <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 3px;">Top Workouts</p>
       <% current_user.favorites.where(favoritable_type: "Workout").all.sample(10).each do |workout| %>
         <div class="container text-truncate">
           <%= link_to workout.favoritable.title, workout_path(workout.favoritable), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
