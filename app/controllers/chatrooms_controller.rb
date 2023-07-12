@@ -39,8 +39,14 @@ class ChatroomsController < ApplicationController
   end
 
   def notifications_count
-    count = Chatroom.find(params[:id]).notifications_count # Retrieve the notification count from the Chatroom model
-    render json: { count: count }
+    chatroom = Chatroom.find_by_id(params[:id])
+    if chatroom.nil?
+      render json: { error: "Chatroom not found" }, status: :not_found
+    else
+      authorize chatroom, :notifications_count?
+      count = chatroom.notifications_count
+      render json: { count: count }
+    end
   end
 
   private
