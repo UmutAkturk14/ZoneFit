@@ -4,45 +4,49 @@
 
 
 <div class="d-flex">
-  <div>
-    <p class="text-center">Communities</p>
-      <% @chatrooms.each do |chatroom| %>
-      <ul>
-        <% if chatroom.notifications_count > 0 %>
-          <div class="bg-primary">
-        <% else %>
-        <div>
-        <% end %>
-          <li>
-            <%= link_to chatroom_path(chatroom), class: "text-decoration-none" do  %>
-              <div class="card-product">
-                <% if chatroom.photo.key.present? %>
-                  <%= cl_image_tag chatroom.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 8px;" %>
-                <% else %>
-                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" style="border-radius: 8px;" />
-                <% end %>
-              </div>
-            <% end %>
-          </li>
-      </ul>
-     <% end %>
-    <div class="container">
-      <p class="text-center">Direct Messages</p>
-        <% @chats.each do |chat| %>
+  <div style="border-style: none solid none none; border-width: 0.1vh;">
+    <div class="container mt-5">
+      <p class="text-center fs-5" style="border-style: solid none solid none; border-width: 1px;">Direct Messages</p>
           <ul>
-            <% chat_with = chat.creator_id == current_user.id ? User.find(chat.joiner_id) : User.find(chat.creator_id) %>
+          <% @chats.each do |chat| %>
             <li>
+            <% chat_with = chat.creator_id == current_user.id ? User.find(chat.joiner_id) : User.find(chat.creator_id) %>
               <%= link_to private_chatroom_path(chat), class: "text-decoration-none" do  %>
-                <div class="card-product">
+                <div class="card-product d-flex align-items-center" style="height: 5vh; width: 20vh;">
                   <% if chat_with.photo.key.present? %>
-                    <%= cl_image_tag chat_with.photo.key, height: 120, width: 120, crop: :fill, style: "border-radius: 8px;" %>
+                    <%= cl_image_tag chat_with.photo.key,   crop: :fill, style: "height: 40px; width: 40px; border-radius: 50%; margin-right: 1.5vh;" %>
+                    <p class="text-decoration-none text-dark h-50 w-100"><%= "#{chat_with.first_name} #{chat_with.last_name}" %></p>
                   <% else %>
-                    <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png" %>
+                    <%= image_tag "https://www.gse.org/wp-content/uploads/2021/03/avatar-dummy.png", style: "height: 40px; width: 40px; border-radius: 50%; margin-right: 1.5vh;" %>
+                    <p class="text-decoration-none text-dark h-50 w-100"><%= "#{chat_with.first_name} #{chat_with.last_name}" %></p>
                   <% end %>
                 </div>
               <% end %>
             </li>
+          <% end %>
           </ul>
+      <p class="text-center fs-5" style="border-style: solid none solid none; border-width: 1px;">Communities</p>
+        <% @chatrooms.each do |chatroom| %>
+        <ul>
+          <% if chatroom.notifications_count > 0 %>
+            <div class="bg-primary">
+          <% else %>
+          <div>
+          <% end %>
+            <li>
+              <%= link_to chatroom_path(chatroom), class: "text-decoration-none" do  %>
+                <div class="card-product d-flex align-items-center" style="height: 5vh; width: 20vh;">
+                  <% if chatroom.photo.key.present? %>
+                    <%= cl_image_tag chatroom.photo.key, crop: :fill, style: "height: 40px; width: 40px; border-radius: 8px; margin-right: 1.5vh;" %>
+                    <p class="text-decoration-none text-dark h-50 w-100"><%= chatroom.name %></p>
+                  <% else %>
+                    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" style="height: 40px; width: 40px; border-radius: 8px; margin-right: 1.5vh;" />
+                    <p class="text-decoration-none text-dark h-50 w-100"><%= chatroom.name %></p>
+                  <% end %>
+                </div>
+              <% end %>
+            </li>
+        </ul>
         <% end %>
     </div>
   </div>

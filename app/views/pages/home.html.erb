@@ -55,7 +55,7 @@
                 class: "form-control",
                 placeholder: "Type a keyword"
             %>
-          <%= submit_tag "Search", name: "", class: "btn login", style: "border-radius: 8px; margin-left: 0.2rem;" %>
+          <%= submit_tag "Search", name: "", class: "btn login", style: "border-radius: 8px;" %>
         <% end %>
       </div>
     </div>
@@ -80,7 +80,7 @@
 <div class="row justify-content-center">
   <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
-      <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 3px;">Top Workouts</p>
+      <p class="fs-4 text-center" style="border-style: solid none solid none; border-width: 1px; padding: 1vh;">Top Workouts</p>
       <% current_user.favorites.where(favoritable_type: "Workout").all.sample(10).each do |workout| %>
         <div class="container text-truncate">
           <%= link_to workout.favoritable.title, workout_path(workout.favoritable), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
@@ -103,9 +103,9 @@
       </div>
     </div>
 
-  <div class="col-md-2">
+  <div class="col-md-2 overflow-auto">
     <div class="container w-75 h-50 d-flex flex-column justify-content-center align-items-center">
-      <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 2px;">Top Recipes</p>
+      <p class="fs-4 text-center" style="border-style: solid none solid none; border-width: 1px; padding: 1vh;">Top Recipes</p>
       <% current_user.favorites.where(favoritable_type: "Recipe").all.sample(8).each do |recipe| %>
         <%= link_to recipe_path(recipe.favoritable), class: "text-decoration-none" do %>
           <p class="fs-6 text-center text-dark fw-bold"><%= recipe.favoritable.title %></p>

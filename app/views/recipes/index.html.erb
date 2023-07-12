@@ -2,10 +2,16 @@
   <title>Recipes | ZoneFit</title>
 <% end %>
 
-<p class="text-center fs-1 mt-2">All Recipes</p>
+<div class="container">
+  <p class="text-center fs-1 mt-5" style="border-style: solid none solid none; border-width: 1px;">All Recipes</p>
+</div>
+<%# Add a new recipe button. Maybe comment that in later? %>
+<!--
 <div class="container">
   <p><a href="/recipes/new" class="text-decoration-none"><strong>Add a new recipe</strong></a></p>
 </div>
+-->
+
 <div class="container d-flex justify-content-center align-items-center">
   <div class="grid">
     <% @recipes.each do |recipe| %>
