@@ -55,7 +55,6 @@ Rails.application.routes.draw do
     resources :private_messages, only: :create
   end
 
-  get '/chatroom/notifications_count', to: 'chatroom#notifications_count'
+  get '/chatroom/notifications_count', to: 'chatrooms#notifications_count'
 
-  
 end

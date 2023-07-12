@@ -4,6 +4,8 @@ require "rails/all"
 
 require 'dotenv/rails-now'
 
+
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

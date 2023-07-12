@@ -9,7 +9,7 @@ def create_workouts(arr)
   arr.each do |element|
     youtube = Google::Apis::YoutubeV3::YouTubeService.new
     youtube.key = ENV["YOUTUBE_API_KEY"]
-    response = youtube.list_searches("snippet", q: "#{element}", max_results: 2, type: "video")
+    response = youtube.list_searches("snippet", q: "#{element}", max_results: 50, type: "video")
     response.items.each do |r|
       video_details = youtube.list_videos("snippet", id: r.id.video_id)
 
@@ -32,23 +32,23 @@ workouts = ["workout", "dumbbell workout", "kettlebell workout", "jump rope work
 
 # TODO: Delete everything
 puts "Deleting Comments..."
-#Comment.delete_all
+Comment.delete_all
 puts "Deleting Private Messages..."
-# PrivateMessage.delete_all
+PrivateMessage.delete_all
 puts "Deleting Private Chatrooms..."
-# PrivateChatroom.delete_all
+PrivateChatroom.delete_all
 puts "Deleting Messages..."
-# Message.delete_all
+Message.delete_all
 puts "Deleting Chatrooms..."
-# Chatroom.delete_all
+Chatroom.delete_all
 puts "Deleting Posts..."
-# Post.delete_all
+Post.delete_all
 puts "Deleting Recipes..."
 Recipe.delete_all
 puts "Deleting Workouts..."
-# Workout.delete_all
+Workout.delete_all
 puts "Deleting Users..."
-# User.delete_all
+User.delete_all
 
 
 # TODO: Users
@@ -73,7 +73,7 @@ puts "Workouts created successfully"
 # TODO: Recipes API data
 url = "https://www.themealdb.com/api/json/v1/1/random.php"
 
-30.times do
+300.times do
   var = URI.open(url).read
   info = JSON.parse(var)
   n = 1
@@ -102,16 +102,11 @@ end
 puts "Recipes created successfully"
 
 # TODO: Posts
-# 20.times do |x|
- # puts "Creating Post #{x + 1}"
- # Post.create!(
- #   content: Faker::Lorem.paragraph(sentence_count: 5),
- #   user: User.all.sample
- # )
-# end
-# puts "Posts created successfully"
-# TODO: Comments
-
-
-
-# TODO: Workout instances
+20.times do |x|
+ puts "Creating Post #{x + 1}"
+ Post.create!(
+   content: Faker::Lorem.paragraph(sentence_count: 5),
+   user: User.all.sample
+ )
+end
+puts "Posts created successfully"

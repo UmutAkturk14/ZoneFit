@@ -1,3 +1,11 @@
+<% content_for(:title) do %>
+  <title>Chat with <%= @chat.creator == current_user ?
+"#{@chat.joiner.first_name} #{@chat.joiner.last_name}" :
+"#{@chat.creator.first_name} #{@chat.creator.last_name}"
+%> | ZoneFit</title>
+<% end %>
+
+
 <div class="d-flex">
   <div style="border-style: none solid none none; border-width: 0.1vh;">
     <div class="container mt-5">
