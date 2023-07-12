@@ -47,10 +47,6 @@
               <% end %>
             <% end %>
 
-            <div class="buttons d-flex justify-content-end my-2">
-              <button class="custom-btn btn-purple mx-1" style="z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
-            </div>
-
 
             <%= simple_form_for [@recipe, @comment] do |f| %>
               <div class="d-flex">
@@ -60,10 +56,11 @@
                   <div id="comment-div">
                     <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
                   </div>
-                  <button type="submit" class="btn login">Comment</button>
-                </article>
               </div>
             <% end %>
+                  <button type="submit" class="btn login">Comment</button>
+                  <button class="btn login mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
+                </article>
 
           </div>
         </div>

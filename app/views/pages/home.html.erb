@@ -80,15 +80,34 @@
 <div class="row justify-content-center">
   <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
-      <p class="fs-4 text-center" style="border-style: solid none solid none; border-width: 1px; padding: 1vh;">Top Workouts</p>
-      <% current_user.favorites.where(favoritable_type: "Workout").all.sample(10).each do |workout| %>
-        <div class="container text-truncate">
-          <%= link_to workout.favoritable.title, workout_path(workout.favoritable), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
-        </div>
-        <div class="container">
-          <img src="<%= workout.favoritable.thumbnail %>" class="img-fluid" style="border-radius: 16px;">
-          <hr>
-        </div>
+
+      <% if current_user.favorites.where(favoritable_type: "Workout").count > 9 %>
+        <p class="fs-4 text-center" style="border-style: solid none solid none; border-width: 1px; padding: 1vh;">Favourite Workouts</p>
+      <% else %>
+        <p class="fs-4 text-center" style="border-style: solid none solid none; border-width: 1px; padding: 1vh;">Discover</p>
+
+      <% end %>
+
+      <% if current_user.favorites.where(favoritable_type: "Workout").count > 9 %>
+        <% current_user.favorites.where(favoritable_type: "Workout").all.sample(10).each do |workout| %>
+          <div class="container text-truncate">
+            <%= link_to workout.favoritable.title, workout_path(workout.favoritable), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
+          </div>
+          <div class="container">
+            <img src="<%= workout.favoritable.thumbnail %>" class="img-fluid" style="border-radius: 16px;">
+            <hr>
+          </div>
+        <% end %>
+      <% else %>
+        <% Workout.all.sample(10).each do |workout| %>
+          <div class="container text-truncate">
+            <%= link_to workout.title, workout_path(workout), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
+          </div>
+          <div class="container">
+            <img src="<%= workout.thumbnail %>" class="img-fluid" style="border-radius: 16px;">
+            <hr>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -105,11 +124,31 @@
 
   <div class="col-md-2 overflow-auto">
     <div class="container w-75 h-50 d-flex flex-column justify-content-center align-items-center">
-      <p class="fs-4 text-center" style="border-style: solid none solid none; border-width: 1px; padding: 1vh;">Top Recipes</p>
-      <% current_user.favorites.where(favoritable_type: "Recipe").all.sample(8).each do |recipe| %>
-        <%= link_to recipe_path(recipe.favoritable), class: "text-decoration-none" do %>
-          <p class="fs-6 text-center text-dark fw-bold"><%= recipe.favoritable.title %></p>
-          <img src="<%= recipe.favoritable.url %>" class="w-100 h-75 object-fit-cover" style="border-radius: 16px;">
+      <% if current_user.favorites.where(favoritable_type: "Recipe").count > 7 %>
+        <p class="fs-4 text-center" style="border-style: solid none solid none; border-width: 1px; padding: 1vh;">Favourite Recipes</p>
+      <% else %>
+        <p class="fs-4 text-center" style="border-style: solid none solid none; border-width: 1px; padding: 1vh;">Discover</p>
+      <% end %>
+
+      <% if current_user.favorites.where(favoritable_type: "Recipe").count > 7 %>
+        <% current_user.favorites.where(favoritable_type: "Recipe").all.sample(8).each do |recipe| %>
+          <div class="container text-truncate">
+            <%= link_to recipe.favoritable.title, recipe_path(recipe.favoritable), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
+          </div>
+          <div class="container">
+            <img src="<%= recipe.favoritable.url %>" class="img-fluid" style="border-radius: 16px;">
+            <hr>
+          </div>
+        <% end %>
+      <% else %>
+        <% Recipe.all.sample(8).each do |recipe| %>
+          <div class="container text-truncate">
+            <%= link_to recipe.title, recipe_path(recipe), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
+          </div>
+          <div class="container">
+            <img src="<%= recipe.url %>" class="img-fluid" style="border-radius: 16px;">
+            <hr>
+          </div>
         <% end %>
       <% end %>
     </div>

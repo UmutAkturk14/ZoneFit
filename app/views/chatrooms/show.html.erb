@@ -56,7 +56,7 @@
     data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id%>"
     data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-    <p class="fs-1"><%= @chatroom.name %> </p>
+    <p class="fs-2" style="border-style: none none solid none; border-width: 0.1vh;"><%= @chatroom.name %> </p>
     <div class="messages" data-chatroom-subscription-target="messages">
       <% @chatroom.messages.each do |message| %>
       <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
@@ -72,7 +72,7 @@
           label: false,
           placeholder: "Message ##{ @chatroom.name.split.each { |w| w.capitalize! }.join }",
           wrapper_html: {class: "flex-grow-1"} %>
-        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+        <%= f.submit "Send", class: "btn login mb-3" %>
       <% end %>
   </div>
   </div>
