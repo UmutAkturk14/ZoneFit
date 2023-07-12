@@ -45,10 +45,11 @@
               <div id="comment-div">
                 <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
               </div>
-              <button type="submit" class="btn login">Comment</button>
-            </article>
           </div>
           <% end %>
+              <button type="submit" class="btn login">Comment</button>
+              <button class="btn login mx-1" style="z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
+            </article>
         </div>
         <section class="comments mt-5">
           <% if @comments.count > 0 %>
