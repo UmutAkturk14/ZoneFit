@@ -11,6 +11,8 @@ class Comment < ApplicationRecord
   private
 
   def notify_commentable_user
-    AppNotification.with(comment: self).deliver_later(commentable.user)
+    unless commentable.user == user
+      AppNotification.with(comment: self).deliver_later(commentable.user)
+    end
   end
 end
