@@ -5,6 +5,21 @@
 <div class="container my-3">
   <div class="item">
     <div class="row">
+      <div class="buttons d-flex justify-content-end my-2">
+        <% if current_user.favorited?(@recipe, scope: :cookbook) %>
+          <%= simple_form_for @recipe, url: cookbook_path, method: :post do |f|  %>
+            <%# TODO: We can use this! %>
+            <%# ! <i class="fa-sharp fa-regular fa-book"></i> %>
+            <button type="submit" class="custom-btn btn-purple" style="z-index: 1;">Remove from your cookbook</button>
+          <% end %>
+        <% else %>
+          <%= simple_form_for @recipe, url: cookbook_path, method: :post do |f|  %>
+            <%# SAME! %>
+            <%# ! <i class="fa-thin fa-book"></i> %>
+            <button type="submit" class="custom-btn btn-purple" style="z-index: 1;">Add to your cookbook</button>
+          <% end %>
+        <% end %>
+      </div>
       <div class="col-md-7">
         <div class="item-content">
           <div class="recipe-details">
@@ -34,19 +49,6 @@
 
             <div class="buttons d-flex justify-content-end my-2">
               <button class="custom-btn btn-purple mx-1" style="z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
-              <% if current_user.favorited?(@recipe, scope: :cookbook) %>
-                <%= simple_form_for @recipe, url: cookbook_path, method: :post do |f|  %>
-                  <%# TODO: We can use this! %>
-                  <%# ! <i class="fa-sharp fa-regular fa-book"></i> %>
-                  <button type="submit" class="custom-btn btn-purple" style="z-index: 1;">Remove from your cookbook</button>
-                <% end %>
-              <% else %>
-                <%= simple_form_for @recipe, url: cookbook_path, method: :post do |f|  %>
-                  <%# SAME! %>
-                  <%# ! <i class="fa-thin fa-book"></i> %>
-                  <button type="submit" class="custom-btn btn-purple" style="z-index: 1;">Add to your cookbook</button>
-                <% end %>
-              <% end %>
             </div>
 
 
@@ -82,9 +84,11 @@
 </div>
 
 <div class="container">
-  <p class="fs-2">Comments</p>
   <!-- Add your review display code here if needed -->
   <section class="comments w-50">
+    <% if @comments.count > 0 %>
+      <p class="fs-2 text-center">Comments</p>
+    <% end %>
     <% @comments.each do |comment| %>
       <article class="comment">
 
@@ -116,7 +120,7 @@
   </section>
 </div>
 
-<p class="text-center title fs-1">Other Similar Recipes</p>
+<p class="text-center title fs-1">Similar Recipes</p>
 <div class="container">
   <div class="grid">
     <% @top_recipes.each do |recipe| %>

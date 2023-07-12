@@ -43,7 +43,6 @@
 </div>
 
 
-  <%# TODO: SEARCH BAR HERE. COMMENT THIS OUT LATER, MAKE A DEDICATED PAGE FOR IT %>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -81,13 +80,13 @@
 <div class="row justify-content-center">
   <div class="col-md-2 overflow-auto">
     <div class="w-75 h-50 d-flex flex-column justify-content-center align-items-center">
-      <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 2px;">Top Workouts</p>
-      <% Workout.all.sample(10).each do |workout| %>
+      <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 3px;">Top Workouts</p>
+      <% current_user.favorites.where(favoritable_type: "Workout").all.sample(10).each do |workout| %>
         <div class="container text-truncate">
-          <%= link_to workout.title, workout_path(workout), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
+          <%= link_to workout.favoritable.title, workout_path(workout.favoritable), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
         </div>
         <div class="container">
-          <img src="<%= workout.thumbnail %>" class="img-fluid" style="border-radius: 16px;">
+          <img src="<%= workout.favoritable.thumbnail %>" class="img-fluid" style="border-radius: 16px;">
           <hr>
         </div>
       <% end %>
@@ -107,10 +106,10 @@
   <div class="col-md-2">
     <div class="container w-75 h-50 d-flex flex-column justify-content-center align-items-center">
       <p class="fs-4" style="background-color: #9ef7e3; border-radius: 6px; padding: 2px;">Top Recipes</p>
-      <% Recipe.all.sample(8).each do |recipe| %>
-        <%= link_to recipe_path(recipe), class: "text-decoration-none" do %>
-          <p class="fs-6 text-center text-dark fw-bold"><%= recipe.title %></p>
-          <img src="<%= recipe.url %>" class="w-100 h-75 object-fit-cover" style="border-radius: 16px;">
+      <% current_user.favorites.where(favoritable_type: "Recipe").all.sample(8).each do |recipe| %>
+        <%= link_to recipe_path(recipe.favoritable), class: "text-decoration-none" do %>
+          <p class="fs-6 text-center text-dark fw-bold"><%= recipe.favoritable.title %></p>
+          <img src="<%= recipe.favoritable.url %>" class="w-100 h-75 object-fit-cover" style="border-radius: 16px;">
         <% end %>
       <% end %>
     </div>
