@@ -32,11 +32,9 @@
           <% end %>
         <% end %>
 
-        <div class="buttons d-flex justify-content-end mt-5">
-          <button class="custom-btn btn-purple mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
-        </div>
+
         <br>
-        <div class="container w-100">
+        <div class="container w-100 mt-5">
           <%= simple_form_for [@workout, @comment] do |f| %>
           <div class="d-flex">
             <%= f.hidden_field :commentable_id, value: params[:id] %>
