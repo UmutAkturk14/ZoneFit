@@ -28,11 +28,7 @@
       <p class="text-center fs-5" style="border-style: solid none solid none; border-width: 1px;">Communities</p>
         <% @chatrooms.each do |chatroom| %>
         <ul>
-          <% if chatroom.notifications_count > 0 %>
-            <div class="bg-primary">
-          <% else %>
           <div>
-          <% end %>
             <li>
               <%= link_to chatroom_path(chatroom), class: "text-decoration-none" do  %>
                 <div class="card-product d-flex align-items-center" style="height: 5vh; width: 20vh;">

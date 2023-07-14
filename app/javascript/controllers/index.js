@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import ChatRefreshController from "./chat_refresh_controller"
-application.register("chat-refresh", ChatRefreshController)
-
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 

@@ -17,7 +17,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  has_many :notifications, as: :recipient, dependent: :destroy
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
 end

@@ -57,9 +57,9 @@
                     <%= f.input :content, as: :text, placeholder: "Enter your comment", label: false %>
                   </div>
               </div>
-            <% end %>
                   <button type="submit" class="btn login">Comment</button>
-                  <button class="btn login mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Share</button>
+                  <button class="btn login mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal" id="shareButton">Share</button>
+            <% end %>
                 </article>
 
           </div>
@@ -164,4 +164,16 @@
   $('#comment_content').emojioneArea({
     pickerPosition: 'right',
   });
+
+  // Get a reference to the button element
+  var button = document.getElementById('shareButton');
+
+  // Add an event listener to the button
+  button.addEventListener('click', function(event) {
+    // Prevent the default action
+    event.preventDefault();
+  });
 </script>
+
+<script>
+  </script>

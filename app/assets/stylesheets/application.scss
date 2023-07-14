@@ -17,6 +17,9 @@ body {
   background-color: white;
   font-family: 'Noto Serif', serif;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -31,4 +34,8 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #a6ffe1;
   border-radius: 8px;
+}
+
+.footer {
+  margin-top: auto;
 }
