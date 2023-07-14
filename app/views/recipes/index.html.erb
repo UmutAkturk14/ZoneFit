@@ -16,7 +16,7 @@
   <div class="grid">
     <% @recipes.each do |recipe| %>
       <%= link_to recipe_path(recipe), class: "text-decoration-none fs-6", html_wrapper: "item" do %>
-        <div class="item" style="background-color: #fcfcfc;" >
+        <div class="item" style="background-color: #ffffff;" >
           <img class="w-100 h-75 object-fit-cover" src="<%= recipe.url %>">
 
           <div class="item-content d-flex flex-column">
