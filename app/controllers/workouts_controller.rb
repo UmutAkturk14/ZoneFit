@@ -22,6 +22,10 @@ class WorkoutsController < ApplicationController
     else
       @workouts = Workout.page(params[:page]).per(20)
     end
+
+    unless @workouts == Workout.page(params[:page]).per(20)
+      @workouts = @workouts.page(params[:page]).per(20)
+    end
   end
 
   def show
