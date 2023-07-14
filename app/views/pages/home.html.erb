@@ -142,8 +142,8 @@
         <% end %>
       <% else %>
         <% Recipe.all.sample(8).each do |recipe| %>
-          <div class="container text-truncate">
-            <%= link_to recipe.title, recipe_path(recipe), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize" %>
+          <div class="container text-center text-truncate">
+            <%= link_to recipe.title, recipe_path(recipe), class: "text-truncate fw-bold text-decoration-none text-dark text-capitalize mb-1" %>
           </div>
           <div class="container">
             <img src="<%= recipe.url %>" class="img-fluid" style="border-radius: 16px;">
