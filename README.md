@@ -57,4 +57,4 @@ If you have any questions or suggestions, please feel free to reach out to us:
 
 - Email:
 - Slack:
-- Website: [ZoneFit](https://www.zonefit.life)
+- Website: [ZoneFit](http://www.zonefit.life)
